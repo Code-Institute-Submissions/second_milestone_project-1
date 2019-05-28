@@ -1,4 +1,4 @@
-# GALLACTIC GUNNERS #
+# GALACTIC GUNNERS #
 
 ###### Space Invaders Style Game
 
