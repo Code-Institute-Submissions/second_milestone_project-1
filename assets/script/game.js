@@ -28,7 +28,7 @@ var currentLives = maxLives;//declares current lives Global Variable
 var RIP = false;			//declares RIP switch Global Variable
 var LevelRestartLives = 1;  //set restart lives to 1
 var LevelRestart = 0;		//declare level restart available as 0
-
+var playerHitstrength = 1;  //declares playerHitStrength
 var maxNukes = 2;			//declares maxNukes Global Variable
 var currentNukes = maxNukes;//set currentNukes = maxNukes Global Variable
 var nukeHitStrength = 5;    //declares nukeHitStrength

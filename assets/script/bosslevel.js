@@ -11,9 +11,9 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             frameWidth: 355, //set the full width of each frame (image width / frameWidth as we have multiple on x axis) to be used
             frameHeight: 645 //set the full height of each frame to be used
         });
-        this.load.spritesheet("alienscout", "assets/images/scoutship.png", {//preload alienscout spritesheet to the game, assign key name and src, object frameWidth and frameheight
-            frameWidth: 103,//set the full width of each frame (image width / frameWidth as we have multiple on x axis) to be used
-            frameHeight: 140//set the full height of each frame to be used
+        this.load.spritesheet("alienscout", "assets/images/scoutship.png", { //preload alienscout spritesheet to the game, assign key name and src, object frameWidth and frameheight
+            frameWidth: 103, //set the full width of each frame (image width / frameWidth as we have multiple on x axis) to be used
+            frameHeight: 140 //set the full height of each frame to be used
         });
         this.load.spritesheet("enemyShip", "assets/images/alienCruiser.png", { //preload enemyShip spritesheet to the game, assign key name and src, object frameWidth and frameheight
             frameWidth: 250, //set the full width of each frame (image width / frameWidth as we have multiple on x axis) to be used
@@ -64,7 +64,18 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             frameRate: 5, //set frame rate speed
             repeat: -1 //set to -1, continuous
         });
-
+        this.anims.create({ //animation object create
+            key: "motherShip", //set the image key name to be used
+            frames: this.anims.generateFrameNumbers("motherShip"), //set image to be used to generate frames
+            frameRate: 5, //set frame rate speed
+            repeat: -1 //set to -1, continuous
+        });
+        this.anims.create({ //animation object create
+            key: "alienscout", //set the image key name to be used
+            frames: this.anims.generateFrameNumbers("alienscout"), //set image to be used to generate frames
+            frameRate: 5, //set frame rate speed
+            repeat: -1 //set to -1, continuous
+        });
         this.anims.create({ //animation object create
             key: "sprExplosion", //set the image key name to be used
             frames: this.anims.generateFrameNumbers("sprExplosion"), //set image to be used to generate frames
