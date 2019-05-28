@@ -99,6 +99,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         textScore = this.add.text(10, 10, 'Score: ' + score, { font: '42px Arcade', fill: '#ffffff' }); //create score text, position x and y, set text with score variable and add font styling
         textLives = this.add.text(10, this.game.config.height - 40, 'Lives: ' + currentLives, { font: '42px Arcade', fill: '#ffffff' }); //create lives text, position x and y, set text with currentLives variable and add font styling
         textNukes = this.add.text(this.game.config.width - 180, this.game.config.height - 40, 'Nukes: ' + currentNukes, { font: '42px Arcade', fill: '#ffffff' }); //create Nukes Left text, position x and y, set text with currentNukes variable and add font styling
+        restartlevel = this.add.text(this.game.config.width - 300, 10, 'LevelRestart: ' + LevelRestart, { font: '42px Arcade', fill: '#ffffff' }); //show how times you can restart current level
         //END score and lives
 
         //Keyboard methods created for use in update function
