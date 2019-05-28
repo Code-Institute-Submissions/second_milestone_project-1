@@ -146,6 +146,20 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         }
         //END Create enemies
 
+        //COLLISION DETECTION
+        this.physics.add.overlap(this.asteroids, this.player, function(asteroid, player) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+
+            if (asteroid) { //if asteroid
+                asteroid.destroy(); //destroy asteroid
+            }
+            //ALSO
+            if (player) { //if player  
+                this.createExplosion(player.x, player.y); //call createExplosion method
+                player.body.reset(this.game.config.width * 0.5, this.game.config.height - 50); //reset player to opening position
+            }
+        }, null, this);
+        //END COLLISION DETECTION
+
         //create sheilds
         this.shieldPattern = [ //property of sheildPattern a nested array, 
             [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0], //gives structure to sheild, 1 = image 0 = blank
