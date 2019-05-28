@@ -7,8 +7,16 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
     preload() {
         this.load.image("backgroundstars", "assets/images/darkstars.jpg") //preload background stars image
         this.load.image("playerShip", "assets/images/starship.png"); //preload player image to the game, assign key name and src
-        this.load.spritesheet("enemyShip", "assets/images/Alien-Destroyer-withexhaust-3frame.png", { //preload enemyShip spritesheet to the game, assign key name and src, object frameWidth and frameheight
-            frameWidth: 121, //set the full width of each frame (image width / frameWidth as we have multiple on x axis) to be used
+        this.load.spritesheet("motherShip", "assets/images/MotherShip-Flash.png", { //preload Alien Mothership spritesheet to the game, assign key name and src, object frameWidth and frameheight
+            frameWidth: 355, //set the full width of each frame (image width / frameWidth as we have multiple on x axis) to be used
+            frameHeight: 645 //set the full height of each frame to be used
+        });
+        this.load.spritesheet("alienscout", "assets/images/scoutship.png", {//preload alienscout spritesheet to the game, assign key name and src, object frameWidth and frameheight
+            frameWidth: 103,//set the full width of each frame (image width / frameWidth as we have multiple on x axis) to be used
+            frameHeight: 140//set the full height of each frame to be used
+        });
+        this.load.spritesheet("enemyShip", "assets/images/alienCruiser.png", { //preload enemyShip spritesheet to the game, assign key name and src, object frameWidth and frameheight
+            frameWidth: 250, //set the full width of each frame (image width / frameWidth as we have multiple on x axis) to be used
             frameHeight: 318 //set the full height of each frame to be used
         });
         this.load.image("sprShieldTile", "assets/images/sprShieldTile.png"); //preload sheild image to the game, assign key name and src
