@@ -124,6 +124,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.updateNukes(); //create callback method for updating Nukes
         this.updateEnemiesShooting(); //create callback method for updating enemy shots 
         this.updateLasers(); //create callback method for updating shots
+        this.updateContinue(); //create callback method for continue game
         this.updateRestart(); //create callback method for restarting the game on GameOver
         //END callback methods
 
