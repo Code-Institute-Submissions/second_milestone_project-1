@@ -693,7 +693,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.textVictory = this.add.text( //create Victory text
             this.game.config.width * 0.5, //set x axis position
             this.game.config.height * 0.05, //set y axis position
-            "Level 1 Complete!", //set text   
+            "Level 2 Complete!", //set text   
             {
                 fontFamily: "Arcadepix", //set font type
                 fontSize: 100, //set font size
@@ -783,12 +783,22 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             delay: 10, //set delay to 10
             callback: function() { //create a callback function
                 if (this.keyR.isDown && RIP) { //if the R key is pressed and RIP is true
-                    enemyShips = 0; //set enemyShips to 0
-                    enemyDeaths = 0; //set enemyDeaths to 0
-                    currentLives = LevelRestartLives; //reset lives to LevelRestartLives
-                    RIP = false; //set RIP to false so restart cant happen in game
-                    score = 0; //set the score back to 0
-                    this.scene.start("MainMenu"); //Restart Game
+                    if (LevelRestart > 0) { //if levelRestart = 1 
+                        enemyShips = 0; //set enemyShips to 0
+                        enemyDeaths = 0; //set enemyDeaths to 0
+                        currentLives = LevelRestartLives; //reset lives to LevelRestartLives
+                        RIP = false; //set RIP to false so restart cant happen in game
+                        LevelRestart--; //set level restart to 0
+                        this.scene.start("Level2"); //Restart Game
+                    }
+                    else {
+                        enemyShips = 0; //set enemyShips to 0
+                        enemyDeaths = 0; //set enemyDeaths to 0
+                        currentLives = maxLives; //reset lives to maxLives
+                        RIP = false; //set RIP to false so restart cant happen in game
+                        score = 0; //set the score back to 0
+                        this.scene.start("MainMenu"); //Restart Game
+                    }
                 }
             },
             callbackScope: this, //set call back scope to this
