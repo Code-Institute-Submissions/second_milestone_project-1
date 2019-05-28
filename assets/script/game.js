@@ -23,6 +23,7 @@ var config = { //game configuration parameters
         Level1,
         Level2,
         BossLevel,
+        Victory,
         Paused
     ],
 };
