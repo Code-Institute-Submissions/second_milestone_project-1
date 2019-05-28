@@ -44,12 +44,17 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         textNukes = this.add.text(this.game.config.width - 180, this.game.config.height - 40, 'Nukes: ' + currentNukes, { font: '42px Arcade', fill: '#ffffff' }); //create Nukes Left text, position x and y, set text with currentNukes variable and add font styling
         //END score and lives
 
+        //Keyboard methods created for use in update function
+        cursors = this.input.keyboard.createCursorKeys(); //sets cursor keys up for operation
+        //END Keyboard methods created for use in update function
+
         //create classes on the this.Object to assign the grouping method to  
         this.shieldTiles = this.add.group(); //create sheildTiles group
         //END classes grouping
 
         // Create callback methods
         this.createPlayer(); //create callback method for creating player
+        this.updatePlayerMovement(); //create callback method for updating player movement
         //END callback methods
 
         //create sheilds
@@ -84,6 +89,31 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         );
     }
     //END createPlayer function
+
+    //create updatePlayerMovement function
+    updatePlayerMovement() { //update player movement
+        this.time.addEvent({ //add time event
+            delay: 60, //set delay to 60
+            callback: function() { //create call back function for time event
+
+                if (cursors.left.isDown) { //if key A pressed down
+                    this.player.x -= 8; //Move left
+                }
+                if (cursors.right.isDown) { //if key D pressed down
+                    this.player.x += 8; //Move right
+                }
+                if (cursors.up.isDown) { //if key W pressed down
+                    this.player.y -= 8; //Move up   
+                }
+                if (cursors.down.isDown) { //if key S pressed down
+                    this.player.y += 8; //Move down
+                }
+            },
+            callbackScope: this, //set call back scope to this function
+            loop: true //set loop to true
+        });
+    }
+    //END updatePlayerMovement function
 
     //create addSheild function
     addShield(posX, posY) { //create an addSheild function with posX, posY as paramaters

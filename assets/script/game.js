@@ -35,6 +35,8 @@ var textScore;				//declares score text Global Variable
 var textLives;				//declares lives left text Global Variable
 var textNukes;				//declares Nuke text Global Variable
 
+var cursors;				//declares cursors Global Variable
+
 const StoryContent = [      //set story text variable
 	"The Year 3001 AD...",
 	"The Alien Hoards are battling through the Galaxy, on a quest to destroy ALL mankind!", 
