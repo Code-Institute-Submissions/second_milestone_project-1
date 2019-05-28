@@ -195,6 +195,25 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             this.destroyShieldTile(tile); //start destroy sheild function with parameter of this tile
         }, null, this); //processCallback set to null and context set to this
 
+        this.physics.add.overlap(this.player, this.enemies, function(player, enemy) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+            if (player) { //if player collides with enemy
+                this.createExplosion(player.x, player.y); //create explosion at player.x, player.y coordinates
+                player.body.reset(this.game.config.width * 0.5, this.game.config.height - 50); //reset player to opening position
+                this.onLifeDown(); //start lifeDown function to lose life and check if GAME OVER
+            }
+        }, null, this); //processCallback set to null and context set to this
+
+        this.physics.add.overlap(this.player, this.enemyLasers, function(player, laser) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+            if (player) { //if player hit by enemyLaser
+                this.createExplosion(player.x, player.y); //create explosion at player.x, player.y coordinates
+                player.body.reset(this.game.config.width * 0.5, this.game.config.height - 50); //reset player to opening position
+                this.onLifeDown(); //start lifeDown function to lose life and check if GAME OVER
+            }
+
+            if (laser) { //if an enemyLaser
+                laser.destroy(); //destroy laser
+            }
+        }, null, this);
 
         this.physics.add.overlap(this.shieldTiles, this.enemies, function(tile) { //create a physics overlap event between object1 and object2, followed by collideCallback function
             if (enemy) { //if enemy
