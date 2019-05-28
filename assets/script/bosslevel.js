@@ -473,7 +473,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
     //create updateEnemiesMovement function
     updateEnemiesMovement() { //update Enemy Movement
         this.enemyMoveTimer = this.time.addEvent({ //adds time event to enemy movement
-            delay: 100, //set the delay to enemy movement
+            delay: 1500, //set the delay to enemy movement
             callback: function() { //delay callback function
 
                 if (this.enemyMoveDir == "RIGHT") { //if enemyMoveDir is RIGHT
@@ -491,7 +491,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                     }
                 }
                 else if (this.enemyMoveDir == "DOWN") { //enemyMoveDir is DOWN
-                    tthis.enemyMoveTimer.delay -= 125; //reduce enemy timer delay by 125 (speeding up the loop)
+                    this.enemyMoveTimer.delay -= 125; //reduce enemy timer delay by 125 (speeding up the loop)
                     this.moveEnemiesDown(); //call function moveEnemiesDown
                 }
 

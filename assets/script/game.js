@@ -54,6 +54,7 @@ var score = 0;				//declares score Global Variable
 var textScore;				//declares score text Global Variable
 var textLives;				//declares lives left text Global Variable
 var textNukes;				//declares Nuke text Global Variable
+var restartlevel;			//declares level restart text Global Variable
 
 var leftAsteroid = true;	//set leftAsteroid variable so as to switch sides asteroids fly from
 
