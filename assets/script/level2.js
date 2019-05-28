@@ -379,7 +379,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     //create updateEnemiesMovement function
     updateEnemiesMovement() { //update Enemy Movement
         this.enemyMoveTimer = this.time.addEvent({ //adds time event to enemy movement
-            delay: 1500, //set the delay to enemy movement
+            delay: 100, //set the delay to enemy movement
             callback: function() { //delay callback function
 
                 if (this.enemyMoveDir == "RIGHT") { //if enemyMoveDir is RIGHT
@@ -397,7 +397,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                     }
                 }
                 else if (this.enemyMoveDir == "DOWN") { //enemyMoveDir is DOWN
-                    this.enemyMoveTimer.delay -= 100; //reduce enemy timer delay by 100 (speeding up the loop)
+                    tthis.enemyMoveTimer.delay -= 125; //reduce enemy timer delay by 125 (speeding up the loop)
                     this.moveEnemiesDown(); //call function moveEnemiesDown
                 }
 
@@ -423,7 +423,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         for (var i = this.enemies.getChildren().length - 1; i >= 0; i--) { //for each enemy in the enemies array
             var enemy = this.enemies.getChildren()[i]; //select this enemy with this index
 
-            enemy.y += 10; //Move enemy DOWN by 10
+            enemy.y += 13; //Move enemy DOWN by 13
 
             if (this.lastEnemyMoveDir == "LEFT") { //if lastEnemyMoveDir is LEFT
                 this.setEnemyDirection("RIGHT"); //setEnemyDirection to RIGHT
@@ -438,7 +438,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     //create updateEnemiesShooting function
     updateEnemiesShooting() { //enemy Shooting function
         this.time.addEvent({ // add time delay event
-            delay: 150, //set delay to 150
+            delay: 125, //set delay to 125
             callback: function() { //create callback function on time event
                 for (var i = 0; i < this.enemies.getChildren().length; i++) { //for each enemy in the enemies array
                     var enemy = this.enemies.getChildren()[i]; //select this enemy with index[i]
@@ -569,7 +569,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 for (var i = 0; i < this.enemyLasers.getChildren().length; i++) { //for each enemyLaser in the enemyLaser group
                     var laser = this.enemyLasers.getChildren()[i]; //set
 
-                    laser.y += 10; //set movement down on y axis as 10 (higher the number the faster it goes)
+                    laser.y += 12; //set movement down on y axis as 12 (higher the number the faster it goes)
 
                     if (laser.y > this.game.config.height - 10) { //if laser is less than 5 away from screen edge
                         this.createExplosion(laser.x, laser.y); //create an explosion at this laser.x and laser.y
