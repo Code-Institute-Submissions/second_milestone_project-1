@@ -15,7 +15,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             frameWidth: 103, //set the full width of each frame (image width / frameWidth as we have multiple on x axis) to be used
             frameHeight: 140 //set the full height of each frame to be used
         });
-        this.load.spritesheet("enemyShip", "assets/images/alienCruiser.png", { //preload enemyShip spritesheet to the game, assign key name and src, object frameWidth and frameheight
+        this.load.spritesheet("enemyCruiser", "assets/images/alienCruiser.png", { //preload enemyCruiser spritesheet to the game, assign key name and src, object frameWidth and frameheight
             frameWidth: 250, //set the full width of each frame (image width / frameWidth as we have multiple on x axis) to be used
             frameHeight: 318 //set the full height of each frame to be used
         });
@@ -59,8 +59,8 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
 
         //create animations
         this.anims.create({ //animation object create
-            key: "enemyShip", //set the image key name to be used
-            frames: this.anims.generateFrameNumbers("enemyShip"), //set image to be used to generate frames
+            key: "enemyCruiser", //set the image key name to be used
+            frames: this.anims.generateFrameNumbers("enemyCruiser"), //set image to be used to generate frames
             frameRate: 5, //set frame rate speed
             repeat: -1 //set to -1, continuous
         });
@@ -169,10 +169,10 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             Math.round((this.game.config.height / 40) * 0.25) * 20 //sets the height of rectangle
         );
 
-        for (var x = 3.5; x < Math.round((this.game.config.width / 24) * 0.4); x++) { //create an inset row of enemy ships by setting to 0.6, skipping the first 10 iterations of the loop by setting x to 10, we can center the enemyShips by offsetting from the edge
+        for (var x = 3.5; x < Math.round((this.game.config.width / 24) * 0.4); x++) { //create an inset row of enemy ships by setting to 0.6, skipping the first 10 iterations of the loop by setting x to 10, we can center the enemyCruiser by offsetting from the edge
             for (var y = 0; y < Math.round((this.game.config.height / 40) * 0.16); y++) { //create additional rows by iterating through x depending on screen size more rows may appear
-                var enemy = new Enemy(this, x * 54, (this.game.config.height * 0.25) + (y * 74), "enemyShip"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyship image sprite
-                enemy.play("enemyShip"); //start animation of the enemyShip
+                var enemy = new Enemy(this, x * 54, (this.game.config.height * 0.25) + (y * 74), "enemyCruiser"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyCruiser image sprite
+                enemy.play("enemyCruiser"); //start animation of the enemyCruiser
                 enemy.setScale(0.25); //set the scale of the enemy sprite
                 enemyShips++; //add a ship to total enemy ships created
                 this.enemies.add(enemy); //draw an enemy ship on the screen at x and y
