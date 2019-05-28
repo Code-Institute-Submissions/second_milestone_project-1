@@ -23,6 +23,7 @@ var config = {							//game configuration parameters
 
 var maxLives = 3;			//declares maxLives Global Variable
 var currentLives = maxLives;//declares current lives Global Variable
+var RIP = false;			//declares RIP switch Global Variable
 
 var maxNukes = 2;			//declares maxNukes Global Variable
 var currentNukes = maxNukes;//set currentNukes = maxNukes Global Variable
@@ -70,5 +71,9 @@ const Controls = [      //set controls text variable
 	"GAME CONTROLS",
 	"Use Cursors to FLY      Press Space for LASERS      Press N for NUKES"      
 ];
+
+const GameOver = ["GAME OVER"];         //set Gameover text variable
+
+const Restart = ["Press R to Restart"]; //set Restart text variable
 
 var game = new Phaser.Game(config);  	//sets game variable to new Phaser Game with parameters of config

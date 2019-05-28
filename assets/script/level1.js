@@ -491,5 +491,43 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         }
     }
     //end life down function
+
+    //create gameover function
+    gameOver() {
+        RIP = true; //set RIP to true
+        textScore.setText('Final Score: ' + score); //set score text to final score
+        textLives.setText('Lives: GAME OVER'); //set lives text to GAME OVER 
+        this.player.destroy(); //destroy player
+        this.gameOverExplosion = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.5, 'gameOver'); //insert explosion image first to put behind alien and setting x and y position
+        this.gameOverExplosion.setScale(2); //set gameover explosion to twice its size
+        this.textGameOver = this.add.text( //create game over text
+            this.game.config.width * 0.5, //set x axis position
+            this.game.config.height * 0.05, //set y axis position
+            GameOver, //set text to variable GameOver
+            {
+                fontFamily: "Arcadepix", //set font type
+                fontSize: 100, //set font size
+                align: "center" //set text alignment
+            }
+        );
+        this.textGameOver.setOrigin(0.5); //Set origin of gameover text to its center
+        this.textGameOver.setTint(0x008000); //set text color
+
+        this.textRestart = this.add.text( //create restart text
+            this.game.config.width * 0.5, //set x axis position
+            this.game.config.height * 0.15, //set y axis position
+            Restart, //set text to variable Restart
+            {
+                fontFamily: "Arcadepix", //set font type
+                fontSize: 70, //set font size
+                align: "center" //set text alignment
+            }
+        );
+        this.textRestart.setTint(0x008000); //Set text colour
+        this.textRestart.setOrigin(0.5); //Set origin of restart text to its center
+        this.alienWin = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.6, 'alien'); //insert alien image last to for rendering in front setting x and y position
+        this.alienWin.setScale(1.2) //set scale to 1.2
+    }
+    //END gameover function
 }
 // END scene
