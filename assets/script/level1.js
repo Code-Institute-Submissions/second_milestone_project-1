@@ -210,6 +210,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 enemyShips--; //decrement enemyShips by 1 (used for testing)
                 enemyDeaths++; //increment enemyDeaths by 1 for game win logic
                 this.createNukeExplosion(enemy.x, enemy.y); //call createNukeExplosion method
+                this.addScore(nukeScore); //call add score function with nukeScore variable                 
                 enemy.destroy(); //destroy enemy object
             }
         }, null, this);
@@ -220,6 +221,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 enemyShips--; //decrement enemyShips by 1 (used for testing)
                 enemyDeaths++; //increment enemyDeaths by 1 for game win logic
                 this.createExplosion(enemies.x, enemies.y); //call creatExplosion method on each object
+                this.addScore(enemyValue); //add score of enemyValue per enemy hit
                 enemies.destroy(); //destroy enemies that are hit
             }
         }, null, this);
@@ -234,6 +236,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 enemyShips--; //decrement enemyShips by 1 (used for testing)
                 enemyDeaths++; //increment enemyDeaths by 1 for game win logic
                 this.createExplosion(enemy.x, enemy.y); //call creatExplosion method
+                this.addScore(enemyValue); //add score of enemyValue per enemy hit
                 enemy.destroy(); //destroy enemy object
             }
         }, null, this); //processCallback set to null and context set to this
@@ -306,6 +309,13 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
 
     ////////////////////////////////////////////////////////////
     // NOW CREATE OWN FUNCTIONS OUTSIDE OF THE CREATE FUNCTION//
+
+    //create addScore function
+    addScore(amount) { //addScore method passed with parameter amount
+        score += amount; //raise score by amount                     
+        textScore.setText('Score: ' + score); //sets score 
+    }
+    //END addScore function
 
     //create loseLives function
     loseLives(amount) { //loseLives method passed with parameter amount

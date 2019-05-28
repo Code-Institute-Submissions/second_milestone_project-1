@@ -28,6 +28,8 @@ var LevelRestartLives = 1;  //set restart lives to 1
 
 var maxNukes = 2;			//declares maxNukes Global Variable
 var currentNukes = maxNukes;//set currentNukes = maxNukes Global Variable
+var nukeHitStrength = 5;    //declares nukeHitStrength
+var nukeScore = 100;		//set nukeScore Global Variable
 var particles;				//declares particles Global Variable			
 var emitter;    			//declares emitter Global Variable
 
@@ -35,6 +37,7 @@ var enemyShips = 0;			//declares number of enemyShips Global Variable
 var totalEnemyShips;		//declares totalEnemyShips Global Variable
 var enemyDeaths = 0;		//declares enemyDeaths Global Variable
 var enemyHitStrength = 1;	//declares enemyHitStrength Global Variable
+var enemyValue = 10;		//declares enemyValue as 10 Global Variable
 
 
 var level1Shields = 8;		//declares the number of sheilds in Level 1
