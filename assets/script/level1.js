@@ -109,6 +109,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.explosions = this.add.group(); //create explosions group
         this.enemies = this.add.group(); //create enemies group
         this.shieldTiles = this.add.group(); //create sheildTiles group
+        this.shieldHoles = this.add.group(); //create sheildHoles group     
         //END classes grouping
 
         // Create callback methods
@@ -159,6 +160,30 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 this.onLifeDown(); //start onLifeDown Method
             }
         }, null, this);
+
+        this.physics.add.overlap(this.playerLasers, this.shieldTiles, function(laser, tile) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+            if (laser) { //if playerLaser
+                laser.destroy(); //destroy laser object
+            }
+            //ALSO
+            this.destroyShieldTile(tile); //start destroy sheild function with parameter of this tile
+        }, null, this); //processCallback set to null and context set to this
+
+
+        this.physics.add.overlap(this.shieldTiles, this.enemies, function(tile) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+            if (enemy) { //if enemy
+                tile.destroy(); //start destroy sheild function with parameter of this tile
+            }
+        }, null, this); //processCallback set to null and context set to this
+
+        this.physics.add.overlap(this.enemyLasers, this.shieldTiles, function(laser, tile) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+            if (laser) { //if enemyLaser 
+                laser.destroy(); //destroy laser object
+            }
+            //ALSO
+            this.destroyShieldTile(tile); //start destroy sheild function with parameter of this tile
+        }, null, this); //processCallback set to null and context set to this
+
         //END COLLISION DETECTION
 
         //create sheilds
@@ -480,6 +505,47 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         }
     }
     //END addSheild function
+
+    //create destroySheildTile function
+    destroyShieldTile(tile) {
+        if (tile) { //if(tile)
+            this.createExplosion(tile.x, tile.y); //create explosion at x and y of tile
+
+            for (var i = 0; i < Phaser.Math.Between(10, 20); i++) { //for loop to iterate through sheildtile array randomly
+                var shieldHole = this.add.graphics({ //create sheildhole var and add graphics
+                    fillStyle: { //create style
+                        color: 0x000000 //set colour of sheildHole
+                    }
+                });
+                shieldHole.setDepth(-1); //set depth of sheildHole
+
+                var size = Phaser.Math.Between(2, 4); //create a random size variable on each iteration
+
+                if (Phaser.Math.Between(0, 100) > 25) { //if number generated is over 25
+                    var rect = new Phaser.Geom.Rectangle( //create rectangle over tile
+                        tile.x + (Phaser.Math.Between(-2, tile.displayWidth + 2)), //using tile.x coordinates +or- 2
+                        tile.y + (Phaser.Math.Between(-2, tile.displayHeight + 2)), //using tile.y coordinates +or- 2
+                        size, //width is size 
+                        size //height is size 
+                    );
+                }
+                else {
+                    var rect = new Phaser.Geom.Rectangle( //create rectangle over tile 
+                        tile.x + (Phaser.Math.Between(-4, tile.displayWidth + 4)), //using tile.x coordinates +or- 4
+                        tile.y + (Phaser.Math.Between(-4, tile.displayHeight + 4)), //using tile.y coordinates +or- 4
+                        size, //width is size 
+                        size //height is size 
+                    );
+                }
+
+                shieldHole.fillRectShape(rect); //fill random rect shape created with sheildholes at random
+
+                this.shieldHoles.add(shieldHole); //add sheildhole to the group
+            }
+            tile.destroy(); //destroy tile
+        }
+    }
+    //END destroySheildTile function
 
     //create life down function
     onLifeDown() {
