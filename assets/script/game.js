@@ -18,6 +18,7 @@ var config = {							//game configuration parameters
 	    Info,
 	    Level1,
 	    Level2,
+	    BossLevel,
 	    Paused
 	],
 };
