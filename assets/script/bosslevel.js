@@ -184,6 +184,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         // Create callback methods
         this.updateEnemiesShooting(); //create callback method for updating enemy shots 
         this.updateEnemiesMovement(); //create callback method for updating enemy moves 
+        this.updateMotherShipShooting(); //create callback method for updating mothership shots
         this.motherShipHit(); //create callback method for updating mothership hit
         this.createPlayer(); //create callback method for creating player
         this.updatePlayerMovement(); //create callback method for updating player movement
@@ -550,6 +551,28 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         });
     }
     //END updateEnemiesShooting function
+
+    //create mothershipShooting functions
+    updateMotherShipShooting() { //mothership Shooting function
+        this.time.addEvent({ // add time delay event
+            delay: 700, //set delay to 700
+            callback: function() { //create callback function on time event
+                var motherShip = this.alienMothership;
+                if (motherShipAlive) {
+                    var laser1 = new EnemyLaser(this, (motherShip.x - 15), motherShip.y); //add a new EnemyLaser object
+                    laser1.setScale(2.5); //set mothership laser to twice size
+                    this.enemyLasers.add(laser1); //draw a new enemyLaser
+                    var laser2 = new EnemyLaser(this, (motherShip.x + 15), motherShip.y); //add a new EnemyLaser object
+                    laser2.setScale(2.5); //set mothership laser to twice size
+                    this.enemyLasers.add(laser2); //draw a new enemyLaser
+                    this.sfx.laserEnemy.play(); //play the sound laserEnemy
+                }
+            },
+            callbackScope: this, //set call back scope to this function
+            loop: true //set loop to true
+        });
+    }
+    //END mothershipShooting functions
 
     //create updatePlayerMovement function
     updatePlayerMovement() { //update player movement
