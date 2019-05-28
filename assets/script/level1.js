@@ -41,6 +41,12 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.background = new Background(this, this.game.config.width * 0.5, this.game.config.height * 0.5, "backgroundstars"); // add background image first
         //END background image
 
+        //create sfx
+        this.sfx = { //add properties to call back sfx
+            laserPlayer: this.sound.add("sndLaserPlayer") //create the soudn fx properties
+        };
+        //END sfx
+
         //create animations
         this.anims.create({ //animation object create
             key: "enemyShip", //set the image key name to be used
@@ -58,9 +64,17 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
 
         //Keyboard methods created for use in update function
         cursors = this.input.keyboard.createCursorKeys(); //sets cursor keys up for operation
+        this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //sets SPACE as FIRE key
+
         //END Keyboard methods created for use in update function
 
+        //set scene variables for shooting delays
+        this.playerShootDelay = 25; //sets the Delay value for the player laser, lower the value the faster it shoots
+        this.playerShootTick = 0; //sets the playerShootTick to 0, for using in the updatePlayerShooting function
+        //END set scene variables for shooting delays
+
         //create classes on the this.Object to assign the grouping method to 
+        this.playerLasers = this.add.group(); //create playerLaser group
         this.enemies = this.add.group(); //create enemies group
         this.shieldTiles = this.add.group(); //create sheildTiles group
         //END classes grouping
@@ -68,6 +82,8 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         // Create callback methods
         this.createPlayer(); //create callback method for creating player
         this.updatePlayerMovement(); //create callback method for updating player movementadd cursors 
+        this.updateEnemiesMovement(); //create callback method for updating enemy moves 
+        this.updatePlayerShooting(); //create callback method for updating player shots
         //END callback methods
 
         //Create enemies and set positions movement directions
@@ -150,6 +166,101 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         });
     }
     //END updatePlayerMovement function
+
+    //create updatePlayerShooting function
+    updatePlayerShooting() {
+        this.time.addEvent({ //add a time event on player shooting
+            delay: 15, //set delay to 15
+            callback: function() { //create a callback function 
+                if (this.keySpace.isDown && this.player.active) { //if SPACE is down && player is active still
+                    if (this.playerShootTick < this.playerShootDelay) { //if playerShootTick is less than the playerShootDelay
+                        this.playerShootTick++; //add 1 to Tick count, which will repeat until it hits 30
+                    }
+                    else {
+                        var laser = new PlayerLaser(this, this.player.x, this.player.y); //create new laser object and start this object at player.x and player.y
+                        this.playerLasers.add(laser); //add this laser to playerLaser group
+                        this.sfx.laserPlayer.play(); //add laserPlayer sound
+                        this.playerShootTick = 0; //set shootTick back to 0
+                    }
+                }
+            },
+            callbackScope: this, //set call back scope to this function
+            loop: true //set loop to true
+        });
+    }
+
+    //create setEnemyDirection function
+    setEnemyDirection(direction) { //set enemy movement direction with direction parameter
+        this.lastEnemyMoveDir = this.enemyMoveDir; //sets enemyMoveDir as lastEnemyMoveDir
+        this.enemyMoveDir = direction; //enemyMoveDir is equal to direction parameter
+    }
+    //END setEnemyDirection function
+
+    //create setEnemyDirection function
+    setEnemyDirection(direction) { //set enemy movement direction with direction parameter
+        this.lastEnemyMoveDir = this.enemyMoveDir; //sets enemyMoveDir as lastEnemyMoveDir
+        this.enemyMoveDir = direction; //enemyMoveDir is equal to direction parameter
+    }
+    //END setEnemyDirection function
+
+    //create updateEnemiesMovement function
+    updateEnemiesMovement() { //update Enemy Movement
+        this.enemyMoveTimer = this.time.addEvent({ //adds time event to enemy movement
+            delay: 1500, //set the delay to enemy movement
+            callback: function() { //delay callback function
+
+                if (this.enemyMoveDir == "RIGHT") { //if enemyMoveDir is RIGHT
+                    this.enemyRect.x += 25; //Move enemy right by 16
+
+                    if (this.enemyRect.x + this.enemyRect.width > this.game.config.width - 10) { //if enemy is past this point on x axis 
+                        this.setEnemyDirection("DOWN"); //setEnemyDirection to DOWN
+                    }
+                }
+                else if (this.enemyMoveDir == "LEFT") { //enemyMoveDir is LEFT
+                    this.enemyRect.x -= 25; //Move enemy left by 16
+
+                    if (this.enemyRect.x < (this.game.config.width - this.game.config.width) + 10) { //if enemy is past this point on x axis 
+                        this.setEnemyDirection("DOWN"); //setEnemyDirection to DOWN
+                    }
+                }
+                else if (this.enemyMoveDir == "DOWN") { //enemyMoveDir is DOWN
+                    this.enemyMoveTimer.delay -= 100; //reduce enemy timer delay by 100 (speeding up the loop)
+                    this.moveEnemiesDown(); //call function moveEnemiesDown
+                }
+
+                for (var i = this.enemies.getChildren().length - 1; i >= 0; i--) { //for each enemy in the enemies array
+                    var enemy = this.enemies.getChildren()[i]; //select this enemy with index[i]
+
+                    if (this.enemyMoveDir == "RIGHT") { //if enemyMoveDir is RIGHT
+                        enemy.x += 25; //Move enemy RIGHT 16
+                    }
+                    else if (this.enemyMoveDir == "LEFT") { //if enemyMoveDir is LEFT
+                        enemy.x -= 25; //Move enemy LEFT 16
+                    }
+                }
+            },
+            callbackScope: this, //set call back scope to this function
+            loop: true //set loop to true
+        });
+    }
+    //END updateEnemiesMovement function
+
+    //create moveEnemiesDown function
+    moveEnemiesDown() {
+        for (var i = this.enemies.getChildren().length - 1; i >= 0; i--) { //for each enemy in the enemies array
+            var enemy = this.enemies.getChildren()[i]; //select this enemy with this index
+
+            enemy.y += 10; //Move enemy DOWN by 10
+
+            if (this.lastEnemyMoveDir == "LEFT") { //if lastEnemyMoveDir is LEFT
+                this.setEnemyDirection("RIGHT"); //setEnemyDirection to RIGHT
+            }
+            else if (this.lastEnemyMoveDir == "RIGHT") { //if lastEnemyMoveDir is RIGHT
+                this.setEnemyDirection("LEFT"); //setEnemyDirection to LEFT
+            }
+        }
+    }
+    //END moveEnemiesDown function
 
     //create addSheild function
     addShield(posX, posY) { //create an addSheild function with posX, posY as paramaters

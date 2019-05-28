@@ -26,6 +26,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {  //Inherit Player class to P
 	}
 }
 
+class PlayerLaser extends Entity {                   //Inherit PlayerLaser class to Entity
+	constructor(scene, x, y) {					     // constructor function to instantiate a player laser object
+		super(scene, x, y, "sprLaserPlayer");		// call super class constructor
+		this.setScale(1.5);							//set scale
+	}
+}
+
 class Enemy extends Entity {                   //Inherit Enemy class to Entity
 	constructor(scene, x, y, key) {					     // constructor function to instantiate an enemy object
 		super(scene, x, y, key);				// call super class constructor
