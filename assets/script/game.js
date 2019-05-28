@@ -24,6 +24,7 @@ var config = { //game configuration parameters
         Level2,
         BossLevel,
         Victory,
+        Titles,
         Paused
     ],
 };
@@ -93,5 +94,17 @@ const Controls = [ //set controls text variable
 const GameOver = ["GAME OVER"]; //set Gameover text variable
 
 const Restart = ["Press R to Restart"]; //set Restart text variable
+
+const TitlesText = [    //set titles text variable
+	"CREATED BY MICHAEL LEESE 2019",
+	"",
+	"THANKS TO PHASER 3 FOR THEIR API",
+	"",
+	"THANKS TO GIMP FOR IMAGE MANIPULATION PROGRAM",
+	"",
+	"FOR FURTHER CREDITS SEE MY GITHUB REPO README.MD",
+	"",
+	"I HOPE YOU HAD FUN!           THANKS FOR PLAYING!"
+];
 
 var game = new Phaser.Game(config); //sets game variable to new Phaser Game with parameters of config
