@@ -156,6 +156,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             if (player) { //if player  
                 this.createExplosion(player.x, player.y); //call createExplosion method
                 player.body.reset(this.game.config.width * 0.5, this.game.config.height - 50); //reset player to opening position
+                this.onLifeDown(); //start onLifeDown Method
             }
         }, null, this);
         //END COLLISION DETECTION
@@ -183,6 +184,14 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
 
     ////////////////////////////////////////////////////////////
     // NOW CREATE OWN FUNCTIONS OUTSIDE OF THE CREATE FUNCTION//
+
+    //create loseLives function
+    loseLives(amount) { //loseLives method passed with parameter amount
+        currentLives -= amount; // currentLives drop by amount
+        textLives.setText('Lives: ' + currentLives); //sets lives remaining
+    }
+    //END loseLives function
+
     //create asteroids function
     createAsteroids() {
         this.time.addEvent({ //add a time event on asteroid
@@ -471,5 +480,16 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         }
     }
     //END addSheild function
+
+    //create life down function
+    onLifeDown() {
+        if (currentLives == 0) { //if lives = 0
+            this.gameOver(); //start gameover method
+        }
+        else if (currentLives > 0) { //else if lives greater than 0
+            this.loseLives(enemyHitStrength); //lose a life by value of enemyHitStrength
+        }
+    }
+    //end life down function
 }
 // END scene

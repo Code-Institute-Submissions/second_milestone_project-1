@@ -31,6 +31,8 @@ var emitter;    			//declares emitter Global Variable
 
 var enemyShips = 0;			//declares number of enemyShips Global Variable
 var totalEnemyShips;		//declares totalEnemyShips Global Variable
+var enemyHitStrength = 1;	//declares enemyHitStrength Global Variable
+
 
 var level1Shields = 8;		//declares the number of sheilds in Level 1
 var level2Shields = 6;		//declares the number of sheilds in Level 2
