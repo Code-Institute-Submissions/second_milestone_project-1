@@ -20,9 +20,20 @@ var config = {							//game configuration parameters
 	],
 };
 
+var maxLives = 3;			//declares maxLives Global Variable
+var currentLives = maxLives;//declares current lives Global Variable
+
+var maxNukes = 2;			//declares maxNukes Global Variable
+var currentNukes = maxNukes;//set currentNukes = maxNukes Global Variable
+
 var level1Shields = 8;		//declares the number of sheilds in Level 1
 var level2Shields = 6;		//declares the number of sheilds in Level 2
 var levelBShields = 4;		//declares the number of sheilds in Boss Level
+
+var score = 0;				//declares score Global Variable
+var textScore;				//declares score text Global Variable
+var textLives;				//declares lives left text Global Variable
+var textNukes;				//declares Nuke text Global Variable
 
 const StoryContent = [      //set story text variable
 	"The Year 3001 AD...",

@@ -38,6 +38,11 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.background = new Background(this, this.game.config.width * 0.5, this.game.config.height * 0.5, "backgroundstars"); // add background image first
         //END background image
 
+        //SCORED POINTS  AND LIVES REMAINING METHODS 
+        textScore = this.add.text(10, 10, 'Score: ' + score, { font: '42px Arcade', fill: '#ffffff' }); //create score text, position x and y, set text with score variable and add font styling
+        textLives = this.add.text(10, this.game.config.height - 40, 'Lives: ' + currentLives, { font: '42px Arcade', fill: '#ffffff' }); //create lives text, position x and y, set text with currentLives variable and add font styling
+        textNukes = this.add.text(this.game.config.width - 180, this.game.config.height - 40, 'Nukes: ' + currentNukes, { font: '42px Arcade', fill: '#ffffff' }); //create Nukes Left text, position x and y, set text with currentNukes variable and add font styling
+        //END score and lives
 
         //create classes on the this.Object to assign the grouping method to  
         this.shieldTiles = this.add.group(); //create sheildTiles group
@@ -67,34 +72,34 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         //END create sheilds
     }
     //end create function 
-    
-      //create createPlayer function
-  createPlayer() {
-    if (this.player) this.player.destroy();
-    this.player = new Player(              //create new player instance
-      this,                                //in this scene
-      this.game.config.width * 0.5,        //set playerShip to center of screen on x axis
-      this.game.config.height - 50,         //set playerShip to position 50 pixels up from bottom on y axis
-     "playerShip"
-    );
-  }
-  //END createPlayer function
-  
-   //create addSheild function
-  addShield(posX, posY) {                                         //create an addSheild function with posX, posY as paramaters
-    for (var y = 0; y < this.shieldPattern.length; y++) {         //iterate through sheildPattern nested array to obtain the number of rows to create on y axis
-      for (var x = 0; x < this.shieldPattern[y].length; x++) {    //for each row iterate through the array and add a sheildTile to the position on x axis
-        if (this.shieldPattern[y][x] == 1) {                      //if the array.value is == 1
-          var tile = new ShieldTile(                             //then add a new tile object
-            this,                                                 //this game object
-            posX + (x * 8),                                       //set new position of tile object on x axis with padding
-            posY + (y * 8)                                        //set new position of tile object on y axis with padding
-          );
-          this.shieldTiles.add(tile);                             //draw tile image in location 
-        }
-      }
+
+    //create createPlayer function
+    createPlayer() {
+        if (this.player) this.player.destroy();
+        this.player = new Player( //create new player instance
+            this, //in this scene
+            this.game.config.width * 0.5, //set playerShip to center of screen on x axis
+            this.game.config.height - 50, //set playerShip to position 50 pixels up from bottom on y axis
+            "playerShip"
+        );
     }
-  }
-  //END addSheild function
+    //END createPlayer function
+
+    //create addSheild function
+    addShield(posX, posY) { //create an addSheild function with posX, posY as paramaters
+        for (var y = 0; y < this.shieldPattern.length; y++) { //iterate through sheildPattern nested array to obtain the number of rows to create on y axis
+            for (var x = 0; x < this.shieldPattern[y].length; x++) { //for each row iterate through the array and add a sheildTile to the position on x axis
+                if (this.shieldPattern[y][x] == 1) { //if the array.value is == 1
+                    var tile = new ShieldTile( //then add a new tile object
+                        this, //this game object
+                        posX + (x * 8), //set new position of tile object on x axis with padding
+                        posY + (y * 8) //set new position of tile object on y axis with padding
+                    );
+                    this.shieldTiles.add(tile); //draw tile image in location 
+                }
+            }
+        }
+    }
+    //END addSheild function
 }
 // END scene
