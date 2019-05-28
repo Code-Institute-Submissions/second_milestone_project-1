@@ -87,6 +87,8 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //sets SPACE as FIRE key
         this.keyN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N); //sets key N as NUKE key
         this.keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R); //sets key R as Restart Key on GAME OVER
+        this.keyEnter = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER); //sets key ENTER as continue button on level win
+
         this.input.keyboard.on('keydown-P', function() { //on pressing Key P
             isPaused = this.scene; //set isPasued to this.scene to get key
             this.scene.pause(); //pause this scene
@@ -713,6 +715,22 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         LevelRestart++; //Add a level restart ability as reward for completing level
     }
     //END win function
+
+    //continue function
+    updateContinue() { //update method to restart game in event of GAME OVER
+        this.time.addEvent({ //add timed event
+            delay: 10, //set delay to 10
+            callback: function() { //create a callback function
+                if (this.keyEnter.isDown && levelWon) { //if the Space key is pressed and levelWon is true
+                    levelWon = false;
+                    this.scene.start("Level2"); //set scene start for level 2
+                }
+            },
+            callbackScope: this, //set call back scope to this
+            loop: true //set loop to true checking parameters
+        });
+    }
+    // end continue function
 
     //create life down function
     onLifeDown() {
