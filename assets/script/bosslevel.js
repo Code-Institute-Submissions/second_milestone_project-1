@@ -188,6 +188,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         this.updateMotherShipShooting(); //create callback method for updating mothership shots
         this.motherShipHit(); //create callback method for updating mothership hit
         this.createAlienScouts(); //create alien scout ships
+        this.updateScoutsShooting(); //create update for alien scout ships shooting
         this.createPlayer(); //create callback method for creating player
         this.updatePlayerMovement(); //create callback method for updating player movement
         this.updatePlayerShooting(); //create callback method for updating player shots
@@ -611,6 +612,28 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         });
     }
     //END mothershipShooting functions
+
+    //create updateScoutsShooting function
+    updateScoutsShooting() { //enemy Shooting function
+        this.time.addEvent({ // add time delay event
+            delay: 200, //set delay to 200
+            callback: function() { //create callback function on time event
+                for (var i = 0; i < this.alienscouts.getChildren().length; i++) { //for each enemy in the enemies array
+                    var scout = this.alienscouts.getChildren()[i]; //select this enemy with index[i]
+
+                    if (Phaser.Math.Between(0, 1000) > 990) { //for each scout, if number generated is greater than 990 FIRE (lower the number the higher the fire rate)
+                        var laser = new EnemyLaser(this, scout.x, scout.y); //add a new EnemyLaser object
+                        this.enemyLasers.add(laser); //draw a new enemyLaser
+
+                        this.sfx.laserEnemy.play(); //play the sound laserEnemy
+                    }
+                }
+            },
+            callbackScope: this, //set call back scope to this function
+            loop: true //set loop to true
+        });
+    }
+    //END updatescoutsShooting function
 
     //create updatePlayerMovement function
     updatePlayerMovement() { //update player movement
