@@ -65,6 +65,17 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         });
         //END animations
 
+        //particles and emitter creation
+        particles = this.add.particles('yellow'); //load yellow image into particles 
+
+        emitter = particles.createEmitter({ // create emitter to be called and createEmitter object on particles
+            on: false, //set on method to be property false, not showing on screen //on test with set to true as standard positioned in top left corner before action call
+            speed: 100, //set property to the speed the particles emit higher number = faster
+            scale: { start: 0.5, end: 0 }, //set the scale of your particles from starting size to finishing size
+            blendMode: "ADD", //set BlendMode method of ADD so as to keep richer colours
+        });
+        //END particles and emitter creation
+
         //SCORED POINTS  AND LIVES REMAINING METHODS 
         textScore = this.add.text(10, 10, 'Score: ' + score, { font: '42px Arcade', fill: '#ffffff' }); //create score text, position x and y, set text with score variable and add font styling
         textLives = this.add.text(10, this.game.config.height - 40, 'Lives: ' + currentLives, { font: '42px Arcade', fill: '#ffffff' }); //create lives text, position x and y, set text with currentLives variable and add font styling
@@ -75,6 +86,12 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         cursors = this.input.keyboard.createCursorKeys(); //sets cursor keys up for operation
         this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //sets SPACE as FIRE key
         this.keyN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N); //sets key N as NUKE key
+
+        this.input.keyboard.on('keydown-P', function() { //on pressing Key P
+            isPaused = this.scene; //set isPasued to this.scene to get key
+            this.scene.pause(); //pause this scene
+            this.scene.launch('Paused'); //launch paused scene
+        }, this);
         //END Keyboard methods created for use in update function
 
         //set scene variables for shooting delays
@@ -308,6 +325,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                     var nuke = this.starNukes.getChildren()[i]; //this nuke = starNukes[i]
                     if (nuke.y < 10) { //if laser is less than 5 away from screen edge
                         this.createExplosion(nuke.x, nuke.y); //create an explosion at this nuke.x and nuke.y
+                        emitter.stop(); //stope emitting particles
                         if (nuke) { //if nuke         
                             nuke.destroy(); //destroy this nuke
                         }

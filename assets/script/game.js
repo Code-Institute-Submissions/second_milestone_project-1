@@ -16,7 +16,8 @@ var config = {							//game configuration parameters
 	scene: [							//load scene properties and their keys
 	    MainMenu,
 	    Info,
-	    Level1
+	    Level1,
+	    Paused
 	],
 };
 
@@ -25,6 +26,8 @@ var currentLives = maxLives;//declares current lives Global Variable
 
 var maxNukes = 2;			//declares maxNukes Global Variable
 var currentNukes = maxNukes;//set currentNukes = maxNukes Global Variable
+var particles;				//declares particles Global Variable			
+var emitter;    			//declares emitter Global Variable
 
 var enemyShips = 0;			//declares number of enemyShips Global Variable
 var totalEnemyShips;		//declares totalEnemyShips Global Variable
@@ -42,6 +45,8 @@ var leftAsteroid = true;	//set leftAsteroid variable so as to switch sides aster
 
 
 var cursors;				//declares cursors Global Variable
+var isPaused;	         	//set scene paused name
+
 
 const StoryContent = [      //set story text variable
 	"The Year 3001 AD...",

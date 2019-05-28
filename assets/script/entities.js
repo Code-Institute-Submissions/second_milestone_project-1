@@ -41,6 +41,8 @@ class Nuke extends Phaser.Physics.Arcade.Sprite { //Inherit Nuke class to Phaser
         this.setVelocity(0, -400); //create random x (left or right)value and fire up at -200
         this.setAngle(0); //set angle to 0
         this.body.angularVelocity = 100; //set rotation speed to 100
+        emitter.start(); //start emitting the particles
+        emitter.startFollow(this); //start particles following the starNuke
     }
 }
 
