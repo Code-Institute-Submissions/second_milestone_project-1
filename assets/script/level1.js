@@ -213,7 +213,27 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
 
                     laser.y -= 16; //set movement down on y axis as 16 (higher the number the faster it goes)
 
-                    if (laser.y < 10) { //if laser is less than 5 away from screen edge
+                    if (laser.y < 10) { //if laser is less than 10 away from screen edge
+                        this.createExplosion(laser.x, laser.y); //create an explosion at this laser.x and laser.y
+
+                        if (laser) { //if laser         
+                            laser.destroy(); //destroy this laser
+                        }
+                    }
+                }
+            },
+            callbackScope: this, //set call back scope to this function
+            loop: true //set loop to true
+        });
+        this.time.addEvent({ //add a time event on enemy laser
+            delay: 128, //set delay to 128
+            callback: function() { //create call back function for time event
+                for (var i = 0; i < this.enemyLasers.getChildren().length; i++) { //for each enemyLaser in the enemyLaser group
+                    var laser = this.enemyLasers.getChildren()[i]; //set
+
+                    laser.y += 10; //set movement down on y axis as 10 (higher the number the faster it goes)
+
+                    if (laser.y > this.game.config.height - 10) { //if laser is less than 10 away from screen edge
                         this.createExplosion(laser.x, laser.y); //create an explosion at this laser.x and laser.y
 
                         if (laser) { //if laser         
