@@ -10,7 +10,7 @@ class MainMenu extends Phaser.Scene {            //creates a scene in the Phaser
     this.load.image("BtnPlayHover", "assets/images/sprBtnPlayHover.png");  //preload the Play Button Hover image
     this.load.image("hero", "assets/images/spacesuit.png");                   //preload the hero image
     this.load.image("BtnInfo", "assets/images/InfoWhite.png");            //preload the Info Button image
-    this.load.audio("sndBtn", "assets/images/sndBtn.wav");                    //preload the Button Sound
+    this.load.audio("sndBtn", "assets/audio/sndBtn.wav");                    //preload the Button Sound
   }
   //END preload function
   
