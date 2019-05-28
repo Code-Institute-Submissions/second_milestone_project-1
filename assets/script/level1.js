@@ -44,7 +44,8 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         //create sfx
         this.sfx = { //add properties to call back sfx
             explode: this.sound.add("sndExplode"), //create the soudn fx properties
-            laserPlayer: this.sound.add("sndLaserPlayer") //create the soudn fx properties
+            laserPlayer: this.sound.add("sndLaserPlayer"), //create the soudn fx properties
+            laserEnemy: this.sound.add("sndLaserEnemy") //create the soudn fx properties
         };
         //END sfx
 
@@ -83,6 +84,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
 
         //create classes on the this.Object to assign the grouping method to 
         this.playerLasers = this.add.group(); //create playerLaser group
+        this.enemyLasers = this.add.group(); //create enemyLaser group
         this.explosions = this.add.group(); //create explosions group
         this.enemies = this.add.group(); //create enemies group
         this.shieldTiles = this.add.group(); //create sheildTiles group
@@ -93,6 +95,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.updatePlayerMovement(); //create callback method for updating player movementadd cursors 
         this.updateEnemiesMovement(); //create callback method for updating enemy moves 
         this.updatePlayerShooting(); //create callback method for updating player shots
+        this.updateEnemiesShooting(); //create callback method for updating enemy shots 
         this.updateLasers(); //create callback method for updating shots
 
         //END callback methods
@@ -305,6 +308,28 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         }
     }
     //END moveEnemiesDown function
+
+    //create updateEnemiesShooting function
+    updateEnemiesShooting() { //enemy Shooting function
+        this.time.addEvent({ // add time delay event
+            delay: 150, //set delay to 150
+            callback: function() { //create callback function on time event
+                for (var i = 0; i < this.enemies.getChildren().length; i++) { //for each enemy in the enemies array
+                    var enemy = this.enemies.getChildren()[i]; //select this enemy with index[i]
+
+                    if (Phaser.Math.Between(0, 1000) > 995) { //for each enemy, if number generated is greater than 995 FIRE (lower the number the higher the fire rate)
+                        var laser = new EnemyLaser(this, enemy.x, enemy.y); //add a new EnemyLaser object
+                        this.enemyLasers.add(laser); //draw a new enemyLaser
+
+                        this.sfx.laserEnemy.play(); //play the sound laserEnemy
+                    }
+                }
+            },
+            callbackScope: this, //set call back scope to this function
+            loop: true //set loop to true
+        });
+    }
+    //END updateEnemiesShooting function
 
     //create addSheild function
     addShield(posX, posY) { //create an addSheild function with posX, posY as paramaters
