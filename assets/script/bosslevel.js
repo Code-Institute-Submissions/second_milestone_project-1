@@ -162,15 +162,15 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         this.lastEnemyMoveDir = "RIGHT"; //create a variable to hold last enemy movement
         this.enemyMoveDir = "LEFT"; //create a variable to hold this enemy movement
         this.enemyRect = new Phaser.Geom.Rectangle( //for moving the enemy rectangle around
-            Math.round((this.game.config.width / 24) * 0.5) * 6, //set the x position of rectangle
+            Math.round((this.game.config.width / 24) * 0.2) * 10, //set the x position of rectangle
             Math.round((this.game.config.height / 40) * 0.25), //set the y position of rectangle
-            Math.round(this.game.config.width / 24) * 19, //sets the width of rectangle
+            Math.round(this.game.config.width / 24) * 20, //sets the width of rectangle
             Math.round((this.game.config.height / 40) * 0.25) * 20 //sets the height of rectangle
         );
 
-        for (var x = 6; x < Math.round((this.game.config.width / 24) * 0.5); x++) { //create an inset row of enemy ships by setting to 0.6, skipping the first 10 iterations of the loop by setting x to 10, we can center the enemyShips by offsetting from the edge
-            for (var y = 0; y < Math.round((this.game.config.height / 40) * 0.14); y++) { //create additional rows by iterating through x depending on screen size more rows may appear
-                var enemy = new Enemy(this, x * 44, (this.game.config.height * 0.15) + (y * 88), "enemyShip"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyship image sprite
+        for (var x = 3.5; x < Math.round((this.game.config.width / 24) * 0.4); x++) { //create an inset row of enemy ships by setting to 0.6, skipping the first 10 iterations of the loop by setting x to 10, we can center the enemyShips by offsetting from the edge
+            for (var y = 0; y < Math.round((this.game.config.height / 40) * 0.16); y++) { //create additional rows by iterating through x depending on screen size more rows may appear
+                var enemy = new Enemy(this, x * 54, (this.game.config.height * 0.25) + (y * 74), "enemyShip"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyship image sprite
                 enemy.play("enemyShip"); //start animation of the enemyShip
                 enemy.setScale(0.25); //set the scale of the enemy sprite
                 enemyShips++; //add a ship to total enemy ships created
