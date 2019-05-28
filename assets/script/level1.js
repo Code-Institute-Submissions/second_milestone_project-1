@@ -33,10 +33,22 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
 
     //create function 
     create() {
+        //set world boundaries
+        var body = this.physics.world.setBounds(0, 0, this.game.config.width, this.game.config.height); //set world boundaries up with originX, originY, Game Width, Game Height
+        //END world bounds
 
         //add background
         this.background = new Background(this, this.game.config.width * 0.5, this.game.config.height * 0.5, "backgroundstars"); // add background image first
         //END background image
+
+        //create animations
+        this.anims.create({ //animation object create
+            key: "enemyShip", //set the image key name to be used
+            frames: this.anims.generateFrameNumbers("enemyShip"), //set image to be used to generate frames
+            frameRate: 5, //set frame rate speed
+            repeat: -1 //set to -1, continuous
+        });
+        //END animations
 
         //SCORED POINTS  AND LIVES REMAINING METHODS 
         textScore = this.add.text(10, 10, 'Score: ' + score, { font: '42px Arcade', fill: '#ffffff' }); //create score text, position x and y, set text with score variable and add font styling
@@ -48,14 +60,38 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         cursors = this.input.keyboard.createCursorKeys(); //sets cursor keys up for operation
         //END Keyboard methods created for use in update function
 
-        //create classes on the this.Object to assign the grouping method to  
+        //create classes on the this.Object to assign the grouping method to 
+        this.enemies = this.add.group(); //create enemies group
         this.shieldTiles = this.add.group(); //create sheildTiles group
         //END classes grouping
 
         // Create callback methods
         this.createPlayer(); //create callback method for creating player
-        this.updatePlayerMovement(); //create callback method for updating player movement
+        this.updatePlayerMovement(); //create callback method for updating player movementadd cursors 
         //END callback methods
+
+        //Create enemies and set positions movement directions
+        this.lastEnemyMoveDir = "RIGHT"; //create a variable to hold last enemy movement
+        this.enemyMoveDir = "LEFT"; //create a variable to hold this enemy movement
+        this.enemyRect = new Phaser.Geom.Rectangle( //for moving the enemy rectangle around
+            Math.round((this.game.config.width / 24) * 0.5) * 6, //set the x position of rectangle
+            Math.round((this.game.config.height / 40) * 0.25), //set the y position of rectangle
+            Math.round(this.game.config.width / 24) * 19, //sets the width of rectangle
+            Math.round((this.game.config.height / 40) * 0.25) * 20 //sets the height of rectangle
+        );
+
+        for (var x = 6; x < Math.round((this.game.config.width / 24) * 0.5); x++) { //create an inset row of enemy ships by setting to 0.95, skipping the first 14 iterations of the loop by setting x to 2, we can center the enemyShips by offsetting from the edge
+            for (var y = 0; y < Math.round((this.game.config.height / 40) * 0.1); y++) { //create 3 additional rows by iterating through x
+                var enemy = new Enemy(this, x * 44, (this.game.config.height * 0.15) + (y * 88), "enemyShip"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyship image sprite
+                enemy.play("enemyShip"); //start animation of the enemyShip
+                enemy.setScale(0.25); //set the scale of the enemy sprite
+                enemyShips++; //add a ship to total enemy ships created
+                this.enemies.add(enemy); //draw an enemy ship on the screen at x and y
+
+            }
+            totalEnemyShips = enemyShips; //set totalEnemy ships to equal enemyShips created for use in Victory function
+        }
+        //END Create enemies
 
         //create sheilds
         this.shieldPattern = [ //property of sheildPattern a nested array, 

@@ -26,6 +26,13 @@ class Player extends Phaser.Physics.Arcade.Sprite {  //Inherit Player class to P
 	}
 }
 
+class Enemy extends Entity {                   //Inherit Enemy class to Entity
+	constructor(scene, x, y, key) {					     // constructor function to instantiate an enemy object
+		super(scene, x, y, key);				// call super class constructor
+		this.setOrigin(0.5);		           //set origin of enemy to center
+	}
+}
+
 class ShieldTile extends Entity {                   //Inherit ShieldTile class to Entity
 	constructor(scene, x, y) {					     // constructor function to instantiate a shieldtile object
 		super(scene, x, y, "sprShieldTile");				// call super class constructor
