@@ -114,7 +114,7 @@ class MainMenu extends Phaser.Scene {            //creates a scene in the Phaser
       this.scene.start("Info");                        // open Info screen
     }, this);                                             //this state only
     //end info button   
- 
+  
   }
   //END Create Function
 }
