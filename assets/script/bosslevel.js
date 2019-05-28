@@ -208,6 +208,42 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             }
         }, null, this);
 
+        this.physics.add.overlap(this.player, this.alienMothership, function(player, Mothership) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+            if (player) { //if player collides with Mothership
+                this.createExplosion(player.x, player.y); //create explosion at player.x, player.y coordinates
+                player.body.reset(this.game.config.width * 0.5, this.game.config.height - 50); //reset player to opening position
+                this.onLifeDown(); //start lifeDown function to lose life and check if GAME OVER
+            }
+        }, null, this);
+
+        this.physics.add.overlap(this.playerLasers, this.alienMothership, function(laser, Mothership) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+
+            if (laser) { //if player laser
+                laser.destroy(); //destroy laser 
+            }
+            //ALSO
+            if (Mothership) { //if mothership   
+                this.createExplosion(Mothership.x, Mothership.y); //call createExplosion method
+                this.addScore(mothershipHitValue); //call add score function with mothership value variable                                                                                   
+                this.motherShipHit(1); //mothership hit function with 1 as value
+            }
+        }, null, this);
+
+        this.physics.add.overlap(this.starNukes, this.alienMothership, function(nuke, Mothership) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+
+            if (nuke) { //if player nuke
+                nuke.destroy(); //destroy nuke object 
+                emitter.stop(); //stop particles emitting
+            }
+            //ALSO
+            if (Mothership) { //if mothership 
+                this.createNukeExplosion(Mothership.x, Mothership.y); //call createNukeExplosion method
+                this.addScore(nukeScore + mothershipHitValue); //call add score function with nukeScore + mothership value variable                 
+                this.motherShipHit(3); //mothership hit function with 3 as value
+            }
+        }, null, this);
+
+
         this.physics.add.overlap(this.starNukes, this.enemies, function(nuke, enemy) { //create a physics overlap event between object1 and object2, followed by collideCallback function
 
             if (nuke) { //if player nuke
