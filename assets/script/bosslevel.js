@@ -125,6 +125,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
 
         //create classes on the this.Object to assign the grouping method to  
         this.enemies = this.add.group(); //create enemies group
+        this.alienscouts = this.add.group(); //create alienscout group
         this.enemyLasers = this.add.group(); //create enemyLaser group
         this.playerLasers = this.add.group(); //create playerLaser group
         this.starNukes = this.add.group(); //create starNukes group 
@@ -186,6 +187,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         this.updateEnemiesMovement(); //create callback method for updating enemy moves 
         this.updateMotherShipShooting(); //create callback method for updating mothership shots
         this.motherShipHit(); //create callback method for updating mothership hit
+        this.createAlienScouts(); //create alien scout ships
         this.createPlayer(); //create callback method for creating player
         this.updatePlayerMovement(); //create callback method for updating player movement
         this.updatePlayerShooting(); //create callback method for updating player shots
@@ -463,6 +465,42 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         );
     }
     //END createPlayer function
+
+    //create alien scouts
+    createAlienScouts() {
+        this.time.addEvent({ // add time delay event
+            delay: 4000, //set delay to 4000
+            callback: function() { //create callback function on time event
+                if (motherShipAlive) {
+                    var alienscout = new AlienScout( //create new player instance
+                        this, //in this scene
+                        this.alienMothership.x + 10, //set playerShip to center of screen on x axis
+                        this.alienMothership.y //set playerShip to position 50 pixels up from bottom on y axis
+                    );
+                    enemyShips++;
+                    totalEnemyShips++; //add alienscout to enemyship count
+                    alienscout.setScale(0.3); //set the scale of the alienscout
+                    alienscout.play("alienscout"); //play alienscout animation
+                    this.tweens.add({ //add a tween(movement state)
+                        targets: alienscout, //target the alienscout
+                        props: { //set its movement positions between its starting point and 
+                            x: { value: this.player.x }, //this is the end point on x
+                            y: { value: this.game.config.height * 0.8 }, //this is the end point on y
+                        },
+                        duration: 4000,
+                        ease: 'easeInOut',
+                        yoyo: true,
+                        repeat: -1
+                    });
+                    this.alienscouts.add(alienscout); //add scout to group
+                }
+            },
+            callbackScope: this, //set call back scope to this function
+            loop: true //set loop to true
+        });
+
+    }
+    //END alien scouts
 
     //create setEnemyDirection function
     setEnemyDirection(direction) { //set enemy movement direction with direction parameter
