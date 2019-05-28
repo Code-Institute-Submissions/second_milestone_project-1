@@ -496,16 +496,30 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     //create Explosion function
     createExplosion(x, y) {
         this.sfx.explode.play(); //play sound fx
+        console.log('ships = ' + (enemyShips)); //console.log to check values
+        console.log('enemy kills =' + enemyDeaths); //console.log to check values
+        console.log('lives = ' + currentLives); //console.log to check values
         var explosion = new Explosion(this, x, y); //create a new instance of explosion
         this.explosions.add(explosion); //add it to the explosions group
+        if (totalEnemyShips == enemyDeaths) { //if totalEnemyShips is same as totalDeaths
+            this.win(); //start win method
+            levelWon = true;
+        }
     }
     //end explosion function
 
     //create nuke explosion function 
     createNukeExplosion(x, y) {
         this.sfx.explode.play(); //play sound fx
+        console.log('ships = ' + (enemyShips)); //console.log to check values
+        console.log('enemy kills =' + enemyDeaths); //console.log to check values
+        console.log('lives = ' + currentLives); //console.log to check values
         var nukeExplosion = new NukeExplosion(this, x, y); //create a new instance of nukeExplosion
         this.nukeExplosions.add(nukeExplosion); //add it to the nukeExplosions group
+        if (totalEnemyShips == enemyDeaths) { // if totalEnemyShips is same as totalDeaths
+            this.win(); //start win method
+            levelWon = true;
+        }
     }
     //END nuke explosion function
 
@@ -661,6 +675,44 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         }
     }
     //END destroySheildTile function
+
+    //create win function
+    win() {
+        this.player.destroy(); //destroy player if victory to stop losing any lives 
+        this.fireworksVictory = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.5, 'fireworks'); //set fireworks image position x,y and initiate first so image behind the hero
+        this.fireworksVictory.setScale(1.4); //set scale of fireworks image
+        this.textVictory = this.add.text( //create Victory text
+            this.game.config.width * 0.5, //set x axis position
+            this.game.config.height * 0.05, //set y axis position
+            "Level 1 Complete!", //set text   
+            {
+                fontFamily: "Arcadepix", //set font type
+                fontSize: 100, //set font size
+                align: "center" //set text alignment
+            }
+        );
+        this.textVictory.setOrigin(0.5); //set text origin to center 
+        this.textVictory.setTint(0x00ff00); //set victory text to green
+        this.textContinue = this.add.text( //create Victory text
+            this.game.config.width * 0.5, //set x axis position
+            this.game.config.height * 0.95, //set y axis position
+            "Press Enter to Continue", //set text   
+            {
+                fontFamily: "Arcadepix", //set font type
+                fontSize: 100, //set font size
+                align: "center" //set text alignment
+            }
+        );
+        this.textContinue.setOrigin(0.5); //set text origin to center 
+        this.textContinue.setTint(0x00ff00); //set victory text to green
+        this.heroWin = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.5, 'hero'); //insert hero image setting x and y position
+        this.heroWin.setScale(1); //set scale of hero image to half original size
+        enemyShips = 0; //set enemyShips to 0
+        enemyDeaths = 0; //set enemyDeaths to 0
+        currentNukes++; //Add a nuke 
+        LevelRestart++; //Add a level restart ability as reward for completing level
+    }
+    //END win function
 
     //create life down function
     onLifeDown() {

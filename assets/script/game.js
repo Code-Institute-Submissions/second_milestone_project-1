@@ -25,6 +25,7 @@ var maxLives = 3;			//declares maxLives Global Variable
 var currentLives = maxLives;//declares current lives Global Variable
 var RIP = false;			//declares RIP switch Global Variable
 var LevelRestartLives = 1;  //set restart lives to 1
+var LevelRestart = 0;		//declare level restart available as 0
 
 var maxNukes = 2;			//declares maxNukes Global Variable
 var currentNukes = maxNukes;//set currentNukes = maxNukes Global Variable
@@ -54,7 +55,7 @@ var leftAsteroid = true;	//set leftAsteroid variable so as to switch sides aster
 
 var cursors;				//declares cursors Global Variable
 var isPaused;	         	//set scene paused name
-
+var levelWon = false;		//set level won variable
 
 
 const StoryContent = [      //set story text variable
