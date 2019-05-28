@@ -134,7 +134,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.enemyRect = new Phaser.Geom.Rectangle( //for moving the enemy rectangle around
             Math.round((this.game.config.width / 24) * 0.5) * 6, //set the x position of rectangle
             Math.round((this.game.config.height / 40) * 0.25), //set the y position of rectangle
-            Math.round(this.game.config.width / 24) * 19, //sets the width of rectangle
+            Math.round(this.game.config.width / 24) * 19.5, //sets the width of rectangle
             Math.round((this.game.config.height / 40) * 0.25) * 20 //sets the height of rectangle
         );
 

@@ -165,7 +165,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         this.enemyRect = new Phaser.Geom.Rectangle( //for moving the enemy rectangle around
             Math.round((this.game.config.width / 24) * 0.2) * 10, //set the x position of rectangle
             Math.round((this.game.config.height / 40) * 0.25), //set the y position of rectangle
-            Math.round(this.game.config.width / 24) * 20, //sets the width of rectangle
+            Math.round(this.game.config.width / 24) * 20.1, //sets the width of rectangle
             Math.round((this.game.config.height / 40) * 0.25) * 20 //sets the height of rectangle
         );
 
