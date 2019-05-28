@@ -62,6 +62,36 @@ class Paused extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.textTitle2.setOrigin(0.5); //set text box origin to center of itself
         //END Subheading text
 
+        //ADD Resume BUTTON AND INTERACTIVITY
+        //Resume button
+        this.btnResume = this.add.image( //create btnResume and add it as image
+            this.game.config.width * 0.5, //set position on the x axis
+            this.game.config.height * 0.35, //set position on the y axis
+            "resume" //add image key
+        );
+        this.btnResume.setScale(1.5); //set button scale
+        this.btnResume.setTint(0x00ff00); // set the Resume button to green
+        this.btnResume.setInteractive(); //set button to be interactive
+
+        this.btnResume.on("pointerover", function() { //this Resume Button when on method, in hover
+            this.btnResume.setTexture("resumeHover"); //change the image to Resume Button without box
+            this.btnResume.setTint(0xff0000); // set the Resume button to red on hover
+            this.btnResume.setScale(1.5); //set button scale
+        }, this); //this state only
+
+        this.btnResume.on("pointerout", function() { //this Resume Button when on method, in hover
+            this.setTexture("resume"); //change the image to Resume Button with box
+            this.setTint(0x00ff00); // set the Resume button back to green when not hovering
+            this.setScale(1.5); //set button scale
+        });
+
+        this.btnResume.once("pointerdown", function() { //this Play Button when on method, when mouse clicks
+            this.sfx.btn.play(); // set the sound to play             
+            this.scene.resume(isPaused.key); // start level 1
+            this.scene.setVisible(false);
+        }, this); //this state only
+        //END play button
+
     }
     //END create function
 }
