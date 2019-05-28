@@ -137,6 +137,28 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
 
 
         //Create enemies and set positions movement directions
+        this.alienMothership = new AlienMothership( //create new player instance
+            this, //in this scene
+            this.game.config.width * 0.9, //set playerShip to center of screen on x axis
+            this.game.config.height * 0.18 //set playerShip to position 50 pixels up from bottom on y axis
+        );
+        enemyShips++; //add mothership to enemyship count
+        motherShipLives = maxMotherShipLives; //set mothership lives
+        this.alienMothership.setScale(0.3); //set the scale of the playerShip
+        this.alienMothership.play("motherShip"); //play mothership animation
+        this.tweens.add({ //add a tween(movement state)
+            targets: this.alienMothership, //target the mothership
+            props: { //set its movement positions between its starting point and 
+                x: { value: this.game.config.width * 0.1 }, //this is the end point on x
+                y: { value: this.game.config.height * 0.18 }, //this is the end point on y
+            },
+            duration: 5000,
+            ease: 'Sine.easeInOut',
+            yoyo: true,
+            repeat: -1
+        });
+
+
         this.lastEnemyMoveDir = "RIGHT"; //create a variable to hold last enemy movement
         this.enemyMoveDir = "LEFT"; //create a variable to hold this enemy movement
         this.enemyRect = new Phaser.Geom.Rectangle( //for moving the enemy rectangle around
