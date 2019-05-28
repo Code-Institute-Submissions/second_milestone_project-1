@@ -14,7 +14,7 @@ var config = {							//game configuration parameters
 		}
 	},
 	scene: [							//load scene properties and their keys
-	
+	    MainMenu,
 	],
 };
 
