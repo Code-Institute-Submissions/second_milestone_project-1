@@ -187,6 +187,58 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             }
         }, null, this);
 
+        this.physics.add.overlap(this.playerLasers, this.enemyLasers, function(playerLaser, enemyLaser) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+
+            if (playerLaser) { //if playerLaser
+                playerLaser.destroy(); //destroy enemy object
+            }
+            //ALSO
+            if (enemyLaser) { //if enemyLaser 
+                enemyLaser.destroy(); //destroy enemyLaser object
+            }
+
+        }, null, this);
+
+        this.physics.add.overlap(this.starNukes, this.enemies, function(nuke, enemy) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+
+            if (nuke) { //if player nuke
+                nuke.destroy(); //destroy nuke object 
+                emitter.stop(); //stop particles emitting
+            }
+            //ALSO
+            if (enemy) { //if enemy  
+                enemyShips--; //decrement enemyShips by 1 (used for testing)
+                enemyDeaths++; //increment enemyDeaths by 1 for game win logic
+                this.createNukeExplosion(enemy.x, enemy.y); //call createNukeExplosion method
+                enemy.destroy(); //destroy enemy object
+            }
+        }, null, this);
+
+        this.physics.add.overlap(this.nukeExplosions, this.enemies, function(explosion, enemies) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+
+            if (enemies) { //if enemies (plural hit)  
+                enemyShips--; //decrement enemyShips by 1 (used for testing)
+                enemyDeaths++; //increment enemyDeaths by 1 for game win logic
+                this.createExplosion(enemies.x, enemies.y); //call creatExplosion method on each object
+                enemies.destroy(); //destroy enemies that are hit
+            }
+        }, null, this);
+
+        this.physics.add.overlap(this.playerLasers, this.enemies, function(laser, enemy) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+
+            if (laser) { //if player laser
+                laser.destroy(); //destroy laser object
+            }
+            //ALSO
+            if (enemy) { //if enemy  
+                enemyShips--; //decrement enemyShips by 1 (used for testing)
+                enemyDeaths++; //increment enemyDeaths by 1 for game win logic
+                this.createExplosion(enemy.x, enemy.y); //call creatExplosion method
+                enemy.destroy(); //destroy enemy object
+            }
+        }, null, this); //processCallback set to null and context set to this
+
+
         this.physics.add.overlap(this.playerLasers, this.shieldTiles, function(laser, tile) { //create a physics overlap event between object1 and object2, followed by collideCallback function
             if (laser) { //if playerLaser
                 laser.destroy(); //destroy laser object
