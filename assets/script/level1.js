@@ -83,6 +83,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         //END set scene variables for shooting delays
 
         //create classes on the this.Object to assign the grouping method to 
+        this.asteroids = this.add.group(); //create asteroids group
         this.playerLasers = this.add.group(); //create playerLaser group
         this.enemyLasers = this.add.group(); //create enemyLaser group
         this.explosions = this.add.group(); //create explosions group
@@ -91,6 +92,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         //END classes grouping
 
         // Create callback methods
+        this.createAsteroids(); //create callback method for asteroids
         this.createPlayer(); //create callback method for creating player
         this.updatePlayerMovement(); //create callback method for updating player movementadd cursors 
         this.updateEnemiesMovement(); //create callback method for updating enemy moves 
@@ -143,6 +145,38 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         //END create sheilds
     }
     //end create function 
+
+    ////////////////////////////////////////////////////////////
+    // NOW CREATE OWN FUNCTIONS OUTSIDE OF THE CREATE FUNCTION//
+    //create asteroids function
+    createAsteroids() {
+        this.time.addEvent({ //add a time event on asteroid
+            delay: 2000, //set delay to 2000
+            callback: function() { //create call back function for time event
+                if (leftAsteroid) { //if asteroid switch is true
+                    var asteroid = new Asteroid( //create new asteroid instance
+                        this, //in this scene
+                        0, //set x position to to left
+                        Phaser.Math.RND.integerInRange(0, this.game.config.height) //set y position to random y height
+                    );
+                    this.asteroids.add(asteroid); //add asteroid to group
+                    leftAsteroid = false; //set leftAsteroid switch to false
+                };
+                if (!leftAsteroid) { //if asteroid switch is false
+                    var asteroid = new Asteroid( //create new asteroid instance
+                        this, //in this scene
+                        this.game.config.width, //set x position to right
+                        Phaser.Math.RND.integerInRange(0, this.game.config.height) //set y position to random y height
+                    );
+                    this.asteroids.add(asteroid); //add asteroid to group
+                    leftAsteroid = true; //set leftAsteroid switch to true
+                };
+            },
+            callbackScope: this, //set call back scope to this function
+            loop: true //set loop to true
+        });
+    }
+    //END create asteroids function
 
     //create createPlayer function
     createPlayer() {

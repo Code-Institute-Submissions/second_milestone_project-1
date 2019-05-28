@@ -61,6 +61,19 @@ class EnemyLaser extends Entity { //Inherit EnemyLaser class to Entity
     }
 }
 
+class Asteroid extends Phaser.Physics.Arcade.Sprite { //Inherit Asteroid class to Phaser.Physics.Arcade.Sprite
+    constructor(scene, x, y, key) { // constructor function to instantiate an asteroid object
+        super(scene, x, y, "asteroid"); // call super class constructor
+        scene.add.existing(this); //add asteroid to this scene 
+        scene.physics.add.existing(this); //add existing game objects to the physics world
+        this.setScale(Phaser.Math.FloatBetween(0.01, 0.08)); //create a random scale for each object created
+        this.setDepth(Phaser.Math.RND.integerInRange(-1, 1)); //create a random depth for each object created
+        this.setVelocity(Phaser.Math.RND.integerInRange(300, -300), Phaser.Math.RND.integerInRange(300, -300)); //create random x (left or right)value and fire up at -200
+        this.setAngle(0); //set angle to 0
+        this.body.angularVelocity = 150; //set rotation speed to 150
+    }
+}
+
 class ShieldTile extends Entity { //Inherit ShieldTile class to Entity
     constructor(scene, x, y) { // constructor function to instantiate a shieldtile object
         super(scene, x, y, "sprShieldTile"); // call super class constructor
