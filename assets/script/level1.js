@@ -107,6 +107,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.starNukes = this.add.group(); //create starNukes group 
         this.enemyLasers = this.add.group(); //create enemyLaser group
         this.explosions = this.add.group(); //create explosions group
+        this.nukeExplosions = this.add.group(); //create nukeExplosions group
         this.enemies = this.add.group(); //create enemies group
         this.shieldTiles = this.add.group(); //create sheildTiles group
         this.shieldHoles = this.add.group(); //create sheildHoles group     
@@ -158,6 +159,31 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 this.createExplosion(player.x, player.y); //call createExplosion method
                 player.body.reset(this.game.config.width * 0.5, this.game.config.height - 50); //reset player to opening position
                 this.onLifeDown(); //start onLifeDown Method
+            }
+        }, null, this);
+
+        this.physics.add.overlap(this.playerLasers, this.asteroids, function(laser, asteroid) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+
+            if (laser) { //if player laser
+                laser.destroy(); //destroy laser object
+            }
+            //ALSO
+            if (asteroid) { //if asteroid  
+                this.createExplosion(asteroid.x, asteroid.y); //call createExplosion method
+                asteroid.destroy(); //destroy asteroid object
+            }
+        }, null, this);
+
+        this.physics.add.overlap(this.starNukes, this.asteroids, function(nuke, asteroid) { //create a physics overlap event between object1 and object2, followed by collideCallback function
+
+            if (nuke) { //if player nuke
+                nuke.destroy(); //destroy nuke object
+                emitter.stop(); //stop particles emitting
+            }
+            //ALSO
+            if (asteroid) { //if asteroid  
+                this.createNukeExplosion(asteroid.x, asteroid.y); //call createNukeExplosion method
+                asteroid.destroy(); //destroy asteroid object
             }
         }, null, this);
 
@@ -393,6 +419,14 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.explosions.add(explosion); //add it to the explosions group
     }
     //end explosion function
+
+    //create nuke explosion function 
+    createNukeExplosion(x, y) {
+        this.sfx.explode.play(); //play sound fx
+        var nukeExplosion = new NukeExplosion(this, x, y); //create a new instance of nukeExplosion
+        this.nukeExplosions.add(nukeExplosion); //add it to the nukeExplosions group
+    }
+    //END nuke explosion function
 
     //create setEnemyDirection function
     setEnemyDirection(direction) { //set enemy movement direction with direction parameter
