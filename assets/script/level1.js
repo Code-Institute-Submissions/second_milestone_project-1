@@ -43,6 +43,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
 
         //create sfx
         this.sfx = { //add properties to call back sfx
+            explode: this.sound.add("sndExplode"), //create the soudn fx properties
             laserPlayer: this.sound.add("sndLaserPlayer") //create the soudn fx properties
         };
         //END sfx
@@ -53,6 +54,13 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             frames: this.anims.generateFrameNumbers("enemyShip"), //set image to be used to generate frames
             frameRate: 5, //set frame rate speed
             repeat: -1 //set to -1, continuous
+        });
+
+        this.anims.create({ //animation object create
+            key: "sprExplosion", //set the image key name to be used
+            frames: this.anims.generateFrameNumbers("sprExplosion"), //set image to be used to generate frames
+            frameRate: 15, //set frame rate speed
+            repeat: 5 //turns on then off higher equals longer on
         });
         //END animations
 
@@ -75,6 +83,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
 
         //create classes on the this.Object to assign the grouping method to 
         this.playerLasers = this.add.group(); //create playerLaser group
+        this.explosions = this.add.group(); //create explosions group
         this.enemies = this.add.group(); //create enemies group
         this.shieldTiles = this.add.group(); //create sheildTiles group
         //END classes grouping
@@ -85,6 +94,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.updateEnemiesMovement(); //create callback method for updating enemy moves 
         this.updatePlayerShooting(); //create callback method for updating player shots
         this.updateLasers(); //create callback method for updating shots
+
         //END callback methods
 
         //Create enemies and set positions movement directions
@@ -200,6 +210,13 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
 
                     laser.y -= 16; //set movement down on y axis as 16 (higher the number the faster it goes)
 
+                    if (laser.y < 10) { //if laser is less than 5 away from screen edge
+                        this.createExplosion(laser.x, laser.y); //create an explosion at this laser.x and laser.y
+
+                        if (laser) { //if laser         
+                            laser.destroy(); //destroy this laser
+                        }
+                    }
                 }
             },
             callbackScope: this, //set call back scope to this function
@@ -207,6 +224,14 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         });
     }
     //END updateLaser function
+
+    //create Explosion function
+    createExplosion(x, y) {
+        this.sfx.explode.play(); //play sound fx
+        var explosion = new Explosion(this, x, y); //create a new instance of explosion
+        this.explosions.add(explosion); //add it to the explosions group
+    }
+    //end explosion function
 
     //create setEnemyDirection function
     setEnemyDirection(direction) { //set enemy movement direction with direction parameter

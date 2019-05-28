@@ -33,6 +33,20 @@ class PlayerLaser extends Entity {                   //Inherit PlayerLaser class
 	}
 }
 
+class Explosion extends Entity {                   //Inherit Explosion class to Entity
+	constructor(scene, x, y) {					     // constructor function to instantiate an explosion object
+		super(scene, x, y, "sprExplosion");				// call super class constructor
+		this.play("sprExplosion");					//play explosion sound when created
+		this.setOrigin(0.5);						//sets the origin of the explosion to center of event
+		this.setScale(0.1);							//set scale of the explosion for a smaller image	
+		this.on("animationcomplete", function () { //when animation complete
+			if (this) {
+				this.destroy();                    //destroy object
+			}
+		});
+	}
+}
+
 class Enemy extends Entity {                   //Inherit Enemy class to Entity
 	constructor(scene, x, y, key) {					     // constructor function to instantiate an enemy object
 		super(scene, x, y, key);				// call super class constructor
