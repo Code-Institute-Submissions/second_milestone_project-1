@@ -74,17 +74,20 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         //Keyboard methods created for use in update function
         cursors = this.input.keyboard.createCursorKeys(); //sets cursor keys up for operation
         this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //sets SPACE as FIRE key
-
+        this.keyN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N); //sets key N as NUKE key
         //END Keyboard methods created for use in update function
 
         //set scene variables for shooting delays
         this.playerShootDelay = 25; //sets the Delay value for the player laser, lower the value the faster it shoots
         this.playerShootTick = 0; //sets the playerShootTick to 0, for using in the updatePlayerShooting function
+        this.playerNukeDelay = 50; //sets the Delay value for the player Nuke, lower the value the faster it shoots
+        this.playerNukeTick = 0; //sets the playerNukeTick to 0, for using in the updatePlayerShooting function
         //END set scene variables for shooting delays
 
         //create classes on the this.Object to assign the grouping method to 
         this.asteroids = this.add.group(); //create asteroids group
         this.playerLasers = this.add.group(); //create playerLaser group
+        this.starNukes = this.add.group(); //create starNukes group 
         this.enemyLasers = this.add.group(); //create enemyLaser group
         this.explosions = this.add.group(); //create explosions group
         this.enemies = this.add.group(); //create enemies group
@@ -97,6 +100,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.updatePlayerMovement(); //create callback method for updating player movementadd cursors 
         this.updateEnemiesMovement(); //create callback method for updating enemy moves 
         this.updatePlayerShooting(); //create callback method for updating player shots
+        this.updateNukes(); //create callback method for updating Nukes
         this.updateEnemiesShooting(); //create callback method for updating enemy shots 
         this.updateLasers(); //create callback method for updating shots
 
@@ -231,6 +235,19 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                         this.playerShootTick = 0; //set shootTick back to 0
                     }
                 }
+                if (this.keyN.isDown && this.player.active && currentNukes > 0) { //if SPACE is down && player is active still
+                    if (this.playerNukeTick < this.playerNukeDelay) { //if playerShootTick is less than the playerShootDelay
+                        this.playerNukeTick++; //add 1 to Tick count, which will repeat until it hits 30
+                    }
+                    else {
+                        var nuke = new Nuke(this, this.player.x, this.player.y); //create new laser object and start this object at player.x and player.y
+                        this.starNukes.add(nuke); //add this laser to playerLaser group
+                        this.sfx.laserPlayer.play(); //add laserPlayer sound
+                        this.playerNukeTick = 0; //set shootTick back to 0
+                        currentNukes--; //decrement current nukes by 1
+                        textNukes.setText('Nukes: ' + currentNukes); //set nuke left text to current value
+                    }
+                }
             },
             callbackScope: this, //set call back scope to this function
             loop: true //set loop to true
@@ -281,6 +298,27 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         });
     }
     //END updateLaser function
+
+    //create updateNukes function
+    updateNukes() {
+        this.time.addEvent({ //add a time event on player laser
+            delay: 30, //set delay to 30
+            callback: function() { //create call back function for time event
+                for (var i = 0; i < this.starNukes.getChildren().length; i++) { //for each enemy in the enemies array
+                    var nuke = this.starNukes.getChildren()[i]; //this nuke = starNukes[i]
+                    if (nuke.y < 10) { //if laser is less than 5 away from screen edge
+                        this.createExplosion(nuke.x, nuke.y); //create an explosion at this nuke.x and nuke.y
+                        if (nuke) { //if nuke         
+                            nuke.destroy(); //destroy this nuke
+                        }
+                    }
+                }
+            },
+            callbackScope: this, //set call back scope to this function
+            loop: true //set loop to true
+        });
+    }
+    //END updateNukes function
 
     //create Explosion function
     createExplosion(x, y) {

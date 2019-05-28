@@ -33,6 +33,17 @@ class PlayerLaser extends Entity { //Inherit PlayerLaser class to Entity
     }
 }
 
+class Nuke extends Phaser.Physics.Arcade.Sprite { //Inherit Nuke class to Phaser.Physics.Arcade.Sprite
+    constructor(scene, x, y, key) { // constructor function to instantiate a nuke object
+        super(scene, x, y, "star"); // call super class constructor
+        scene.add.existing(this); //add Nuke to this scene 
+        scene.physics.add.existing(this); //add existing game objects to the physics world
+        this.setVelocity(0, -400); //create random x (left or right)value and fire up at -200
+        this.setAngle(0); //set angle to 0
+        this.body.angularVelocity = 100; //set rotation speed to 100
+    }
+}
+
 class Explosion extends Entity { //Inherit Explosion class to Entity
     constructor(scene, x, y) { // constructor function to instantiate an explosion object
         super(scene, x, y, "sprExplosion"); // call super class constructor
