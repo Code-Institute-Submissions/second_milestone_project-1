@@ -20,6 +20,10 @@ var config = {							//game configuration parameters
 	],
 };
 
+var level1Shields = 8;		//declares the number of sheilds in Level 1
+var level2Shields = 6;		//declares the number of sheilds in Level 2
+var levelBShields = 4;		//declares the number of sheilds in Boss Level
+
 const StoryContent = [      //set story text variable
 	"The Year 3001 AD...",
 	"The Alien Hoards are battling through the Galaxy, on a quest to destroy ALL mankind!", 
