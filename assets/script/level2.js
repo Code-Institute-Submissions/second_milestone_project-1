@@ -98,9 +98,9 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         // END Keyboard methods created for use in update function
 
         //set scene variables for shooting delays
-        this.playerShootDelay = 25; //sets the Delay value for the player laser, lower the value the faster it shoots
+        this.playerShootDelay = 20; //sets the Delay value for the player laser, lower the value the faster it shoots
         this.playerShootTick = 0; //sets the playerShootTick to 0, for using in the updatePlayerShooting function
-        this.playerNukeDelay = 50; //sets the Delay value for the player Nuke, lower the value the faster it shoots
+        this.playerNukeDelay = 40; //sets the Delay value for the player Nuke, lower the value the faster it shoots
         this.playerNukeTick = 0; //sets the playerNukeTick to 0, for using in the updatePlayerShooting function
         //END set scene variables for shooting delays
 
@@ -127,8 +127,8 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             Math.round((this.game.config.height / 40) * 0.25) * 20 //sets the height of rectangle
         );
 
-        for (var x = 6; x < Math.round((this.game.config.width / 24) * 0.5); x++) { //create an inset row of enemy ships by setting to 0.95, skipping the first 14 iterations of the loop by setting x to 2, we can center the enemyShips by offsetting from the edge
-            for (var y = 0; y < Math.round((this.game.config.height / 40) * 0.1); y++) { //create 3 additional rows by iterating through x
+        for (var x = 6; x < Math.round((this.game.config.width / 24) * 0.5); x++) { //create an inset row of enemy ships by setting to 0.6, skipping the first 10 iterations of the loop by setting x to 10, we can center the enemyShips by offsetting from the edge
+            for (var y = 0; y < Math.round((this.game.config.height / 40) * 0.14); y++) { //create additional rows by iterating through x depending on screen size more rows may appear
                 var enemy = new Enemy(this, x * 44, (this.game.config.height * 0.15) + (y * 88), "enemyShip"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyship image sprite
                 enemy.play("enemyShip"); //start animation of the enemyShip
                 enemy.setScale(0.25); //set the scale of the enemy sprite
