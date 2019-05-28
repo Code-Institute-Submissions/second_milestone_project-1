@@ -5,9 +5,9 @@ class Victory extends Phaser.Scene {
 
   //preload function to load all assets
   preload() {
-    this.load.image("backgroundstars", "content/darkstars.jpg")     //preload background stars image
-    this.load.image('hero', "content/spacesuit.png");      //preload heroin image
-    this.load.image('fireworks', "content/fireworks.png");      //preload fireworks image
+    this.load.image("backgroundstars", "assets/images/darkstars.jpg")     //preload background stars image
+    this.load.image('hero', "assets/images/spacesuit.png");      //preload heroin image
+    this.load.image('fireworks', "assets/images/fireworks.png");      //preload fireworks image
   }
   //end preload function
 
