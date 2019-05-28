@@ -107,7 +107,6 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //sets SPACE as FIRE key
         this.keyN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N); //sets key N as NUKE key
         this.keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R); //sets key R as Restart Key on GAME OVER
-        this.keyEnter = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER); //sets key ENTER as continue button on level win
 
         this.input.keyboard.on('keydown-P', function() { //on pressing Key P
             isPaused = this.scene; //set isPasued to this.scene to get key
@@ -168,7 +167,6 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         this.updatePlayerShooting(); //create callback method for updating player shots
         this.updateLasers(); //create callback method for updating shots
         this.updateNukes(); //create callback method for updating Nukes
-        this.updateContinue(); //create callback method for continue game
         this.updateRestart(); //create callback method for restarting the game on GameOver
         this.createAsteroids(); //create callback method for asteroids
         //END callback methods
@@ -713,7 +711,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         this.textVictory = this.add.text( //create Victory text
             this.game.config.width * 0.5, //set x axis position
             this.game.config.height * 0.05, //set y axis position
-            "Level 2 Complete!", //set text   
+            "MOTHERSHIP DOWN!", //set text   
             {
                 fontFamily: "Arcadepix", //set font type
                 fontSize: 100, //set font size
@@ -722,42 +720,28 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         );
         this.textVictory.setOrigin(0.5); //set text origin to center 
         this.textVictory.setTint(0x00ff00); //set victory text to green
-        this.textContinue = this.add.text( //create Victory text
-            this.game.config.width * 0.5, //set x axis position
-            this.game.config.height * 0.95, //set y axis position
-            "Press Enter to Continue", //set text   
-            {
-                fontFamily: "Arcadepix", //set font type
-                fontSize: 100, //set font size
-                align: "center" //set text alignment
-            }
-        );
-        this.textContinue.setOrigin(0.5); //set text origin to center 
-        this.textContinue.setTint(0x00ff00); //set victory text to green
         this.heroWin = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.5, 'hero'); //insert hero image setting x and y position
         this.heroWin.setScale(1); //set scale of hero image to half original size
         enemyShips = 0; //set enemyShips to 0
         enemyDeaths = 0; //set enemyDeaths to 0
         currentNukes++; //Add a nuke 
         LevelRestart++; //Add a level restart ability as reward for completing level
-    }
-    //END win function
-
-    //continue function
-    updateContinue() { //update method to restart game in event of GAME OVER
         this.time.addEvent({ //add timed event
-            delay: 10, //set delay to 10
-            callback: function() { //create a callback function
-                if (this.keyEnter.isDown && levelWon) { //if the Space key is pressed and levelWon is true
-                    levelWon = false;
-                    this.scene.start("Victory"); //set scene start for level 2
-                }
+            delay: 3000, //set delay to 3000
+            callback: function() { //create callback function
+                this.scene.start("Victory"); //set scene start for Boss Level
+                enemyShips = 0; //set enemyShips to 0
+                enemyDeaths = 0; //set enemyDeaths to 0
+                currentLives = maxLives;
+                currentNukes = maxNukes;
+                motherShipAlive = true;
+                motherShipLives = maxMotherShipLives;
             },
             callbackScope: this, //set call back scope to this
-            loop: true //set loop to true checking parameters
+            loop: false //set loop to false only play once
         });
     }
-    // end continue function
+    //END win function
 
     //create gameover function
     gameOver() {
@@ -808,13 +792,18 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                         enemyDeaths = 0; //set enemyDeaths to 0
                         currentLives = LevelRestartLives; //reset lives to LevelRestartLives
                         RIP = false; //set RIP to false so restart cant happen in game
+                        motherShipAlive = true;
+                        motherShipLives = 15;
                         LevelRestart--; //set level restart to 0
                         this.scene.start("BossLevel"); //Restart Game
                     }
                     else {
                         enemyShips = 0; //set enemyShips to 0
                         enemyDeaths = 0; //set enemyDeaths to 0
-                        currentLives = maxLives; //reset lives to maxLives
+                        currentLives = maxLives; //reset lives to normal
+                        currentNukes = maxNukes; //reset nukes to normal
+                        motherShipAlive = true; //set mothership alive
+                        motherShipLives = maxMotherShipLives; //set mothership lives back to normal
                         RIP = false; //set RIP to false so restart cant happen in game
                         score = 0; //set the score back to 0
                         this.scene.start("MainMenu"); //Restart Game
