@@ -24,6 +24,7 @@ var config = {							//game configuration parameters
 var maxLives = 3;			//declares maxLives Global Variable
 var currentLives = maxLives;//declares current lives Global Variable
 var RIP = false;			//declares RIP switch Global Variable
+var LevelRestartLives = 1;  //set restart lives to 1
 
 var maxNukes = 2;			//declares maxNukes Global Variable
 var currentNukes = maxNukes;//set currentNukes = maxNukes Global Variable
@@ -32,6 +33,7 @@ var emitter;    			//declares emitter Global Variable
 
 var enemyShips = 0;			//declares number of enemyShips Global Variable
 var totalEnemyShips;		//declares totalEnemyShips Global Variable
+var enemyDeaths = 0;		//declares enemyDeaths Global Variable
 var enemyHitStrength = 1;	//declares enemyHitStrength Global Variable
 
 
@@ -49,6 +51,7 @@ var leftAsteroid = true;	//set leftAsteroid variable so as to switch sides aster
 
 var cursors;				//declares cursors Global Variable
 var isPaused;	         	//set scene paused name
+
 
 
 const StoryContent = [      //set story text variable

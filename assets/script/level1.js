@@ -86,7 +86,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         cursors = this.input.keyboard.createCursorKeys(); //sets cursor keys up for operation
         this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //sets SPACE as FIRE key
         this.keyN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N); //sets key N as NUKE key
-
+        this.keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R); //sets key R as Restart Key on GAME OVER
         this.input.keyboard.on('keydown-P', function() { //on pressing Key P
             isPaused = this.scene; //set isPasued to this.scene to get key
             this.scene.pause(); //pause this scene
@@ -120,7 +120,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.updateNukes(); //create callback method for updating Nukes
         this.updateEnemiesShooting(); //create callback method for updating enemy shots 
         this.updateLasers(); //create callback method for updating shots
-
+        this.updateRestart(); //create callback method for restarting the game on GameOver
         //END callback methods
 
         //Create enemies and set positions movement directions
@@ -529,5 +529,25 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.alienWin.setScale(1.2) //set scale to 1.2
     }
     //END gameover function
+
+    //restart function
+    updateRestart() { //update method to restart game in event of GAME OVER
+        this.time.addEvent({ //add timed event
+            delay: 10, //set delay to 10
+            callback: function() { //create a callback function
+                if (this.keyR.isDown && RIP) { //if the R key is pressed and RIP is true
+                    enemyShips = 0; //set enemyShips to 0
+                    enemyDeaths = 0; //set enemyDeaths to 0
+                    currentLives = LevelRestartLives; //reset lives to LevelRestartLives
+                    RIP = false; //set RIP to false so restart cant happen in game
+                    score = 0; //set the score back to 0
+                    this.scene.start("MainMenu"); //Restart Game
+                }
+            },
+            callbackScope: this, //set call back scope to this
+            loop: true //set loop to true checking parameters
+        });
+    }
+    // end restart function
 }
 // END scene
