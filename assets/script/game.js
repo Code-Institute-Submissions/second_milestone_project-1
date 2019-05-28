@@ -17,6 +17,7 @@ var config = {							//game configuration parameters
 	    MainMenu,
 	    Info,
 	    Level1,
+	    Level2,
 	    Paused
 	],
 };
