@@ -84,6 +84,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.updatePlayerMovement(); //create callback method for updating player movementadd cursors 
         this.updateEnemiesMovement(); //create callback method for updating enemy moves 
         this.updatePlayerShooting(); //create callback method for updating player shots
+        this.updateLasers(); //create callback method for updating shots
         //END callback methods
 
         //Create enemies and set positions movement directions
@@ -188,6 +189,24 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             loop: true //set loop to true
         });
     }
+
+    //create updateLaser function
+    updateLasers() { //update laser movement
+        this.time.addEvent({ //add a time event on player laser
+            delay: 30, //set delay to 30
+            callback: function() { //create call back function for time event
+                for (var i = 0; i < this.playerLasers.getChildren().length; i++) { //for each enemy in the enemies array
+                    var laser = this.playerLasers.getChildren()[i]; //this laser = playerLaser[i]
+
+                    laser.y -= 16; //set movement down on y axis as 16 (higher the number the faster it goes)
+
+                }
+            },
+            callbackScope: this, //set call back scope to this function
+            loop: true //set loop to true
+        });
+    }
+    //END updateLaser function
 
     //create setEnemyDirection function
     setEnemyDirection(direction) { //set enemy movement direction with direction parameter
