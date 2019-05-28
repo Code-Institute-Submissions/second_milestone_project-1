@@ -184,6 +184,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         // Create callback methods
         this.updateEnemiesShooting(); //create callback method for updating enemy shots 
         this.updateEnemiesMovement(); //create callback method for updating enemy moves 
+        this.motherShipHit(); //create callback method for updating mothership hit
         this.createPlayer(); //create callback method for creating player
         this.updatePlayerMovement(); //create callback method for updating player movement
         this.updatePlayerShooting(); //create callback method for updating player shots
@@ -225,7 +226,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             if (Mothership) { //if mothership   
                 this.createExplosion(Mothership.x, Mothership.y); //call createExplosion method
                 this.addScore(mothershipHitValue); //call add score function with mothership value variable                                                                                   
-                this.motherShipHit(playerHitstrength); //mothership hit function with 1 as value
+                this.motherShipHit(1); //mothership hit function with 1 as value
             }
         }, null, this);
 
@@ -239,7 +240,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             if (Mothership) { //if mothership 
                 this.createNukeExplosion(Mothership.x, Mothership.y); //call createNukeExplosion method
                 this.addScore(nukeScore + mothershipHitValue); //call add score function with nukeScore + mothership value variable                 
-                this.motherShipHit(nukeHitStrength); //mothership hit function with 3 as value
+                this.motherShipHit(2); //mothership hit function with 3 as value
             }
         }, null, this);
 
@@ -426,6 +427,23 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         textLives.setText('Lives: ' + currentLives); //sets lives remaining
     }
     //END loseLives function
+
+    //create mothership hit function
+    motherShipHit(h) {
+        if (motherShipLives <= 0) { //if lives <= 0
+            this.alienMothership.destroy(); //destroy mothership
+            enemyShips--; //decrement enemyShips by 1 (for testing)
+            enemyDeaths++; //increment enemyDeaths by 1 for game win logic
+            motherShipAlive = false; //set mothership alive to false
+        }
+        if (motherShipLives > 0 && h == 2) { //else if lives greater than 0 & type = nuke
+            motherShipLives -= nukeHitStrength; //mothership lose a life by value of nukeHitStrength
+        }
+        if (motherShipLives > 0 && h == 1) { //else if lives greater than 0 & type = laser
+            motherShipLives--; //mothership lose a life by value of enemyHitStrength
+        }
+    }
+    //END mothership hit function
 
     //create addScore function
     addScore(amount) { //addScore method passed with parameter amount
