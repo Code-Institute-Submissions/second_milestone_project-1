@@ -41,7 +41,10 @@ var totalEnemyShips;		//declares totalEnemyShips Global Variable
 var enemyDeaths = 0;		//declares enemyDeaths Global Variable
 var enemyHitStrength = 1;	//declares enemyHitStrength Global Variable
 var enemyValue = 10;		//declares enemyValue as 10 Global Variable
-
+var maxMotherShipLives = 15;//add lives to mothership
+var motherShipLives;        //declares mothership lives
+var mothershipHitValue = 20;//declares mothershipHitValue
+var motherShipAlive = true;//add mothership alive variable
 
 var level1Shields = 8;		//declares the number of sheilds in Level 1
 var level2Shields = 6;		//declares the number of sheilds in Level 2
