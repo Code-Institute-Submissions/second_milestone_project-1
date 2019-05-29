@@ -911,6 +911,9 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
     //create win function
     win() {
         this.player.destroy(); //destroy player if victory to stop losing any lives 
+        this.addScore((currentLives + currentNukes + LevelRestart) * 100); //add lives and nukes left with any level restarts and multiply by 100 to add to final score
+        textLives.setText('Lives: WINNER'); //set lives text to WINNER 
+        textScore.setText('Final Score: ' + score); //set score text to final score
         this.fireworksVictory = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.5, 'fireworks'); //set fireworks image position x,y and initiate first so image behind the hero
         this.fireworksVictory.setScale(1.4); //set scale of fireworks image
         this.textVictory = this.add.text( //create Victory text
