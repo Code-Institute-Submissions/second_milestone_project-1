@@ -648,9 +648,6 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     //create Explosion function
     createExplosion(x, y) {
         this.sfx.explode.play(); //play sound fx
-        console.log('ships = ' + (enemyShips)); //console.log to check values
-        console.log('enemy kills =' + enemyDeaths); //console.log to check values
-        console.log('lives = ' + currentLives); //console.log to check values
         var explosion = new Explosion(this, x, y); //create a new instance of explosion
         this.explosions.add(explosion); //add it to the explosions group
         if (totalEnemyShips == enemyDeaths) { //if totalEnemyShips is same as totalDeaths
@@ -663,9 +660,6 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     //create nuke explosion function 
     createNukeExplosion(x, y) {
         this.sfx.explode.play(); //play sound fx
-        console.log('ships = ' + (enemyShips)); //console.log to check values
-        console.log('enemy kills =' + enemyDeaths); //console.log to check values
-        console.log('lives = ' + currentLives); //console.log to check values
         var nukeExplosion = new NukeExplosion(this, x, y); //create a new instance of nukeExplosion
         this.nukeExplosions.add(nukeExplosion); //add it to the nukeExplosions group
         if (totalEnemyShips == enemyDeaths) { // if totalEnemyShips is same as totalDeaths
