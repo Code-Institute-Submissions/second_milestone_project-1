@@ -66,9 +66,13 @@ var leftAsteroid = true; //set leftAsteroid variable so as to switch sides aster
 
 
 var cursors; //declares cursors Global Variable
+var touch = false; //touch variable switch
+var playerDirX; //add variable for player touch movement
+var playerDirY; //add variable for player touch movement
+var playerMoveX; //add variable for player touch movement
+var playerMoveY; //add variable for player touch movement
 var isPaused; //set scene paused name
 var levelWon = false; //set level won variable
-
 
 const StoryContent = [ //set story text variable
     "The Year 3001 AD...",
@@ -86,25 +90,34 @@ const StoryContent = [ //set story text variable
     "WATCH OUT FOR THE ASTEROIDS!"
 ];
 
-const Controls = [ //set controls text variable
-    "GAME CONTROLS",
-    "Use Cursors to FLY      Press Space for LASERS      Press N for NUKES"
+const touchSelector = [     //set touch selector text
+	"  SELECT  ",
+	"FOR  TOUCH"
+];
+
+const Controls = [      //set controls text variable
+	"GAME CONTROLS",
+	"Use Cursors to FLY      Hold Space for LASERS      Press N for NUKES"    
+];
+const touchControls = [      //set touch controls text variable
+	"GAME CONTROLS",
+	"Use Finger to FLY       Tap Screen for LASERS      Press Label for NUKES"      
 ];
 
 const GameOver = ["GAME OVER"]; //set Gameover text variable
 
 const Restart = ["Press R to Restart"]; //set Restart text variable
 
-const TitlesText = [    //set titles text variable
-	"CREATED BY MICHAEL LEESE 2019",
-	"",
-	"THANKS TO PHASER 3 FOR THEIR API",
-	"",
-	"THANKS TO GIMP FOR IMAGE MANIPULATION PROGRAM",
-	"",
-	"FOR FURTHER CREDITS SEE MY GITHUB REPO README.MD",
-	"",
-	"I HOPE YOU HAD FUN!           THANKS FOR PLAYING!"
+const TitlesText = [ //set titles text variable
+    "CREATED BY MICHAEL LEESE 2019",
+    "",
+    "THANKS TO PHASER 3 FOR THEIR API",
+    "",
+    "THANKS TO GIMP FOR IMAGE MANIPULATION PROGRAM",
+    "",
+    "FOR FURTHER CREDITS SEE MY GITHUB REPO README.MD",
+    "",
+    "I HOPE YOU HAD FUN!           THANKS FOR PLAYING!"
 ];
 
 var game = new Phaser.Game(config); //sets game variable to new Phaser Game with parameters of config
