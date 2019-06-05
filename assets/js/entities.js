@@ -113,6 +113,13 @@ class EnemyLaser extends Entity { //Inherit EnemyLaser class to Entity
     }
 }
 
+class EnemyMotherShipLaser extends Entity { //Inherit EnemyLaser class to Entity
+    constructor(scene, x, y, key) { // constructor function to instantiate a enemy laser object
+        super(scene, x, y, "sprLaserEnemy"); // call super class constructor
+        Align.scaleToGameW(this, 0.004); //set scale
+    }
+}
+
 class Asteroid extends Phaser.Physics.Arcade.Sprite { //Inherit Asteroid class to Phaser.Physics.Arcade.Sprite
     constructor(scene, x, y, key) { // constructor function to instantiate an asteroid object
         super(scene, x, y, "asteroid"); // call super class constructor

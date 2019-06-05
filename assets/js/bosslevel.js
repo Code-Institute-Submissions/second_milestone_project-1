@@ -221,7 +221,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         );
         enemyShips++; //add mothership to enemyship count
         motherShipLives = maxMotherShipLives; //set mothership lives
-        this.alienMothership.setScale(0.3); //set the scale of the playerShip
+        Align.scaleToGameW(this.alienMothership, 0.1); //set the scale of the motherShip
         this.alienMothership.play("motherShip"); //play mothership animation
         this.tweens.add({ //add a tween(movement state)
             targets: this.alienMothership, //target the mothership
