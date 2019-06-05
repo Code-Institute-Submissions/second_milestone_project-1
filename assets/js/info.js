@@ -20,7 +20,6 @@ class Info extends Phaser.Scene { //creates a scene in the Phaser Object called 
 
     //Create Grid
     this.aGrid = new AlignGrid({ scene: this, rows: 11, cols: 11 }); //create grid for positioning
-    this.aGrid.showNumbers(); //show grid
     //END GRID
 
     this.sfx = { //for sfx object create btn property 
