@@ -104,6 +104,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         Align.scaleToGameW(restartlevel, 0.12); //set scale
         //END score and lives
 
+        //CREATE CONTROL METHODS
         //Keyboard methods created for use in update function
         cursors = this.input.keyboard.createCursorKeys(); //sets cursor keys up for operation
         this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //sets SPACE as FIRE key
@@ -116,14 +117,67 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             this.scene.pause(); //pause this scene
             this.scene.launch('Paused'); //launch paused scene
         }, this);
+        //END Keyboard methods created for use in update function
+        //TOUCH CONTROLS
+        this.playertouchShootTick = 1; //create touch shoot tick
+        this.playertouchShootDelay = 1; //create touch shoot delay
 
-        // END Keyboard methods created for use in update function
+        this.input.on("pointerdown", function() { //this Play Button when on method, in hover
+            if (touch && this.playertouchShootTick < this.playertouchShootDelay) { //if SPACE is down && player is active still
+                this.playertouchShootTick++; //add to touch shoot tick
+            }
+            else if (touch && this.playertouchShootTick == this.playertouchShootDelay) {
+                var laser = new PlayerLaser(this, this.player.x, this.player.y); //create new laser object and start this object at player.x and player.y
+                this.playerLasers.add(laser); //add this laser to playerLaser group
+                this.sfx.laserPlayer.play(); //add laserPlayer sound
+                this.playertouchShootTick = 0; //set touch shoot tick to 0
+            }
+        }, this);
+        if (touch) { //if touch true
+            this.input.on('pointerout', function(pointer) { //when pointerout of circle 
+                playerMoveX = "GO"; //set to GO
+                playerMoveY = "GO"; //set to GO
+                this.player.clearTint(); //remove tint on player (for testing)
+            }, this);
+            this.input.on('pointermove', function(pointer) { //if pointer moves
+                if (pointer.x < this.player.x) { //if pointer left
+                    playerDirX = "RIGHT"; //set var to right
+                }
+                else if (pointer.x > this.player.x) { //if pointer right
+                    playerDirX = "LEFT"; //set var to left
+                }
+                if (pointer.y < this.player.y) { //if pointer above
+                    playerDirY = "UP"; //set var to up
+                }
+                else if (pointer.y > this.player.y) { //if pointer below
+                    playerDirY = "DOWN"; //set var to down
+                }
+            }, this);
+            textNukes.setInteractive(); //set nukes label as interactive
+            textNukes.on("pointerover", function() { //this nukes label when hover
+                textNukes.setTint(0xff0000); // set the play button to red on hover
+            }, this); //this state only
+
+            textNukes.on("pointerout", function() { //this nukes label when not hover
+                textNukes.setTint(0xffffff); // set the nukes label back to white when not hovering
+            });
+
+            textNukes.on("pointerdown", function() { //this nukes label when on method, when mouse clicks
+                var nuke = new Nuke(this, this.player.x, this.player.y); //create new nuke object and start this object at player.x and player.y
+                this.starNukes.add(nuke); //add this nuke to starNuke group
+                this.sfx.laserPlayer.play(); //add laserPlayer sound
+                currentNukes--; //decrement current nukes by 1
+                textNukes.setText('Nukes: ' + currentNukes); //set nuke left text to current value
+            }, this); //this state only
+        }
+        //END TOUCH CONTROLS
+        //END CONTROL METHODS
 
         //set scene variables for shooting delays
         this.playerShootDelay = 20; //sets the Delay value for the player laser, lower the value the faster it shoots
         this.playerShootTick = 0; //sets the playerShootTick to 0, for using in the updatePlayerShooting function
-        this.playerNukeDelay = 40; //sets the Delay value for the player Nuke, lower the value the faster it shoots
-        this.playerNukeTick = 0; //sets the playerNukeTick to 0, for using in the updatePlayerShooting function
+        this.playerNukeDelay = 150; //sets the Delay value for the player Nuke, lower the value the faster it shoots
+        this.playerNukeTick = 150; //sets the playerNukeTick to 150, for using in the updatePlayerShooting function
         //END set scene variables for shooting delays
 
         //create classes on the this.Object to assign the grouping method to  
@@ -167,6 +221,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.updateEnemiesMovement(); //create callback method for updating enemy moves 
         this.createPlayer(); //create callback method for creating player
         this.updatePlayerMovement(); //create callback method for updating player movement
+        this.updatePlayerTouchMovement(); //create callback method for updating player touch moving
         this.updatePlayerShooting(); //create callback method for updating player shots
         this.updateLasers(); //create callback method for updating shots
         this.updateNukes(); //create callback method for updating Nukes
@@ -486,16 +541,16 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             callback: function() { //create call back function for time event
 
                 if (cursors.left.isDown) { //if key A pressed down
-                    this.player.x -= 8; //Move left
+                    this.player.x -= this.game.config.height * 0.007; //Move left
                 }
                 if (cursors.right.isDown) { //if key D pressed down
-                    this.player.x += 8; //Move right
+                    this.player.x += this.game.config.height * 0.007; //Move right
                 }
                 if (cursors.up.isDown) { //if key W pressed down
-                    this.player.y -= 8; //Move up   
+                    this.player.y -= this.game.config.height * 0.007; //Move up   
                 }
                 if (cursors.down.isDown) { //if key S pressed down
-                    this.player.y += 8; //Move down
+                    this.player.y += this.game.config.height * 0.007; //Move down
                 }
             },
             callbackScope: this, //set call back scope to this function
@@ -503,6 +558,50 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         });
     }
     //END updatePlayerMovement function
+
+    //create updatetouchPlayerMovement function
+    updatePlayerTouchMovement() { //update touch player movement
+        this.time.addEvent({ //add time event
+            delay: 60, //set delay to 60
+            callback: function() { //create call back function for time event
+                if (touch) { //if touch is true
+                    var shape = new Phaser.Geom.Circle(50, 50, 100); //create a circle for interactivity
+                    this.player.setInteractive(shape, Phaser.Geom.Circle.Contains); //set player interactive with the shape created
+
+                    this.player.on('pointerover', function(pointer) { //if pointerover circle
+                        playerMoveX = "STOP"; //set var to stop
+                        playerMoveY = "STOP"; //set var to stop
+                        this.player.setTint(0x00ff00); //set player tint to green (for testing)
+                    }, this);
+                    if (playerMoveX == "STOP") { //if stop 
+                        this.player.x += 0; //dont move
+                    }
+                    else if (playerMoveX == "GO") { //if go
+                        if (playerDirX == "RIGHT") { //and var is right
+                            this.player.x -= this.game.config.height * 0.007; //move player right
+                        }
+                        if (playerDirX == "LEFT") { //and var is left
+                            this.player.x += this.game.config.height * 0.007; //move player left
+                        }
+                    }
+                    if (playerMoveY == "STOP") { //if stop 
+                        this.player.y += 0; //dont move
+                    }
+                    else if (playerMoveY == "GO") { //if go
+                        if (playerDirY == "UP") { //and var is up
+                            this.player.y -= this.game.config.height * 0.007; //move player up
+                        }
+                        if (playerDirY == "DOWN") { //and var is down
+                            this.player.y += this.game.config.height * 0.007; //move player down
+                        }
+                    }
+                }
+            },
+            callbackScope: this, //set call back scope to this function
+            loop: true //set loop to true
+        });
+    }
+    //END updatetouchPlayerMovement function
 
     //create updatePlayerShooting function
     updatePlayerShooting() {
