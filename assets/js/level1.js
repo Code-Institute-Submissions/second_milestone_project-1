@@ -648,13 +648,6 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     }
     //END setEnemyDirection function
 
-    //create setEnemyDirection function
-    setEnemyDirection(direction) { //set enemy movement direction with direction parameter
-        this.lastEnemyMoveDir = this.enemyMoveDir; //sets enemyMoveDir as lastEnemyMoveDir
-        this.enemyMoveDir = direction; //enemyMoveDir is equal to direction parameter
-    }
-    //END setEnemyDirection function
-
     //create updateEnemiesMovement function
     updateEnemiesMovement() { //update Enemy Movement
         this.enemyMoveTimer = this.time.addEvent({ //adds time event to enemy movement

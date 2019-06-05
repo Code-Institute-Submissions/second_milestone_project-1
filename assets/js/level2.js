@@ -197,20 +197,19 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.lastEnemyMoveDir = "RIGHT"; //create a variable to hold last enemy movement
         this.enemyMoveDir = "LEFT"; //create a variable to hold this enemy movement
         this.enemyRect = new Phaser.Geom.Rectangle( //for moving the enemy rectangle around
-            Math.round((this.game.config.width / 24) * 0.5) * 6, //set the x position of rectangle
-            Math.round((this.game.config.height / 40) * 0.25), //set the y position of rectangle
-            Math.round(this.game.config.width / 24) * 19.5, //sets the width of rectangle
-            Math.round((this.game.config.height / 40) * 0.25) * 20 //sets the height of rectangle
+            0, //set the x position of rectangle
+            0, //set the y position of rectangle
+            Math.round(this.game.config.width / 11) * 10, //sets the width of rectangle
+            Math.round(this.game.config.height / 11) * 4 //sets the height of rectangle
         );
+        this.aGrid.placeAtIndex(11, this.enemyRect); //set rect at grid position
 
-        for (var x = 6; x < Math.round((this.game.config.width / 24) * 0.5); x++) { //create an inset row of enemy ships by setting to 0.6, skipping the first 10 iterations of the loop by setting x to 10, we can center the enemyShips by offsetting from the edge
-            for (var y = 0; y < Math.round((this.game.config.height / 40) * 0.14); y++) { //create additional rows by iterating through x depending on screen size more rows may appear
-                var enemy = new Enemy(this, x * 44, (this.game.config.height * 0.15) + (y * 88), "enemyShip"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyship image sprite
+        for (var x = 6; x < 35; x++) { //create an inset row of enemy ships by setting to 35, skipping the first 6 iterations of the loop by setting x, we can center the enemyShips by offsetting from the edge
+            for (var y = 0; y < 3; y++) { //create 3 additional rows by iterating through x
+                var enemy = new Enemy(this, x * (this.game.config.width * 0.025), (this.game.config.height * 0.15) + (y * (this.game.config.height * 0.11)), "enemyShip"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyship image sprite
                 enemy.play("enemyShip"); //start animation of the enemyShip
-                enemy.setScale(0.25); //set the scale of the enemy sprite
                 enemyShips++; //add a ship to total enemy ships created
                 this.enemies.add(enemy); //draw an enemy ship on the screen at x and y
-
             }
             totalEnemyShips = enemyShips; //set totalEnemy ships to equal enemyShips created for use in Victory function
         }
@@ -460,21 +459,21 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             callback: function() { //delay callback function
 
                 if (this.enemyMoveDir == "RIGHT") { //if enemyMoveDir is RIGHT
-                    this.enemyRect.x += 25; //Move enemy right by 16
+                    this.enemyRect.x += 15; //Move enemy right by 15
 
                     if (this.enemyRect.x + this.enemyRect.width > this.game.config.width - 10) { //if enemy is past this point on x axis 
                         this.setEnemyDirection("DOWN"); //setEnemyDirection to DOWN
                     }
                 }
                 else if (this.enemyMoveDir == "LEFT") { //enemyMoveDir is LEFT
-                    this.enemyRect.x -= 25; //Move enemy left by 16
+                    this.enemyRect.x -= 15; //Move enemy left by 15
 
                     if (this.enemyRect.x < (this.game.config.width - this.game.config.width) + 10) { //if enemy is past this point on x axis 
                         this.setEnemyDirection("DOWN"); //setEnemyDirection to DOWN
                     }
                 }
                 else if (this.enemyMoveDir == "DOWN") { //enemyMoveDir is DOWN
-                    this.enemyMoveTimer.delay -= 125; //reduce enemy timer delay by 125 (speeding up the loop)
+                    this.enemyMoveTimer.delay -= 75; //reduce enemy timer delay by 50 (speeding up the loop)
                     this.moveEnemiesDown(); //call function moveEnemiesDown
                 }
 
@@ -482,10 +481,10 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                     var enemy = this.enemies.getChildren()[i]; //select this enemy with index[i]
 
                     if (this.enemyMoveDir == "RIGHT") { //if enemyMoveDir is RIGHT
-                        enemy.x += 25; //Move enemy RIGHT 16
+                        enemy.x += 15; //Move enemy RIGHT 15
                     }
                     else if (this.enemyMoveDir == "LEFT") { //if enemyMoveDir is LEFT
-                        enemy.x -= 25; //Move enemy LEFT 16
+                        enemy.x -= 15; //Move enemy LEFT 15
                     }
                 }
             },
