@@ -618,18 +618,22 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                         this.playerShootTick = 0; //set shootTick back to 0
                     }
                 }
-                if (this.keyN.isDown && this.player.active && currentNukes > 0) { //if SPACE is down && player is active still
-                    if (this.playerNukeTick < this.playerNukeDelay) { //if playerShootTick is less than the playerShootDelay
-                        this.playerNukeTick++; //add 1 to Tick count, which will repeat until it hits 30
+                if (this.keyN.isDown && this.player.active && currentNukes > 0) { //if N is down && player is active still && nukes available
+                    if (this.playerNukeTick < this.playerNukeDelay) { //if playerNukeTick is less than the playernukeDelay
+                        this.playerNukeTick++; //add 1 to Tick count, which will repeat until it hits 150
+                        textNukesLoad.setText('ReArm: ' + this.playerNukeTick + '/' + this.playerNukeDelay); //set rearm text to count the nuke tick number
                     }
                     else {
                         var nuke = new Nuke(this, this.player.x, this.player.y); //create new laser object and start this object at player.x and player.y
-                        this.starNukes.add(nuke); //add this laser to playerLaser group
+                        this.starNukes.add(nuke); //add this nuke to starNukes group
                         this.sfx.laserPlayer.play(); //add laserPlayer sound
-                        this.playerNukeTick = 0; //set shootTick back to 0
+                        this.playerNukeTick = 0; //set nukeTick back to 0
                         currentNukes--; //decrement current nukes by 1
                         textNukes.setText('Nukes: ' + currentNukes); //set nuke left text to current value
                     }
+                }
+                if (this.keyN.isDown && this.player.active && currentNukes == 0) { //if SPACE is down && no nukes left
+                    textNukesLoad.setText('ReArm: OUT'); //set nukes rearming text to out
                 }
             },
             callbackScope: this, //set call back scope to this function
@@ -660,7 +664,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     }
     //END updateNukes function
 
-    //create updateLaser function
+     //create updateLaser function
     updateLasers() { //update laser movement
         this.time.addEvent({ //add a time event on player laser
             delay: 30, //set delay to 30
@@ -668,9 +672,9 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 for (var i = 0; i < this.playerLasers.getChildren().length; i++) { //for each enemy in the enemies array
                     var laser = this.playerLasers.getChildren()[i]; //this laser = playerLaser[i]
 
-                    laser.y -= 16; //set movement down on y axis as 16 (higher the number the faster it goes)
+                    laser.y -= this.game.config.height * 0.01; //set movement down on y axis as 1% (higher the number the faster it goes)
 
-                    if (laser.y < 10) { //if laser is less than 5 away from screen edge
+                    if (laser.y < 10) { //if laser is less than 10 away from screen edge
                         this.createExplosion(laser.x, laser.y); //create an explosion at this laser.x and laser.y
 
                         if (laser) { //if laser         
@@ -689,9 +693,9 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 for (var i = 0; i < this.enemyLasers.getChildren().length; i++) { //for each enemyLaser in the enemyLaser group
                     var laser = this.enemyLasers.getChildren()[i]; //set
 
-                    laser.y += 12; //set movement down on y axis as 12 (higher the number the faster it goes)
+                    laser.y += this.game.config.height * 0.01; //set movement down on y axis as 1% (higher the number the faster it goes)
 
-                    if (laser.y > this.game.config.height - 10) { //if laser is less than 5 away from screen edge
+                    if (laser.y > this.game.config.height - 10) { //if laser is less than 10 away from screen edge
                         this.createExplosion(laser.x, laser.y); //create an explosion at this laser.x and laser.y
 
                         if (laser) { //if laser         
