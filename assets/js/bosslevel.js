@@ -1013,7 +1013,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         this.explosions.add(explosion); //add it to the explosions group
         if (totalEnemyShips == enemyDeaths) { //if totalEnemyShips is same as totalDeaths
             this.win(); //start win method
-            levelWon = true;
+            levelWon = true; //set level won
         }
     }
     //end explosion function
@@ -1025,7 +1025,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         this.nukeExplosions.add(nukeExplosion); //add it to the nukeExplosions group
         if (totalEnemyShips == enemyDeaths) { // if totalEnemyShips is same as totalDeaths
             this.win(); //start win method
-            levelWon = true;
+            levelWon = true; //set level won
         }
     }
     //END nuke explosion function
