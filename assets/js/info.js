@@ -90,28 +90,44 @@ class Info extends Phaser.Scene { //creates a scene in the Phaser Object called 
     //ENDcontrols text
     //END title, story and controls text
 
-    //ADD PLAY BUTTON AND INTERACTIVITY
+    //ADD RETURN BUTTON AND INTERACTIVITY
     //return to main screen button
-    this.btnBack = this.add.image( //create btnPlay and add it as image
-      this.game.config.width * 0.95, //set position on the x axis
-      this.game.config.height * 0.9, //set position on the y axis
+    this.textExit = this.add.text( //Add Exit text
+      0, //set x axis position
+      0, //set y axis position
+      "EXIT", //set the text to variable Controls
+      {
+        fontFamily: "Arcadepix", //set font style
+        fontSize: 50, //set font size
+        align: "center" //set alignment
+      }
+    );
+    this.textExit.setTint(0x00ff00); //set color of exit text to green
+    this.textExit.setOrigin(0.5); //set text box origin to center of itself
+    this.aGrid.placeAtIndex(120, this.textExit); //set position on the grid
+    Align.scaleToGameW(this.textExit, 0.05); //set scale
+
+    this.btnBack = this.add.image( //create btnBack and add it as image
+      0, //set position on the x axis
+      0, //set position on the y axis
       "BtnBack" //add image key
     );
     this.btnBack.setTint(0x00ff00); //set button colour to green
-    this.btnBack.setScale(0.4); //set scale of button
+    this.aGrid.placeAtIndex(109, this.btnBack); //set position on the grid
+    Align.scaleToGameW(this.btnBack, 0.05); //set scale of button
     this.btnBack.setInteractive(); //set button to be interactive
 
-    this.btnBack.on("pointerover", function() { //this Play Button when on method, in hover
+    this.btnBack.on("pointerover", function() { //this Back Button when on method, in hover
       this.btnBack.setTint(0xff0000) // set the play button to red on hover
     }, this); //this state only
 
-    this.btnBack.on("pointerout", function() { //this Play Button when on method, in hover
-      this.btnBack.setTint(0x00ff00); // set the play button back to green when not hovering
+    this.btnBack.on("pointerout", function() { //this Back Button when on method, in hover
+      this.btnBack.setTint(0x00ff00); // set the Back button back to green when not hovering
     }, this); //this state only
 
-    this.btnBack.on("pointerdown", function() { //this Play Button when on method, when mouse clicks
+    this.btnBack.on("pointerdown", function() { //this Back Button when on method, when mouse clicks
       this.sfx.btn.play(); // set the sound to play             
-      this.scene.start("MainMenu"); // back to Main Menu
+      this.scene.start("SceneMainMenu"); // back to Main Menu
     }, this); //this state only
     //END return to main screen button
   }
