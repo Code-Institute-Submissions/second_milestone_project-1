@@ -28,13 +28,15 @@ class Victory extends Phaser.Scene {
 
   //create victory method
   victoryFunction() {
-    this.fireworksVictory = this.add.image(this.game.config.width * 0.33, this.game.config.height * 0.6, 'fireworks'); //insert firweorks image setting x and y position and initiate first so image behind the hero
-    this.fireworksVictory.setScale(1.1); //set scale 
-    this.fireworksVictory = this.add.image(this.game.config.width * 0.66, this.game.config.height * 0.6, 'fireworks'); //insert firweorks image setting x and y position and initiate first so image behind the hero
-    this.fireworksVictory.setScale(1.1); //set scale 
+    this.fireworksVictory1 = this.add.image(0, 0, 'fireworks'); //add fireworks image
+    this.aGrid.placeAtIndex(68, this.fireworksVictory1); //set position on grid
+    Align.scaleToGameW(this.fireworksVictory1, 0.4); //scale image
+    this.fireworksVictory2 = this.add.image(0, 0, 'fireworks'); //add fireworks image
+    this.aGrid.placeAtIndex(74, this.fireworksVictory2); //set position on grid
+    Align.scaleToGameW(this.fireworksVictory2, 0.4); //scale image
     this.congratsText = this.add.text( //create Victory text
-      this.game.config.width * 0.5, //set x axis position
-      this.game.config.height * 0.1, //set y axis position
+      0, //set x axis position
+      0, //set y axis position
       "CONGRATULATIONS!", //set text
       {
         fontFamily: "Arcadepix", //set font type
@@ -44,9 +46,12 @@ class Victory extends Phaser.Scene {
     );
     this.congratsText.setOrigin(0.5); //set origin of text center of itself
     this.congratsText.setTint(0x00ff00); //set text colour
+    this.aGrid.placeAtIndex(5, this.congratsText); //set position on grid
+    Align.scaleToGameW(this.congratsText, 0.6); //scale image
+
     this.textVictory = this.add.text( //create Victory text
-      this.game.config.width * 0.5, //set x axis position
-      this.game.config.height * 0.2, //set y axis position
+      0, //set x axis position
+      0, //set y axis position
       "YOU HAVE SAVED THE GALAXY FROM THE EVIL ALIENS!", //set text
       {
         fontFamily: "Arcadepix", //set font type
@@ -56,8 +61,11 @@ class Victory extends Phaser.Scene {
     );
     this.textVictory.setOrigin(0.5); //set origin of text center of itself
     this.textVictory.setTint(0x00ff00); //set text colour
-    this.heroWin = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.6, 'hero'); //insert hero image setting x and y position
-    this.heroWin.setScale(1); //set scale of hero image to original size
+    this.aGrid.placeAtIndex(16, this.textVictory); //set position on grid
+    Align.scaleToGameW(this.textVictory, 0.55); //scale image
+    this.heroWin = this.add.image(0, 0, 'hero'); //insert hero image setting x and y position
+    this.aGrid.placeAtIndex(71, this.heroWin); //set position on grid
+    Align.scaleToGameW(this.heroWin, 0.2); //set scale
     enemyShips = 0; //set enemyShips to 0
     enemyDeaths = 0; //set enemyDeaths to 0
 
