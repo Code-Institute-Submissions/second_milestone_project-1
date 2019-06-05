@@ -614,7 +614,6 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                     );
                     enemyShips++;
                     totalEnemyShips++; //add alienscout to enemyship count
-                    alienscout.setScale(0.3); //set the scale of the alienscout
                     alienscout.play("alienscout"); //play alienscout animation
                     this.tweens.add({ //add a tween(movement state)
                         targets: alienscout, //target the alienscout
@@ -651,21 +650,21 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             callback: function() { //delay callback function
 
                 if (this.enemyMoveDir == "RIGHT") { //if enemyMoveDir is RIGHT
-                    this.enemyRect.x += 25; //Move enemy right by 16
+                    this.enemyRect.x += 15; //Move enemy right by 15
 
                     if (this.enemyRect.x + this.enemyRect.width > this.game.config.width - 10) { //if enemy is past this point on x axis 
                         this.setEnemyDirection("DOWN"); //setEnemyDirection to DOWN
                     }
                 }
                 else if (this.enemyMoveDir == "LEFT") { //enemyMoveDir is LEFT
-                    this.enemyRect.x -= 25; //Move enemy left by 16
+                    this.enemyRect.x -= 15; //Move enemy left by 15
 
                     if (this.enemyRect.x < (this.game.config.width - this.game.config.width) + 10) { //if enemy is past this point on x axis 
                         this.setEnemyDirection("DOWN"); //setEnemyDirection to DOWN
                     }
                 }
                 else if (this.enemyMoveDir == "DOWN") { //enemyMoveDir is DOWN
-                    this.enemyMoveTimer.delay -= 125; //reduce enemy timer delay by 125 (speeding up the loop)
+                    this.enemyMoveTimer.delay -= 100; //reduce enemy timer delay by 100 (speeding up the loop)
                     this.moveEnemiesDown(); //call function moveEnemiesDown
                 }
 
@@ -673,10 +672,10 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                     var enemy = this.enemies.getChildren()[i]; //select this enemy with index[i]
 
                     if (this.enemyMoveDir == "RIGHT") { //if enemyMoveDir is RIGHT
-                        enemy.x += 25; //Move enemy RIGHT 16
+                        enemy.x += 15; //Move enemy RIGHT 15
                     }
                     else if (this.enemyMoveDir == "LEFT") { //if enemyMoveDir is LEFT
-                        enemy.x -= 25; //Move enemy LEFT 16
+                        enemy.x -= 15; //Move enemy LEFT 15
                     }
                 }
             },
@@ -691,7 +690,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         for (var i = this.enemies.getChildren().length - 1; i >= 0; i--) { //for each enemy in the enemies array
             var enemy = this.enemies.getChildren()[i]; //select this enemy with this index
 
-            enemy.y += 13; //Move enemy DOWN by 13
+            enemy.y += 15; //Move enemy DOWN by 15
 
             if (this.lastEnemyMoveDir == "LEFT") { //if lastEnemyMoveDir is LEFT
                 this.setEnemyDirection("RIGHT"); //setEnemyDirection to RIGHT
@@ -714,7 +713,6 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                     if (Phaser.Math.Between(0, 1000) > 995) { //for each enemy, if number generated is greater than 995 FIRE (lower the number the higher the fire rate)
                         var laser = new EnemyLaser(this, enemy.x, enemy.y); //add a new EnemyLaser object
                         this.enemyLasers.add(laser); //draw a new enemyLaser
-
                         this.sfx.laserEnemy.play(); //play the sound laserEnemy
                     }
                 }
@@ -728,16 +726,20 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
     //create mothershipShooting functions
     updateMotherShipShooting() { //mothership Shooting function
         this.time.addEvent({ // add time delay event
-            delay: 700, //set delay to 700
+            delay: 900, //set delay to 900
             callback: function() { //create callback function on time event
                 var motherShip = this.alienMothership;
                 if (motherShipAlive) {
-                    var laser1 = new EnemyLaser(this, (motherShip.x - 15), motherShip.y); //add a new EnemyLaser object
-                    laser1.setScale(2.5); //set mothership laser to twice size
+                    var laser1 = new EnemyMotherShipLaser(this, (motherShip.x - motherShip.width / 5), motherShip.y); //add a new EnemyLaser object
                     this.enemyLasers.add(laser1); //draw a new enemyLaser
-                    var laser2 = new EnemyLaser(this, (motherShip.x + 15), motherShip.y); //add a new EnemyLaser object
-                    laser2.setScale(2.5); //set mothership laser to twice size
+                    this.sfx.laserEnemy.play(); //play the sound laserEnemy
+
+                    var laser2 = new EnemyMotherShipLaser(this, (motherShip.x), motherShip.y); //add a new EnemyLaser object
                     this.enemyLasers.add(laser2); //draw a new enemyLaser
+                    this.sfx.laserEnemy.play(); //play the sound laserEnemy
+
+                    var laser3 = new EnemyMotherShipLaser(this, (motherShip.x + motherShip.width / 5), motherShip.y); //add a new EnemyLaser object
+                    this.enemyLasers.add(laser3); //draw a new enemyLaser
                     this.sfx.laserEnemy.play(); //play the sound laserEnemy
                 }
             },
