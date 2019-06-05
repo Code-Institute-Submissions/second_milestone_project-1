@@ -22,19 +22,21 @@ class Titles extends Phaser.Scene { //creates a scene in the Phaser Object calle
     this.aGrid.showNumbers(); //show grid
     //END GRID
 
-    this.victoryFunction(); //create victory function
+    this.titlesFunction(); //create titles function
   }
   //END Create function
 
-  //victory function
-  victoryFunction() {
-    this.fireworksVictory = this.add.image(this.game.config.width * 0.15, this.game.config.height * 0.3, 'fireworks'); //add fireworks image
-    this.fireworksVictory.setScale(0.8); //set scale                                                                              //scale image
-    this.fireworksVictory = this.add.image(this.game.config.width * 0.85, this.game.config.height * 0.3, 'fireworks'); //add fireworks image
-    this.fireworksVictory.setScale(0.8); //set scale                                                                                //scale image
+  //titles function
+  titlesFunction() {
+    this.fireworksVictory1 = this.add.image(0, 0, 'fireworks'); //add fireworks image
+    this.aGrid.placeAtIndex(34, this.fireworksVictory1); //set position on the grid
+    Align.scaleToGameW(this.fireworksVictory1, 0.3); //scale image
+    this.fireworksVictory2 = this.add.image(0, 0, 'fireworks'); //add fireworks image
+    this.aGrid.placeAtIndex(42, this.fireworksVictory2); //set position on the grid
+    Align.scaleToGameW(this.fireworksVictory2, 0.3); //scale image
     this.textTitleHead = this.add.text( //create Titles Header text
-      this.game.config.width * 0.5, //set x axis position
-      this.game.config.height * 0.1, //set y axis position
+      0, //set x axis position
+      0, //set y axis position
       "TITLES", //set text
       {
         fontFamily: "Arcade", //set font type
@@ -44,6 +46,9 @@ class Titles extends Phaser.Scene { //creates a scene in the Phaser Object calle
     );
     this.textTitleHead.setOrigin(0.5); //set origin of text to center of itself
     this.textTitleHead.setTint(0x00ff00); //set colour of text to green
+    this.aGrid.placeAtIndex(27, this.textTitleHead); //set position on the grid
+    Align.scaleToGameW(this.textTitleHead, 0.3); //scale image
+
     this.textTitles = this.add.text( //create Titles text
       this.game.config.width * 0.5, //set x axis position
       this.game.config.height * 0.6, //set y axis position
@@ -56,16 +61,18 @@ class Titles extends Phaser.Scene { //creates a scene in the Phaser Object calle
     );
     this.textTitles.setOrigin(0.5); //set origin of text to center of itself
     this.textTitles.setTint(0x00ff00); //set colour of text to green
+    this.aGrid.placeAtIndex(71, this.textTitles); //set position on the grid
+    Align.scaleToGameW(this.textTitles, 0.6); //scale image
 
     this.time.addEvent({ //add timed event
       delay: 15000, //set delay to 15000
       callback: function() { //create callback function
-        this.scene.start("MainMenu"); //set scene start for main game if lives is greater than 0
+        this.scene.start("SceneMainMenu"); //set scene start for main game if lives is greater than 0
       },
       callbackScope: this, //set call back scope to this
       loop: false //set loop to false only play once
     });
   }
-  //END victory function
+  //END titles function
 }
 //END scene
