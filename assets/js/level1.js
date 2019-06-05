@@ -43,7 +43,6 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
 
         //CREATE GRID
         this.aGrid = new AlignGrid({ scene: this, rows: 11, cols: 11 }); //add grid to screen for scaling and positioning
-        this.aGrid.showNumbers(); //show grid
         //END GRID
 
         //create sfx
@@ -211,7 +210,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             Math.round(this.game.config.width / 11) * 10, //sets the width of rectangle
             Math.round(this.game.config.height / 11) * 4 //sets the height of rectangle
         );
-        this.aGrid.placeAtIndex(11, this.enemyRect);
+        this.aGrid.placeAtIndex(11, this.enemyRect); //set rect at grid position
 
         for (var x = 6; x < 35; x++) { //create an inset row of enemy ships by setting to 35, skipping the first 6 iterations of the loop by setting x, we can center the enemyShips by offsetting from the edge
             for (var y = 0; y < 2; y++) { //create 2 additional rows by iterating through x
