@@ -22,7 +22,6 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
 
     //Create Grid
     this.aGrid = new AlignGrid({ scene: this, rows: 11, cols: 11 }); //create grid for positioning
-    this.aGrid.showNumbers(); //show grid
     //END GRID
 
     //create sounds    
