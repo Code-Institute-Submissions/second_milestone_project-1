@@ -41,6 +41,11 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.background = new Background(this, this.game.config.width * 0.5, this.game.config.height * 0.5, "backgroundstars"); // add background image first
         //END background image
 
+        //CREATE GRID
+        this.aGrid = new AlignGrid({ scene: this, rows: 11, cols: 11 }); //add grid to screen for scaling and positioning
+        this.aGrid.showNumbers(); //show grid
+        //END GRID
+
         //create sfx
         this.sfx = { //add properties to call back sfx
             explode: this.sound.add("sndExplode"), //create the soudn fx properties
