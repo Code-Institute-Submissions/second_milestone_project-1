@@ -788,7 +788,6 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     //END destroySheildTile function
 
     //create win function
-    //create win function
     win() {
         this.player.destroy(); //destroy player if victory to stop losing any lives 
         this.fireworksVictory = this.add.image(0, 0, 'fireworks'); //set fireworks image position x,y and initiate first so image behind the hero

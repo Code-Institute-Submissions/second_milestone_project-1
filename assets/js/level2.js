@@ -664,7 +664,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     }
     //END updateNukes function
 
-     //create updateLaser function
+    //create updateLaser function
     updateLasers() { //update laser movement
         this.time.addEvent({ //add a time event on player laser
             delay: 30, //set delay to 30
@@ -806,11 +806,12 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     //create win function
     win() {
         this.player.destroy(); //destroy player if victory to stop losing any lives 
-        this.fireworksVictory = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.5, 'fireworks'); //set fireworks image position x,y and initiate first so image behind the hero
-        this.fireworksVictory.setScale(1.4); //set scale of fireworks image
+        this.fireworksVictory = this.add.image(0, 0, 'fireworks'); //set fireworks image position x,y and initiate first so image behind the hero
+        this.aGrid.placeAtIndex(71, this.fireworksVictory); //set position on the grid
+        Align.scaleToGameW(this.fireworksVictory, 0.7); //set scale
         this.textVictory = this.add.text( //create Victory text
-            this.game.config.width * 0.5, //set x axis position
-            this.game.config.height * 0.05, //set y axis position
+            0, //set x axis position
+            0, //set y axis position
             "Level 2 Complete!", //set text   
             {
                 fontFamily: "Arcadepix", //set font type
@@ -818,22 +819,27 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 align: "center" //set text alignment
             }
         );
-        this.textVictory.setOrigin(0.5); //set text origin to center 
+        this.textVictory.setOrigin(0.5, 0.6); //set text origin to center 
         this.textVictory.setTint(0x00ff00); //set victory text to green
+        this.aGrid.placeAtIndex(5, this.textVictory); //set position on the grid
+        Align.scaleToGameW(this.textVictory, 0.6); //set scale
         this.textContinue = this.add.text( //create Victory text
-            this.game.config.width * 0.5, //set x axis position
-            this.game.config.height * 0.95, //set y axis position
+            0, //set x axis position
+            0, //set y axis position
             "Press Enter to Continue", //set text   
             {
                 fontFamily: "Arcadepix", //set font type
-                fontSize: 100, //set font size
+                fontSize: 70, //set font size
                 align: "center" //set text alignment
             }
         );
-        this.textContinue.setOrigin(0.5); //set text origin to center 
+        this.textContinue.setOrigin(0.5, 0.6); //set text origin to center 
         this.textContinue.setTint(0x00ff00); //set victory text to green
-        this.heroWin = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.5, 'hero'); //insert hero image setting x and y position
-        this.heroWin.setScale(1); //set scale of hero image to half original size
+        this.aGrid.placeAtIndex(16, this.textContinue); //set position on the grid
+        Align.scaleToGameW(this.textContinue, 0.5); //set scale
+        this.heroWin = this.add.image(0, 0, 'hero'); //insert hero image setting x and y position
+        this.aGrid.placeAtIndex(71, this.heroWin); //set position on the grid
+        Align.scaleToGameW(this.heroWin, 0.25); //set scale
         enemyShips = 0; //set enemyShips to 0
         enemyDeaths = 0; //set enemyDeaths to 0
         currentNukes++; //Add a nuke 
@@ -863,11 +869,12 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         textScore.setText('Final Score: ' + score); //set score text to final score
         textLives.setText('Lives: GAME OVER'); //set lives text to GAME OVER 
         this.player.destroy(); //destroy player
-        this.gameOverExplosion = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.5, 'gameOver'); //insert explosion image first to put behind alien and setting x and y position
-        this.gameOverExplosion.setScale(2); //set gameover explosion to twice its size
+        this.gameOverExplosion = this.add.image(0, 0, 'gameOver'); //insert explosion image first to put behind alien and setting x and y position
+        this.aGrid.placeAtIndex(60, this.gameOverExplosion); //set position on the grid
+        Align.scaleToGameW(this.gameOverExplosion, 1.2); // set scale
         this.textGameOver = this.add.text( //create game over text
-            this.game.config.width * 0.5, //set x axis position
-            this.game.config.height * 0.05, //set y axis position
+            0, //set x axis position
+            0, //set y axis position
             GameOver, //set text to variable GameOver
             {
                 fontFamily: "Arcadepix", //set font type
@@ -875,12 +882,14 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 align: "center" //set text alignment
             }
         );
-        this.textGameOver.setOrigin(0.5); //Set origin of gameover text to its center
+        this.textGameOver.setOrigin(0.5, 0.4); //Set origin of gameover text to its center
         this.textGameOver.setTint(0x008000); //set text color
+        this.aGrid.placeAtIndex(5, this.textGameOver); //set position on the grid
+        Align.scaleToGameW(this.textGameOver, 0.4); // set scale
 
         this.textRestart = this.add.text( //create restart text
-            this.game.config.width * 0.5, //set x axis position
-            this.game.config.height * 0.15, //set y axis position
+            0, //set x axis position
+            0, //set y axis position
             Restart, //set text to variable Restart
             {
                 fontFamily: "Arcadepix", //set font type
@@ -889,9 +898,12 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             }
         );
         this.textRestart.setTint(0x008000); //Set text colour
-        this.textRestart.setOrigin(0.5); //Set origin of restart text to its center
-        this.alienWin = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.6, 'alien'); //insert alien image last to for rendering in front setting x and y position
-        this.alienWin.setScale(1.2) //set scale to 1.2
+        this.textRestart.setOrigin(0.5, 0.3); //Set origin of restart text to its center
+        this.aGrid.placeAtIndex(16, this.textRestart); //set position on the grid
+        Align.scaleToGameW(this.textRestart, 0.3); // set scale
+        this.alienWin = this.add.image(0, 0, 'alien'); //insert alien image last to for rendering in front setting x and y position
+        this.aGrid.placeAtIndex(71, this.alienWin); //set position on the grid
+        Align.scaleToGameW(this.alienWin, 0.2); // set scale
     }
     //END gameover function
 
