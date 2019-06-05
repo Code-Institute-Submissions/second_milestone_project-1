@@ -120,6 +120,44 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
     }, this); //this state only
     //end info button   
 
+    //pointer button
+    this.textPoint = this.add.text( //create point select text
+      0, //set position on the x axis
+      0, //set position on the y axis
+      touchSelector, //set text to variable
+      {
+        fontFamily: "Arcadepix", //set font style
+        fontSize: 80, //set font size
+        align: "center" //set alignment
+      }
+    );
+    this.textPoint.setTint(0x00ff00); // set the point text to green
+    this.textPoint.setOrigin(0.5, 0.2); //set the origin point of text
+    this.aGrid.placeAtIndex(56, this.textPoint); //set grid position of text
+    Align.scaleToGameW(this.textPoint, 0.15); //scale the text
+
+    this.btnPoint = this.add.image( //create btnInfo and add it as image
+      0, //set position on the x axis
+      0, //set position on the y axis
+      "BtnPoint" //add image key
+    );
+    this.btnPoint.setTint(0x00ff00); // set the point button to green
+    this.btnPoint.setInteractive(); //set button to be interactive
+    this.aGrid.placeAtIndex(78, this.btnPoint); //set grid position of button
+    Align.scaleToGameW(this.btnPoint, 0.06); //scale the button
+
+    this.btnPoint.on("pointerdown", function() { //this point Button when on selected
+      if (!touch) {
+        this.btnPoint.setTint(0xff0000); // set the point button to red on select
+        touch = true; //set touch variable
+      }
+      else {
+        this.btnPoint.setTint(0x00ff00); // set the point button back to green when deselected
+        touch = false; //set touch variable
+      }
+    }, this);
+    //end point button  
+
   }
   //END Create Function
 }
