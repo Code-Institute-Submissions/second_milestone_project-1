@@ -449,16 +449,16 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             callback: function() { //create call back function for time event
 
                 if (cursors.left.isDown) { //if key A pressed down
-                    this.player.x -= 8; //Move left
+                    this.player.x -= this.game.config.height * 0.007; //Move left
                 }
                 if (cursors.right.isDown) { //if key D pressed down
-                    this.player.x += 8; //Move right
+                    this.player.x += this.game.config.height * 0.007; //Move right
                 }
                 if (cursors.up.isDown) { //if key W pressed down
-                    this.player.y -= 8; //Move up   
+                    this.player.y -= this.game.config.height * 0.007; //Move up   
                 }
                 if (cursors.down.isDown) { //if key S pressed down
-                    this.player.y += 8; //Move down
+                    this.player.y += this.game.config.height * 0.007; //Move down
                 }
             },
             callbackScope: this, //set call back scope to this function
