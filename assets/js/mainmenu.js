@@ -34,8 +34,8 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
     //ADD MAIN MENU TEXT
     //Game Title Text
     this.textTitle = this.add.text( //Add Game Title Text
-      this.game.config.width * 0.5, //set x axis position
-      this.game.config.height * 0.1, //set y axis position
+      0, //set x axis position
+      0, //set y axis position
       "GALACTIC GUNNERS", //set text
       {
         fontFamily: "Arcade", //set font style
@@ -44,13 +44,15 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
       }
     );
     this.textTitle.setTint(0x00ff00); //set game title text to green
-    this.textTitle.setOrigin(0.5); //set text box origin to center of itself
+    this.textTitle.setOrigin(0.5, 0.3);  //set position on grid
+    this.aGrid.placeAtIndex(5, this.textTitle); //set position on grid
+    Align.scaleToGameW(this.textTitle, 0.6); //set scale
     //END Game Title Text
 
     //Subheading text
     this.textTitle2 = this.add.text( //Add Question text
-      this.game.config.width * 0.5, //set x axis position
-      this.game.config.height * 0.2, //set y axis position
+      0, //set x axis position
+      0, //set y axis position
       "CAN YOU SAVE THE DAY?", //set text
       {
         fontFamily: "Arcadepix", //set font style
@@ -59,35 +61,37 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
       }
     );
     this.textTitle2.setTint(0x009500); //set sub heading text to green
-    this.textTitle2.setOrigin(0.5); //set text box origin to center of itself
+    this.textTitle2.setOrigin(0.5);  //set position on grid
+    this.aGrid.placeAtIndex(16, this.textTitle2); //set position on grid
+    Align.scaleToGameW(this.textTitle2, 0.4); //set scale
     //END Subheading text
-
     //Hero Image
-    this.heroImage = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.65, 'hero'); //add hero image to bottom of screen
-    this.heroImage.setScale(1); //set scale of image to original size
+    this.heroImage = this.add.image(0, 0, 'hero'); //add hero image to bottom of screen
+    this.heroImage.setOrigin(0.5, 0.45); //set origin point of image
+    this.aGrid.placeAtIndex(71, this.heroImage); //set position on grid
+    Align.scaleToGameW(this.heroImage, 0.25); //set scale
     //END Hero Image
 
     //ADD PLAY BUTTON AND INTERACTIVITY
     //play button
     this.btnPlay = this.add.image( //create btnPlay and add it as image
-      this.game.config.width * 0.2, //set position on the x axis
-      this.game.config.height * 0.85, //set position on the y axis
+      0, //set position on the x axis
+      0, //set position on the y axis
       "BtnPlay" //add image key
     );
-    this.btnPlay.setScale(1.5); //set button scale
     this.btnPlay.setTint(0x00ff00); // set the play button to green
     this.btnPlay.setInteractive(); //set button to be interactive
+    this.aGrid.placeAtIndex(100, this.btnPlay); //set position on the grid
+    Align.scaleToGameW(this.btnPlay, 0.1); //set scale
 
     this.btnPlay.on("pointerover", function() { //this Play Button when on method, in hover
       this.btnPlay.setTexture("BtnPlayHover"); //change the image to Play Button without box
       this.btnPlay.setTint(0xff0000); // set the play button to red on hover
-      this.btnPlay.setScale(1.5); //set button scale
     }, this); //this state only
 
     this.btnPlay.on("pointerout", function() { //this Play Button when on method, in hover
       this.setTexture("BtnPlay"); //change the image to Play Button with box
       this.setTint(0x00ff00); // set the play button back to green when not hovering
-      this.setScale(1.5); //set button scale
     });
 
     this.btnPlay.on("pointerdown", function() { //this Play Button when on method, when mouse clicks
@@ -98,13 +102,15 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
 
     //info button
     this.btnInfo = this.add.image( //create btnInfo and add it as image
-      this.game.config.width * 0.8, //set position on the x axis
-      this.game.config.height * 0.85, //set position on the y axis
+      0, //set position on the x axis
+      0, //set position on the y axis
       "BtnInfo" //add image key
     );
     this.btnInfo.setTint(0x00ff00); // set the info button back to green when not hovering
-    this.btnInfo.setScale(0.2); //set button scale
     this.btnInfo.setInteractive(); //set button to be interactive
+    this.aGrid.placeAtIndex(108, this.btnInfo); //set position on the grid
+    Align.scaleToGameW(this.btnInfo, 0.08); //set scale
+
 
     this.btnInfo.on("pointerover", function() { //this Play Button when on method, in hover
       this.btnInfo.setTint(0xff0000); // set the play button to red on hover
@@ -118,7 +124,7 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
       this.sfx.btn.play(); // set the sound to play             
       this.scene.start("Info"); // open Info screen
     }, this); //this state only
-    //end info button   
+    //end info button     
 
     //pointer button
     this.textPoint = this.add.text( //create point select text
