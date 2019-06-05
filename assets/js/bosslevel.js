@@ -255,7 +255,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
 
         for (var x = 3; x < 27; x++) { //create an inset row of enemy ships by setting to 35, skipping the first 6 iterations of the loop by setting x, we can center the enemyShips by offsetting from the edge
             for (var y = 0; y < 3; y++) { //create 3 additional rows by iterating through x
-                var enemy = new EnemyCruiser(this, x * (this.game.config.width * 0.035), (this.game.config.height * 0.25) + (y * (this.game.config.height * 0.11)), "enemyShip"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyship image sprite
+                var enemy = new EnemyCruiser(this, x * (this.game.config.width * 0.035), (this.game.config.height * 0.25) + (y * (this.game.config.height * 0.11)), "enemyCruiser"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyship image sprite
                 enemy.play("enemyCruiser"); //start animation of the enemyShip
                 enemyShips++; //add a ship to total enemy ships created
                 this.enemies.add(enemy); //draw an enemy ship on the screen at x and y
