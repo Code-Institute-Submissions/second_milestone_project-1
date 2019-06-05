@@ -19,7 +19,6 @@ class Victory extends Phaser.Scene {
 
     //Create Grid
     this.aGrid = new AlignGrid({ scene: this, rows: 11, cols: 11 }); //create grid for positioning
-    this.aGrid.showNumbers(); //show grid
     //END GRID
 
     this.victoryFunction(); //create victory method
