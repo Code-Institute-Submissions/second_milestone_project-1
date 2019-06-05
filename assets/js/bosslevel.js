@@ -33,6 +33,8 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         this.load.image('hero', "assets/images/spacesuit.png"); //preload heroin image
         this.load.image('fireworks', "assets/images/fireworks.png"); //preload fireworks image
         this.load.image("asteroid", "assets/images/asteroid.png"); //perload the asteroid image
+        this.load.image('mute', "assets/images/mute.png"); //preload mute image
+        this.load.image('sound', "assets/images/sound.png"); //preload sound image
         this.load.audio("sndExplode", "assets/audio/sndExplode.wav"); //preload audio files, assign key name and src
         this.load.audio("sndLaserPlayer", "assets/audio/sndLaserPlayer.wav"); //preload audio files, assign key name and src
         this.load.audio("sndLaserEnemy", "assets/audio/sndLaserEnemy.wav"); //preload audio files, assign key name and src
@@ -60,6 +62,18 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             laserEnemy: this.sound.add("sndLaserEnemy") //create the soudn fx properties
         };
         //END sfx
+
+        //Mute Button
+        this.btnMute = this.add.image( //create btnMute and add it as image
+            0, //set position on the x axis
+            0, //set position on the y axis
+            "sound" //add image key
+        );
+        this.btnMute.setTint(0x00ff00); // set the mute button to green
+        this.btnMute.setInteractive(); //set button to be interactive
+        this.aGrid.placeAtIndex(99, this.btnMute); //set position on grid
+        Align.scaleToGameW(this.btnMute, 0.04); //set scale
+        //END Mute Button
 
         //create animations
         this.anims.create({ //animation object create
@@ -136,19 +150,43 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             this.scene.launch('Paused'); //launch paused scene
         }, this);
 
+        //ADD MUTE FUNCTION
         this.input.keyboard.on('keydown-Q', function() { //on pressing Key Q
-            if (!isMuted) { // if not muted
+            if (!isMuted) { //if not muted
+                this.btnMute.setTint(0xff0000); // set the mute button to red when Q pressed
+                this.btnMute.setTexture("mute"); // set image to mute image
                 isMuted = true; //set variable
                 this.game.sound.mute = true; //set mute to true
             }
             else {
+                this.btnMute.setTint(0x00ff00); // set the mute button to green when Q pressed
+                this.btnMute.setTexture("sound"); // set image to sound image
                 isMuted = false; //set variable
                 this.game.sound.mute = false; //set mute to false
             }
         }, this);
+        //END mute function
 
         //END Keyboard methods created for use in update function
         //TOUCH CONTROLS
+
+        //touch mute function
+        this.btnMute.on("pointerdown", function() { //this mute button when clicked
+            if (!isMuted) { //if not muted
+                this.btnMute.setTint(0xff0000); // set the mute button to red 
+                this.btnMute.setTexture("mute"); // set image to mute image
+                isMuted = true; //set variable
+                this.game.sound.mute = true; //set mute to true
+            }
+            else {
+                this.btnMute.setTint(0x00ff00); // set the mute button to green
+                this.btnMute.setTexture("sound"); // set image to sound image
+                isMuted = false; //set variable
+                this.game.sound.mute = false; //set mute to false
+            }
+        }, this);
+        //END touch mute function
+
         this.playertouchShootTick = 1; //create touch shoot tick
         this.playertouchShootDelay = 1; //create touch shoot delay
 
