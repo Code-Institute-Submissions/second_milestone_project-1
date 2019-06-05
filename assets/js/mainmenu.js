@@ -96,7 +96,7 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
 
     this.btnPlay.on("pointerdown", function() { //this Play Button when on method, when mouse clicks
       this.sfx.btn.play(); // set the sound to play             
-      this.scene.start("BossLevel"); // start level 1
+      this.scene.start("Victory"); // start level 1
     }, this); //this state only
     //END play button
 
