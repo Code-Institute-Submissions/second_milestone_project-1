@@ -60,6 +60,7 @@ var score = 0; //declares score Global Variable
 var textScore; //declares score text Global Variable
 var textLives; //declares lives left text Global Variable
 var textNukes; //declares Nuke text Global Variable
+var textNukesLoad; //declare Nuke ReArming 
 var restartlevel; //declares level restart text Global Variable
 
 var leftAsteroid = true; //set leftAsteroid variable so as to switch sides asteroids fly from
@@ -90,18 +91,18 @@ const StoryContent = [ //set story text variable
     "WATCH OUT FOR THE ASTEROIDS!"
 ];
 
-const touchSelector = [     //set touch selector text
-	"  SELECT  ",
-	"FOR  TOUCH"
+const touchSelector = [ //set touch selector text
+    "  SELECT  ",
+    "FOR  TOUCH"
 ];
 
-const Controls = [      //set controls text variable
-	"GAME CONTROLS",
-	"Use Cursors to FLY      Hold Space for LASERS      Press N for NUKES"    
+const Controls = [ //set controls text variable
+    "GAME CONTROLS",
+    "Use Cursors to FLY      Hold Space for LASERS      Press N for NUKES"
 ];
-const touchControls = [      //set touch controls text variable
-	"GAME CONTROLS",
-	"Use Finger to FLY       Tap Screen for LASERS      Press Label for NUKES"      
+const touchControls = [ //set touch controls text variable
+    "GAME CONTROLS",
+    "Use Finger to FLY       Tap Screen for LASERS      Press Label for NUKES"
 ];
 
 const GameOver = ["GAME OVER"]; //set Gameover text variable
