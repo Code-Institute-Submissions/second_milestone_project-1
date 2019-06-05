@@ -121,7 +121,7 @@ class ShieldTile extends Entity { //Inherit ShieldTile class to Entity
     constructor(scene, x, y) { // constructor function to instantiate a shieldtile object
         super(scene, x, y, "sprShieldTile"); // call super class constructor
         this.setOrigin(0); //set origin of sheildTile to center
-        this.setScale(4); //set scale of the sheild tile larger for greater size of sheild with more pixels
+        Align.scaleToGameW(this, 0.01); //set scale of the sheild tile larger for greater size of sheild with more pixels
         this.setDepth(-4); //set the depth of the image allowing the explosion to affect finer pixelling fo sheildTiles
     }
 }
