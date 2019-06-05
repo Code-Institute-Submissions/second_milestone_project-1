@@ -30,17 +30,20 @@ class Paused extends Phaser.Scene { //creates a scene in the Phaser Object calle
         };
 
         //pause Image
-        this.planetImage = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.7, 'comet'); //add pause image to bottom of screen
-        this.planetImage.setScale(0.8); //set scale of image to 0.8
-        this.womanImage = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.7, 'scifiwarriors'); //add pause image to bottom of screen
-        this.womanImage.setScale(0.8); //set scale of image to 0.8
+        this.planetImage = this.add.image(0, 0, 'comet'); //add pause image to bottom of screen
+        this.aGrid.placeAtIndex(71, this.planetImage); //set position on the grid
+        Align.scaleToGameW(this.planetImage, 0.9); //set scale
+        this.womanImage = this.add.image(0, 0, 'scifiwarriors'); //add pause image to bottom of screen
+        this.womanImage.setOrigin(0.5, 0.55); //set origin
+        this.aGrid.placeAtIndex(82, this.womanImage); //set position on the grid
+        Align.scaleToGameW(this.womanImage, 0.5); //set scale
         //END pause Image
 
         //ADD MAIN MENU TEXT
         //Game Title Text
         this.textTitle = this.add.text( //Add Pause Text
-            this.game.config.width * 0.5, //set x axis position
-            this.game.config.height * 0.1, //set y axis position
+            0, //set x axis position
+            0, //set y axis position
             "PAUSED", //set text
             {
                 fontFamily: "Arcade", //set font style
@@ -49,13 +52,15 @@ class Paused extends Phaser.Scene { //creates a scene in the Phaser Object calle
             }
         );
         this.textTitle.setTint(0x00ff00); //set game title text to green
-        this.textTitle.setOrigin(0.5); //set text box origin to center of itself
+        this.textTitle.setOrigin(0.5, 0.6); //set text origin
+        this.aGrid.placeAtIndex(16, this.textTitle); //set position on the grid
+        Align.scaleToGameW(this.textTitle, 0.4); //set scale
         //END Game Title Text
 
         //Subheading text
         this.textTitle2 = this.add.text( //Add statement text
-            this.game.config.width * 0.5, //set x axis position
-            this.game.config.height * 0.2, //set y axis position
+            0, //set x axis position
+            0, //set y axis position
             "Come Back We Need You!", //set text
             {
                 fontFamily: "Arcadepix", //set font style
@@ -64,7 +69,9 @@ class Paused extends Phaser.Scene { //creates a scene in the Phaser Object calle
             }
         );
         this.textTitle2.setTint(0x009500); //set sub heading text to green
-        this.textTitle2.setOrigin(0.5); //set text box origin to center of itself
+        this.textTitle2.setOrigin(0.5, 0.2); //set text box origin
+        this.aGrid.placeAtIndex(16, this.textTitle2);//set position on the grid
+        Align.scaleToGameW(this.textTitle2, 0.4);//set scale
         //END Subheading text
 
         //ADD Resume BUTTON AND INTERACTIVITY
