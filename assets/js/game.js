@@ -102,7 +102,7 @@ const Controls = [ //set controls text variable
     "Use Cursors to FLY      Hold Space for LASERS      Press N for NUKES"
 ];
 const touchControls = [ //set touch controls text variable
-    "GAME CONTROLS",
+    "GAME CONTROLS - Tap Speaker Icon to Mute",
     "Use Finger to FLY       Tap Screen for LASERS      Press Label for NUKES"
 ];
 
