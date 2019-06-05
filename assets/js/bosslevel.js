@@ -51,7 +51,6 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
 
         //CREATE GRID
         this.aGrid = new AlignGrid({ scene: this, rows: 11, cols: 11 }); //add grid to screen for scaling and positioning
-        this.aGrid.showNumbers(); //show grid
         //END GRID
 
         //create sfx
