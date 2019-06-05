@@ -75,18 +75,38 @@ class Info extends Phaser.Scene { //creates a scene in the Phaser Object called 
     //END story text
 
     //controls text
-    this.textControls = this.add.text( //Add Question text
-      this.game.config.width * 0.5, //set x axis position
-      this.game.config.height * 0.9, //set y axis position
-      Controls, //set the text to variable Controls
-      {
-        fontFamily: "Arcadepix", //set font style
-        fontSize: 50, //set font size
-        align: "center" //set alignment
-      }
-    );
-    this.textControls.setTint(0x009500); //set color of controls text to green
-    this.textControls.setOrigin(0.5); //set text box origin to center of itself
+    if (!touch) { //if touch variable false
+      this.textControls = this.add.text( //Add Question text
+        0, //set x axis position
+        0, //set y axis position
+        Controls, //set the text to variable Controls
+        {
+          fontFamily: "Arcadepix", //set font style
+          fontSize: 50, //set font size
+          align: "center" //set alignment
+        }
+      );
+      this.textControls.setTint(0x009500); //set color of controls text to green
+      this.textControls.setOrigin(0.5, 0.8); //set text origin 
+      this.aGrid.placeAtIndex(115, this.textControls); //set position on th grid
+      Align.scaleToGameW(this.textControls, 0.7); //set scale
+    }
+    else {
+      this.textTouchControls = this.add.text( //Add Question text
+        0, //set x axis position
+        0, //set y axis position
+        touchControls, //set the text to variable Controls
+        {
+          fontFamily: "Arcadepix", //set font style
+          fontSize: 50, //set font size
+          align: "center" //set alignment
+        }
+      );
+      this.textTouchControls.setTint(0x009500); //set color of controls text to green
+      this.textTouchControls.setOrigin(0.5, 0.8); //set origin
+      this.aGrid.placeAtIndex(115, this.textTouchControls); //set position on th grid
+      Align.scaleToGameW(this.textTouchControls, 0.7); //set scale
+    }
     //ENDcontrols text
     //END title, story and controls text
 
