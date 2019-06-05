@@ -1030,28 +1030,18 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
     }
     //END nuke explosion function
 
-    //create life down function
-    onLifeDown() {
-        if (currentLives == 0) { //if lives = 0
-            this.gameOver(); //start gameover method
-        }
-        else if (currentLives > 0) { //else if lives greater than 0
-            this.loseLives(enemyHitStrength); //lose a life by value of enemyHitStrength
-        }
-    }
-    //end life down function
-
     //create win function
     win() {
         this.player.destroy(); //destroy player if victory to stop losing any lives 
-        this.addScore((currentLives + currentNukes + LevelRestart) * 100); //add lives and nukes left with any level restarts and multiply by 100 to add to final score
-        textLives.setText('Lives: WINNER'); //set lives text to WINNER 
+        this.addScore((currentLives + currentNukes + LevelRestart) * 100); //total left over assets and add to score
+        textLives.setText('Lives: WINNER'); //set lives text to GAME OVER 
         textScore.setText('Final Score: ' + score); //set score text to final score
-        this.fireworksVictory = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.5, 'fireworks'); //set fireworks image position x,y and initiate first so image behind the hero
-        this.fireworksVictory.setScale(1.4); //set scale of fireworks image
+        this.fireworksVictory = this.add.image(0, 0, 'fireworks'); //set fireworks image position x,y and initiate first so image behind the hero
+        this.aGrid.placeAtIndex(71, this.fireworksVictory); //set position on the grid
+        Align.scaleToGameW(this.fireworksVictory, 0.7); //set scale
         this.textVictory = this.add.text( //create Victory text
-            this.game.config.width * 0.5, //set x axis position
-            this.game.config.height * 0.05, //set y axis position
+            0, //set x axis position
+            0, //set y axis position
             "MOTHERSHIP DOWN!", //set text   
             {
                 fontFamily: "Arcadepix", //set font type
@@ -1059,24 +1049,25 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                 align: "center" //set text alignment
             }
         );
-        this.textVictory.setOrigin(0.5); //set text origin to center 
+        this.textVictory.setOrigin(0.5, 0.6); //set text origin to center 
         this.textVictory.setTint(0x00ff00); //set victory text to green
-        this.heroWin = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.5, 'hero'); //insert hero image setting x and y position
-        this.heroWin.setScale(1); //set scale of hero image to half original size
+        this.aGrid.placeAtIndex(5, this.textVictory); //set position on the grid
+        Align.scaleToGameW(this.textVictory, 0.6); //set scale
+        this.heroWin = this.add.image(0, 0, 'hero'); //insert hero image setting x and y position
+        this.aGrid.placeAtIndex(71, this.heroWin); //set position on the grid
+        Align.scaleToGameW(this.heroWin, 0.25); //set scale
         enemyShips = 0; //set enemyShips to 0
         enemyDeaths = 0; //set enemyDeaths to 0
-        currentNukes++; //Add a nuke 
-        LevelRestart++; //Add a level restart ability as reward for completing level
         this.time.addEvent({ //add timed event
             delay: 3000, //set delay to 3000
             callback: function() { //create callback function
                 this.scene.start("Victory"); //set scene start for Boss Level
                 enemyShips = 0; //set enemyShips to 0
                 enemyDeaths = 0; //set enemyDeaths to 0
-                currentLives = maxLives;
-                currentNukes = maxNukes;
-                motherShipAlive = true;
-                motherShipLives = maxMotherShipLives;
+                currentLives = maxLives; //set values to game start
+                currentNukes = maxNukes; //set values to game start
+                motherShipAlive = true; //set values to game start
+                motherShipLives = maxMotherShipLives; //set values to game start
             },
             callbackScope: this, //set call back scope to this
             loop: false //set loop to false only play once
@@ -1090,11 +1081,12 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         textScore.setText('Final Score: ' + score); //set score text to final score
         textLives.setText('Lives: GAME OVER'); //set lives text to GAME OVER 
         this.player.destroy(); //destroy player
-        this.gameOverExplosion = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.5, 'gameOver'); //insert explosion image first to put behind alien and setting x and y position
-        this.gameOverExplosion.setScale(2); //set gameover explosion to twice its size
+        this.gameOverExplosion = this.add.image(0, 0, 'gameOver'); //insert explosion image first to put behind alien and setting x and y position
+        this.aGrid.placeAtIndex(60, this.gameOverExplosion); //set position on the grid
+        Align.scaleToGameW(this.gameOverExplosion, 1.2); //set scale
         this.textGameOver = this.add.text( //create game over text
-            this.game.config.width * 0.5, //set x axis position
-            this.game.config.height * 0.05, //set y axis position
+            0, //set x axis position
+            0, //set y axis position
             GameOver, //set text to variable GameOver
             {
                 fontFamily: "Arcadepix", //set font type
@@ -1102,12 +1094,14 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                 align: "center" //set text alignment
             }
         );
-        this.textGameOver.setOrigin(0.5); //Set origin of gameover text to its center
+        this.textGameOver.setOrigin(0.5, 0.4); //Set origin of gameover text to its center
         this.textGameOver.setTint(0x008000); //set text color
+        this.aGrid.placeAtIndex(5, this.textGameOver); //set position on the grid
+        Align.scaleToGameW(this.textGameOver, 0.4); //set scale
 
         this.textRestart = this.add.text( //create restart text
-            this.game.config.width * 0.5, //set x axis position
-            this.game.config.height * 0.15, //set y axis position
+            0, //set x axis position
+            0, //set y axis position
             Restart, //set text to variable Restart
             {
                 fontFamily: "Arcadepix", //set font type
@@ -1116,9 +1110,12 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             }
         );
         this.textRestart.setTint(0x008000); //Set text colour
-        this.textRestart.setOrigin(0.5); //Set origin of restart text to its center
-        this.alienWin = this.add.image(this.game.config.width * 0.5, this.game.config.height * 0.6, 'alien'); //insert alien image last to for rendering in front setting x and y position
-        this.alienWin.setScale(1.2) //set scale to 1.2
+        this.textRestart.setOrigin(0.5, 0.3); //Set origin of restart text to its center
+        this.aGrid.placeAtIndex(16, this.textRestart); //set position on the grid
+        Align.scaleToGameW(this.textRestart, 0.3); //set scale
+        this.alienWin = this.add.image(0, 0, 'alien'); //insert alien image last to for rendering in front setting x and y position
+        this.aGrid.placeAtIndex(71, this.alienWin); //set position on the grid
+        Align.scaleToGameW(this.alienWin, 0.2); //set scale
     }
     //END gameover function
 
@@ -1133,9 +1130,9 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                         enemyDeaths = 0; //set enemyDeaths to 0
                         currentLives = LevelRestartLives; //reset lives to LevelRestartLives
                         RIP = false; //set RIP to false so restart cant happen in game
-                        motherShipAlive = true;
-                        motherShipLives = 15;
-                        LevelRestart--; //set level restart to 0
+                        motherShipAlive = true; //reset mothership value
+                        motherShipLives = 15; //reset mothership lives
+                        LevelRestart--; //set level restart 
                         this.scene.start("BossLevel"); //Restart Game
                     }
                     else {
