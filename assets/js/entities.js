@@ -10,7 +10,7 @@ class Background extends Entity { //Inherit Background class to Entity
     constructor(scene, x, y) { // constructor function to instantiate a background object
         super(scene, x, y, "backgroundstars"); // call super class constructor
         this.setOrigin(0.5); //set origin of image to center of itself
-        this.setScale(2); //set image scale
+        Align.scaleToGameW(this, 2); //set image scale
         this.setDepth(-5); //set image depth so underneath all other images
     }
 }
@@ -22,14 +22,14 @@ class Player extends Phaser.Physics.Arcade.Sprite { //Inherit Player class to Ph
         scene.physics.add.existing(this); //add existing game objects to the physics world
         this.setCollideWorldBounds(true); //set collide world bounds to true
         this.setOrigin(0.5, 0.05); //set origin position of player to top center
-        this.setScale(0.45);
+        Align.scaleToGameW(this, 0.03); //set scale
     }
 }
 
 class PlayerLaser extends Entity { //Inherit PlayerLaser class to Entity
     constructor(scene, x, y) { // constructor function to instantiate a player laser object
         super(scene, x, y, "sprLaserPlayer"); // call super class constructor
-        this.setScale(1.5); //set scale
+        Align.scaleToGameW(this, 0.005); //set scale
     }
 }
 
@@ -38,6 +38,7 @@ class Nuke extends Phaser.Physics.Arcade.Sprite { //Inherit Nuke class to Phaser
         super(scene, x, y, "star"); // call super class constructor
         scene.add.existing(this); //add Nuke to this scene 
         scene.physics.add.existing(this); //add existing game objects to the physics world
+        Align.scaleToGameW(this, 0.015); //set scale
         this.setVelocity(0, -400); //create random x (left or right)value and fire up at -200
         this.setAngle(0); //set angle to 0
         this.body.angularVelocity = 100; //set rotation speed to 100
@@ -92,14 +93,14 @@ class Enemy extends Entity { //Inherit Enemy class to Entity
     constructor(scene, x, y, key) { // constructor function to instantiate an enemy object
         super(scene, x, y, key); // call super class constructor
         this.setOrigin(0.5); //set origin of enemy to center
-        Align.scaleToGameW(this, 0.02);//set scale of enemy
+        Align.scaleToGameW(this, 0.02); //set scale of enemy
     }
 }
 
 class EnemyLaser extends Entity { //Inherit EnemyLaser class to Entity
     constructor(scene, x, y, key) { // constructor function to instantiate a enemy laser object
         super(scene, x, y, "sprLaserEnemy"); // call super class constructor
-        this.setScale(1.5); //set scale
+        Align.scaleToGameW(this, 0.0025); //set scale of enemy laser
     }
 }
 
@@ -108,7 +109,7 @@ class Asteroid extends Phaser.Physics.Arcade.Sprite { //Inherit Asteroid class t
         super(scene, x, y, "asteroid"); // call super class constructor
         scene.add.existing(this); //add asteroid to this scene 
         scene.physics.add.existing(this); //add existing game objects to the physics world
-        this.setScale(Phaser.Math.FloatBetween(0.01, 0.08)); //create a random scale for each object created
+        Align.scaleToGameW(this, Phaser.Math.FloatBetween(0.01, 0.03)); //create a random scale for each object created
         this.setDepth(Phaser.Math.RND.integerInRange(-1, 1)); //create a random depth for each object created
         this.setVelocity(Phaser.Math.RND.integerInRange(300, -300), Phaser.Math.RND.integerInRange(300, -300)); //create random x (left or right)value and fire up at -200
         this.setAngle(0); //set angle to 0

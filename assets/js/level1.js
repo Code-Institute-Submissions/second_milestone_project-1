@@ -558,7 +558,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 for (var i = 0; i < this.playerLasers.getChildren().length; i++) { //for each enemy in the enemies array
                     var laser = this.playerLasers.getChildren()[i]; //this laser = playerLaser[i]
 
-                    laser.y -= 16; //set movement down on y axis as 16 (higher the number the faster it goes)
+                    laser.y -= this.game.config.height * 0.01; //set movement down on y axis as 1% (higher the number the faster it goes)
 
                     if (laser.y < 10) { //if laser is less than 10 away from screen edge
                         this.createExplosion(laser.x, laser.y); //create an explosion at this laser.x and laser.y
@@ -572,13 +572,14 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             callbackScope: this, //set call back scope to this function
             loop: true //set loop to true
         });
+
         this.time.addEvent({ //add a time event on enemy laser
             delay: 128, //set delay to 128
             callback: function() { //create call back function for time event
                 for (var i = 0; i < this.enemyLasers.getChildren().length; i++) { //for each enemyLaser in the enemyLaser group
                     var laser = this.enemyLasers.getChildren()[i]; //set
 
-                    laser.y += 10; //set movement down on y axis as 10 (higher the number the faster it goes)
+                    laser.y += this.game.config.height * 0.01; //set movement down on y axis as 1% (higher the number the faster it goes)
 
                     if (laser.y > this.game.config.height - 10) { //if laser is less than 10 away from screen edge
                         this.createExplosion(laser.x, laser.y); //create an explosion at this laser.x and laser.y
@@ -602,7 +603,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             callback: function() { //create call back function for time event
                 for (var i = 0; i < this.starNukes.getChildren().length; i++) { //for each enemy in the enemies array
                     var nuke = this.starNukes.getChildren()[i]; //this nuke = starNukes[i]
-                    if (nuke.y < 10) { //if laser is less than 5 away from screen edge
+                    if (nuke.y < 10) { //if laser is less than 10 away from screen edge
                         this.createExplosion(nuke.x, nuke.y); //create an explosion at this nuke.x and nuke.y
                         emitter.stop(); //stope emitting particles
                         if (nuke) { //if nuke         
