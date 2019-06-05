@@ -14,5 +14,18 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    height: 100%;
+}
+
+.fontArcade{
+  font-family:Arcade;
+  position:absolute;
+  left:-1000px;
+  visibility:hidden;
+}
+
+.fontArcadepix{
+  font-family:Arcadepix;
+  position:absolute;
+  left:-1000px;
+  visibility:hidden;
 }
