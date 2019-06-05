@@ -112,6 +112,18 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             this.scene.pause(); //pause this scene
             this.scene.launch('Paused'); //launch paused scene
         }, this);
+
+        this.input.keyboard.on('keydown-Q', function() { //on pressing Key Q
+            if (!isMuted) { // if not muted
+                isMuted = true; //set variable
+                this.game.sound.mute = true; //set mute to true
+            }
+            else {
+                isMuted = false; //set variable
+                this.game.sound.mute = false; //set mute to false
+            }
+        }, this);
+
         //END Keyboard methods created for use in update function
         //TOUCH CONTROLS
         this.playertouchShootTick = 1; //create touch shoot tick
