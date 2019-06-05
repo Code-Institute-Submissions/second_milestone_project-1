@@ -73,6 +73,7 @@ var playerDirY; //add variable for player touch movement
 var playerMoveX; //add variable for player touch movement
 var playerMoveY; //add variable for player touch movement
 var isPaused; //set scene paused name
+var isMuted = false; //set ismuted variable
 var levelWon = false; //set level won variable
 
 const StoryContent = [ //set story text variable
