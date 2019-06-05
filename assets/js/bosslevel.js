@@ -848,18 +848,22 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                         this.playerShootTick = 0; //set shootTick back to 0
                     }
                 }
-                if (this.keyN.isDown && this.player.active && currentNukes > 0) { //if SPACE is down && player is active still
-                    if (this.playerNukeTick < this.playerNukeDelay) { //if playerShootTick is less than the playerShootDelay
-                        this.playerNukeTick++; //add 1 to Tick count, which will repeat until it hits 30
+                if (this.keyN.isDown && this.player.active && currentNukes > 0) { //if N is down && player is active still && nukes available
+                    if (this.playerNukeTick < this.playerNukeDelay) { //if playerNukeTick is less than the playernukeDelay
+                        this.playerNukeTick++; //add 1 to Tick count, which will repeat until it hits 150
+                        textNukesLoad.setText('ReArm: ' + this.playerNukeTick + '/' + this.playerNukeDelay); //set rearm text to count the nuke tick number
                     }
                     else {
                         var nuke = new Nuke(this, this.player.x, this.player.y); //create new laser object and start this object at player.x and player.y
-                        this.starNukes.add(nuke); //add this laser to playerLaser group
+                        this.starNukes.add(nuke); //add this nuke to starNukes group
                         this.sfx.laserPlayer.play(); //add laserPlayer sound
-                        this.playerNukeTick = 0; //set shootTick back to 0
+                        this.playerNukeTick = 0; //set nukeTick back to 0
                         currentNukes--; //decrement current nukes by 1
                         textNukes.setText('Nukes: ' + currentNukes); //set nuke left text to current value
                     }
+                }
+                if (this.keyN.isDown && this.player.active && currentNukes == 0) { //if SPACE is down && no nukes left
+                    textNukesLoad.setText('ReArm: OUT'); //set nukes rearming text to out
                 }
             },
             callbackScope: this, //set call back scope to this function
