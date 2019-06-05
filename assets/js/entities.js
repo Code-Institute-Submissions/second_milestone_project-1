@@ -86,6 +86,7 @@ class AlienScout extends Entity { //Inherit alienscout class to Entity
     constructor(scene, x, y, key) { // constructor function to instantiate an alienscout object
         super(scene, x, y, "alienscout"); // call super class constructor
         this.setOrigin(0.5); //set origin of AlienScout to center
+        Align.scaleToGameW(this, 0.02); //set scale
     }
 }
 
@@ -94,6 +95,14 @@ class Enemy extends Entity { //Inherit Enemy class to Entity
         super(scene, x, y, key); // call super class constructor
         this.setOrigin(0.5); //set origin of enemy to center
         Align.scaleToGameW(this, 0.02); //set scale of enemy
+    }
+}
+
+class EnemyCruiser extends Entity { //Inherit Enemy class to Entity
+    constructor(scene, x, y, key) { // constructor function to instantiate an enemy object
+        super(scene, x, y, key); // call super class constructor
+        this.setOrigin(0.5); //set origin of enemy to center
+        Align.scaleToGameW(this, 0.04); //set scale
     }
 }
 

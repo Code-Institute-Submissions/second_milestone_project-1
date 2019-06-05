@@ -245,14 +245,20 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             Math.round((this.game.config.height / 40) * 0.25) * 20 //sets the height of rectangle
         );
 
-        for (var x = 3.5; x < Math.round((this.game.config.width / 24) * 0.4); x++) { //create an inset row of enemy ships by setting to 0.6, skipping the first 10 iterations of the loop by setting x to 10, we can center the enemyCruiser by offsetting from the edge
-            for (var y = 0; y < Math.round((this.game.config.height / 40) * 0.16); y++) { //create additional rows by iterating through x depending on screen size more rows may appear
-                var enemy = new Enemy(this, x * 54, (this.game.config.height * 0.25) + (y * 74), "enemyCruiser"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyCruiser image sprite
-                enemy.play("enemyCruiser"); //start animation of the enemyCruiser
-                enemy.setScale(0.25); //set the scale of the enemy sprite
+        this.enemyRect = new Phaser.Geom.Rectangle( //for moving the enemy rectangle around
+            0, //set the x position of rectangle
+            0, //set the y position of rectangle
+            Math.round(this.game.config.width / 11) * 10, //sets the width of rectangle
+            Math.round(this.game.config.height / 11) * 4 //sets the height of rectangle
+        );
+        this.aGrid.placeAtIndex(11, this.enemyRect); //set rect at grid position
+
+        for (var x = 3; x < 27; x++) { //create an inset row of enemy ships by setting to 35, skipping the first 6 iterations of the loop by setting x, we can center the enemyShips by offsetting from the edge
+            for (var y = 0; y < 3; y++) { //create 3 additional rows by iterating through x
+                var enemy = new EnemyCruiser(this, x * (this.game.config.width * 0.035), (this.game.config.height * 0.25) + (y * (this.game.config.height * 0.11)), "enemyShip"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyship image sprite
+                enemy.play("enemyCruiser"); //start animation of the enemyShip
                 enemyShips++; //add a ship to total enemy ships created
                 this.enemies.add(enemy); //draw an enemy ship on the screen at x and y
-
             }
             totalEnemyShips = enemyShips; //set totalEnemy ships to equal enemyShips created for use in Victory function
         }
@@ -500,7 +506,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         // END COLLISION DETECTION
 
 
-       //create sheilds
+        //create sheilds
         this.shieldPattern = [ //property of sheildPattern a nested array, 
             [1, 1, 1, 1, 1, 1, 1, 1], //gives structure to sheild, 1 = image 0 = blank
             [1, 1, 1, 1, 1, 1, 1, 1],
