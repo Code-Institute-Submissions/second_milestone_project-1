@@ -31,8 +31,8 @@ class Info extends Phaser.Scene { //creates a scene in the Phaser Object called 
     //Title, story and controls text
     //Game Title text
     this.textTitle = this.add.text( //Add Title Text
-      this.game.config.width * 0.5, //set x axis position
-      this.game.config.height * 0.1, //set y axis position
+      0, //set x axis position
+      0, //set y axis position
       "GALACTIC GUNNERS", //set text
       {
         fontFamily: "Arcade", //set font style
@@ -40,14 +40,16 @@ class Info extends Phaser.Scene { //creates a scene in the Phaser Object called 
         align: "center" //set alignment
       }
     );
-    this.textTitle.setTint(0x009000); //set color of story text to green
-    this.textTitle.setOrigin(0.5); //set text box origin to center of itself
+    this.textTitle.setTint(0x00ff00); //set color of story text to green
+    this.textTitle.setOrigin(0.5, 0.3); //set text box origin to center of itself
+    this.aGrid.placeAtIndex(5, this.textTitle); //set position on th grid
+    Align.scaleToGameW(this.textTitle, 0.6); //set scale
     //END Game Title text
 
     //Info Title text
     this.textInfo = this.add.text( //Add Question text
-      this.game.config.width * 0.5, //set x axis position
-      this.game.config.height * 0.175, //set y axis position
+      0, //set x axis position
+      0, //set y axis position
       "USER INFO", //set text
       {
         fontFamily: "Arcadepix", //set font style
@@ -55,14 +57,16 @@ class Info extends Phaser.Scene { //creates a scene in the Phaser Object called 
         align: "center" //set alignment
       }
     );
-    this.textInfo.setTint(0x00ff00); //set color of story text to green
+    this.textInfo.setTint(0x009000); //set color of story text to green
     this.textInfo.setOrigin(0.5); //set text box origin to center of itself
+    this.aGrid.placeAtIndex(16, this.textInfo); //set position on th grid
+    Align.scaleToGameW(this.textInfo, 0.2); //set scale
     //END Info Title text
 
     //Story text
     this.textStory = this.add.text( //Add Question text
-      this.game.config.width * 0.5, //set x axis position
-      this.game.config.height * 0.22, //set y axis position
+      0, //set x axis position
+      0, //set y axis position
       StoryContent, //set the text to variable Story
       {
         fontFamily: "Arcadepix", //set font style
@@ -71,7 +75,9 @@ class Info extends Phaser.Scene { //creates a scene in the Phaser Object called 
       }
     );
     this.textStory.setTint(0x00ff00); //set color of story text to green
-    this.textStory.setOrigin(0.5, 0); //set text box origin to center on x and top on y
+    this.textStory.setOrigin(0.5); //set text box origin to center on x and top on y
+    this.aGrid.placeAtIndex(60, this.textStory); //set position on th grid
+    Align.scaleToGameW(this.textStory, 0.9); //set scale
     //END story text
 
     //controls text
