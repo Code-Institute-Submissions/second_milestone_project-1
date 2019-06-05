@@ -369,19 +369,19 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
 
         //create sheilds
         this.shieldPattern = [ //property of sheildPattern a nested array, 
-            [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0], //gives structure to sheild, 1 = image 0 = blank
-            [1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0],
-            [1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0], //This gives sheild shape of ML
-            [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-            [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-            [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1], //gives structure to sheild, 1 = image 0 = blank
+            [1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 0, 0, 0, 0, 1, 1],
+            [1, 1, 0, 0, 0, 0, 1, 1],
+            [1, 1, 0, 0, 0, 0, 1, 1],
         ];
 
-        var sheildWidth = 120;
-        for (var i = 0; i < level2Shields; i++) { //for loop to create an inset row of sheilds based on this levels sheild count 
+        var sheildWidth = Math.round(this.game.config.width * 0.1); //define sheildwidth as 10% of game width
+        for (var i = 0; i < level1Shields; i++) { //for loop to create an inset row of sheilds based on this levels sheild count 
             this.addShield( //add shield on each iteration
-                (Math.round((this.game.config.width / 2) - ((level2Shields / 2) * sheildWidth))) + (i * sheildWidth), //set the x coordinates by dividing game width by 2 minus level sheilds divided by 2 and multiplying i by sheildWidth, we can center the sheilds by offsetting from the edge then add offset to each sheild
-                this.game.config.height - 150 //set the y position of the sheilds
+                (Math.round((this.game.config.width / 2) - ((level1Shields / 2) * sheildWidth))) + (i * sheildWidth), //set the x coordinates by dividing game width by 2 minus level sheilds divided by 2 and multiplying i by sheildWidth, we can center the sheilds by offsetting from the edge then add offset to each sheild
+                this.game.config.height * 0.8 //set the y position of the sheilds
             );
         }
         //END create sheilds
@@ -713,8 +713,8 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 if (this.shieldPattern[y][x] == 1) { //if the array.value is == 1
                     var tile = new ShieldTile( //then add a new tile object
                         this, //this game object
-                        posX + (x * 8), //set new position of tile object on x axis with padding
-                        posY + (y * 8) //set new position of tile object on y axis with padding
+                        posX + (x * (this.game.config.width / 100)), //set new position of tile object on x axis with padding
+                        posY + (y * (this.game.config.height / 100)) //set new position of tile object on y axis with padding
                     );
                     this.shieldTiles.add(tile); //draw tile image in location 
                 }
