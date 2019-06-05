@@ -98,7 +98,7 @@ const touchSelector = [ //set touch selector text
 ];
 
 const Controls = [ //set controls text variable
-    "GAME CONTROLS",
+    "GAME CONTROLS - Press Q to Mute Sound",
     "Use Cursors to FLY      Hold Space for LASERS      Press N for NUKES"
 ];
 const touchControls = [ //set touch controls text variable
