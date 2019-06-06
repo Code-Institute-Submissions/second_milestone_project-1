@@ -69,7 +69,7 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
     this.heroImage = this.add.image(0, 0, 'hero'); //add hero image to bottom of screen
     this.heroImage.setOrigin(0.5, 0.45); //set origin point of image
     this.aGrid.placeAtIndex(71, this.heroImage); //set position on grid
-    Align.scaleToGameW(this.heroImage, 0.25); //set scale
+    Align.scaleToGameW(this.heroImage, 0.2); //set scale
     //END Hero Image
 
     //ADD PLAY BUTTON AND INTERACTIVITY
@@ -138,8 +138,8 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
       }
     );
     this.textPoint.setTint(0x00ff00); // set the point text to green
-    this.textPoint.setOrigin(0.5, 0.2); //set the origin point of text
-    this.aGrid.placeAtIndex(56, this.textPoint); //set grid position of text
+    this.textPoint.setOrigin(0.5); //set the origin point of text
+    this.aGrid.placeAtIndex(67, this.textPoint); //set grid position of text
     Align.scaleToGameW(this.textPoint, 0.12); //scale the text
 
     this.btnPoint = this.add.image( //create btnInfo and add it as image
@@ -149,7 +149,7 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
     );
     this.btnPoint.setTint(0x00ff00); // set the point button to green
     this.btnPoint.setInteractive(); //set button to be interactive
-    this.aGrid.placeAtIndex(78, this.btnPoint); //set grid position of button
+    this.aGrid.placeAtIndex(68, this.btnPoint); //set grid position of button
     Align.scaleToGameW(this.btnPoint, 0.05); //scale the button
 
     this.btnPoint.on("pointerover", function() { //this Point Button when in hover
