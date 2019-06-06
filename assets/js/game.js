@@ -108,6 +108,11 @@ const touchControls = [ //set touch controls text variable
 
 const GameOver = ["GAME OVER"]; //set Gameover text variable
 
+const BestPlayedOn = [
+    "Best Played On",
+    "Desktop/Laptop"
+];
+
 const TitlesText = [ //set titles text variable
     "CREATED BY MICHAEL LEESE 2019",
     "",

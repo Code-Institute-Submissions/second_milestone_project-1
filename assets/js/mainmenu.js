@@ -100,6 +100,23 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
     }, this); //this state only
     //END play button
 
+    // BEST Played on text
+    this.textBest = this.add.text( //create Best Played on text
+      0, //set position on the x axis
+      0, //set position on the y axis
+      BestPlayedOn, //set text to variable
+      {
+        fontFamily: "Arcadepix", //set font style
+        fontSize: 80, //set font size
+        align: "center" //set alignment
+      }
+    );
+    this.textBest.setTint(0x00ff00); // set the point text to green
+    this.textBest.setOrigin(0.5); //set the origin point of text
+    this.aGrid.placeAtIndex(75, this.textBest); //set grid position of text
+    Align.scaleToGameW(this.textBest, 0.12); //scale the text
+    //END BEST Played on text
+
     //info button
     this.btnInfo = this.add.image( //create btnInfo and add it as image
       0, //set position on the x axis
