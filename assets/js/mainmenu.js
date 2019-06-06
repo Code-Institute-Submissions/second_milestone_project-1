@@ -10,7 +10,7 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
     this.load.image("BtnPlayHover", "assets/images/sprBtnPlayHover.png"); //preload the Play Button Hover image
     this.load.image("hero", "assets/images/spacesuit.png"); //preload the hero image
     this.load.image("BtnInfo", "assets/images/InfoWhite.png"); //preload the Info Button image
-    this.load.image("BtnPoint", "assets/images/pointericon.png");            //preload the Pointer Button image
+    this.load.image("BtnPoint", "assets/images/pointericon.png"); //preload the Pointer Button image
     this.load.audio("sndBtn", "assets/audio/sndBtn.wav"); //preload the Button Sound
   }
   //END preload function
@@ -44,7 +44,7 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
       }
     );
     this.textTitle.setTint(0x00ff00); //set game title text to green
-    this.textTitle.setOrigin(0.5, 0.3);  //set position on grid
+    this.textTitle.setOrigin(0.5, 0.3); //set position on grid
     this.aGrid.placeAtIndex(5, this.textTitle); //set position on grid
     Align.scaleToGameW(this.textTitle, 0.6); //set scale
     //END Game Title Text
@@ -61,7 +61,7 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
       }
     );
     this.textTitle2.setTint(0x009500); //set sub heading text to green
-    this.textTitle2.setOrigin(0.5);  //set position on grid
+    this.textTitle2.setOrigin(0.5); //set position on grid
     this.aGrid.placeAtIndex(16, this.textTitle2); //set position on grid
     Align.scaleToGameW(this.textTitle2, 0.4); //set scale
     //END Subheading text
@@ -140,7 +140,7 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
     this.textPoint.setTint(0x00ff00); // set the point text to green
     this.textPoint.setOrigin(0.5, 0.2); //set the origin point of text
     this.aGrid.placeAtIndex(56, this.textPoint); //set grid position of text
-    Align.scaleToGameW(this.textPoint, 0.15); //scale the text
+    Align.scaleToGameW(this.textPoint, 0.12); //scale the text
 
     this.btnPoint = this.add.image( //create btnInfo and add it as image
       0, //set position on the x axis
@@ -150,7 +150,24 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
     this.btnPoint.setTint(0x00ff00); // set the point button to green
     this.btnPoint.setInteractive(); //set button to be interactive
     this.aGrid.placeAtIndex(78, this.btnPoint); //set grid position of button
-    Align.scaleToGameW(this.btnPoint, 0.06); //scale the button
+    Align.scaleToGameW(this.btnPoint, 0.05); //scale the button
+
+    this.btnPoint.on("pointerover", function() { //this Point Button when in hover
+      if (!touch) {
+        this.btnPoint.setTint(0xff0000); // set the Point button to red on hover
+      }
+      else {
+        this.btnPoint.setTint(0x00ff00); // set the Point button to green on hover    
+      }
+    }, this); //this state only
+    this.btnPoint.on("pointerout", function() { //this Point Button when off hover
+      if (!touch) {
+        this.btnPoint.setTint(0x00ff00); // set the Point button to green when out
+      }
+      else {
+        this.btnPoint.setTint(0xff0000); // set the Point button to red when out
+      }
+    }, this); //this state only
 
     this.btnPoint.on("pointerdown", function() { //this point Button when on selected
       if (!touch) {
