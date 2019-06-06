@@ -1103,7 +1103,18 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         }
     }
     //END nuke explosion function
-  
+    
+    //create life down function
+    onLifeDown() {
+        if (currentLives == 0) { //if lives = 0
+            this.gameOver(); //start gameover method
+        }
+        else if (currentLives > 0) { //else if lives greater than 0
+            this.loseLives(enemyHitStrength); //lose a life by value of enemyHitStrength
+        }
+    }
+    //end life down function
+    
     //create win function
     win() {
         this.player.destroy(); //destroy player if victory to stop losing any lives 
