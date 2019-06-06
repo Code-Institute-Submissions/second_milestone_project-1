@@ -14,6 +14,36 @@ A deployed version of the game can be played [here](https://michael-leese.github
 
 ![Boss Level on Level 3](assets/images/screenShots/bosslevel.png)
 
+## UX ##
+
+My objective for this game was to create a fun and challenging game, based in part on the original Space Invaders.  
+My goal for the design was to modernise the original, adding better graphics and more interactivity between the player and their surroundings, with added features not included on the original game.  
+The design utilises a star background for the feeling of being in space and green colours highlighting the alien theme.  
+
+For Players I wanted a game that started off easy and progressed getting harder through the levels, with the ability of pausing should they need a break.
+
+The Players should be able to intuitively navigate through the game, with clear instructions and easy to use controls, along with a background story that helps to set the scene of the game.
+
+The game should be responsive, although for best user experience Desktop/Laptop is advised and should be clearly identified at the main menu.
+
+## Technologies ##
+
+*	HTML5
+*	CSS3
+*	Javascript ES6
+*	used GIMP 2.10.10
+*	VS Code
+*	web-server-for-chrome
+*	Chrome
+*	Firefox
+*	Microsoft edge
+*	Phaser 3 API
+*	https://phasergames.com/ (utils API)
+*	https://mybrowseraddon.com/useragent-switcher.html 
+*	https://developer.android.com/studio/debug/dev-options.html
+*	https://compresspng.com/ and https://tinypng.com
+
+
 
 
 
