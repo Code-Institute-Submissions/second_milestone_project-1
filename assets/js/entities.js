@@ -10,7 +10,7 @@ class Background extends Entity { //Inherit Background class to Entity
     constructor(scene, x, y) { // constructor function to instantiate a background object
         super(scene, x, y, "backgroundstars"); // call super class constructor
         this.setOrigin(0.5); //set origin of image to center of itself
-        Align.scaleToGameW(this, 2); //set image scale
+        Align.scaleToGameW(this, 3); //set image scale
         this.setDepth(-5); //set image depth so underneath all other images
     }
 }
