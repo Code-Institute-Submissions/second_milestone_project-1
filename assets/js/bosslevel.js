@@ -142,7 +142,6 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //sets SPACE as FIRE key
         this.keyN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N); //sets key N as NUKE key
         this.keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R); //sets key R as Restart Key on GAME OVER
-        this.keyEnter = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER); //sets key ENTER as continue button on level win
 
         this.input.keyboard.on('keydown-P', function() { //on pressing Key P
             isPaused = this.scene; //set isPasued to this.scene to get key

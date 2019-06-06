@@ -885,8 +885,14 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             delay: 10, //set delay to 10
             callback: function() { //create a callback function
                 if (this.keyEnter.isDown && levelWon) { //if the Space key is pressed and levelWon is true
-                    levelWon = false;
+                    levelWon = false; //set variable
                     this.scene.start("Level2"); //set scene start for level 2
+                }
+                if (levelWon && touch) { // if touch is true and levelWon
+                    this.input.on('pointerdown', function() { //pointerdown acts as enter
+                        levelWon = false;//set variable
+                        this.scene.start("Level2"); //set scene start for level 2
+                    }, this);
                 }
             },
             callbackScope: this, //set call back scope to this
