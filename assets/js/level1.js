@@ -224,6 +224,15 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 this.scene.start("MainMenu"); //Restart Game
             }, this);
         }
+
+        if (touch) {
+            this.GameContinue = ["Tap to Continue"];
+            this.Restart = ["Tap to Restart"];
+        }
+        else {
+            this.GameContinue = ["Press ENTER to Continue"];
+            this.Restart = ["Press R to Restart"];
+        }
         //END TOUCH CONTROLS
         //END CONTROL METHODS
 
@@ -871,7 +880,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.textContinue = this.add.text( //create Victory text
             0, //set x axis position
             0, //set y axis position
-            "Press Enter to Continue", //set text   
+            this.GameContinue, //set text   
             {
                 fontFamily: "Arcadepix", //set font type
                 fontSize: 70, //set font size
@@ -952,7 +961,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.textRestart = this.add.text( //create restart text
             0, //set x axis position
             0, //set y axis position
-            Restart, //set text to variable Restart
+            this.Restart, //set text to variable Restart
             {
                 fontFamily: "Arcadepix", //set font type
                 fontSize: 70, //set font size

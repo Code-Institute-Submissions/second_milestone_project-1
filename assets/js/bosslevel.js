@@ -261,6 +261,12 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                 }
             }, this);
         }
+        if (touch) {
+            this.Restart = ["Tap to Restart"];
+        }
+        else {
+            this.Restart = ["Press R to Restart"];
+        }
         //END TOUCH CONTROLS
         //END CONTROL METHODS
 
@@ -1187,7 +1193,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         this.textRestart = this.add.text( //create restart text
             0, //set x axis position
             0, //set y axis position
-            Restart, //set text to variable Restart
+            this.Restart, //set text to variable Restart
             {
                 fontFamily: "Arcadepix", //set font type
                 fontSize: 70, //set font size
