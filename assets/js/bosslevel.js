@@ -236,6 +236,31 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                 textNukes.setText('Nukes: ' + currentNukes); //set nuke left text to current value
             }, this); //this state only
         }
+        if (RIP && touch) { // if touch is true and RIP
+            this.input.on('pointerdown', function() { //pointerdown acts as R
+                if (LevelRestart > 0) { //if levelRestart = 1 
+                    enemyShips = 0; //set enemyShips to 0
+                    enemyDeaths = 0; //set enemyDeaths to 0
+                    currentLives = LevelRestartLives; //reset lives to LevelRestartLives
+                    RIP = false; //set RIP to false so restart cant happen in game
+                    motherShipAlive = true; //reset mothership value
+                    motherShipLives = 15; //reset mothership lives
+                    LevelRestart--; //set level restart 
+                    this.scene.start("BossLevel"); //Restart Game
+                }
+                else {
+                    enemyShips = 0; //set enemyShips to 0
+                    enemyDeaths = 0; //set enemyDeaths to 0
+                    currentLives = maxLives; //reset lives to normal
+                    currentNukes = maxNukes; //reset nukes to normal
+                    motherShipAlive = true; //set mothership alive
+                    motherShipLives = maxMotherShipLives; //set mothership lives back to normal
+                    RIP = false; //set RIP to false so restart cant happen in game
+                    score = 0; //set the score back to 0
+                    this.scene.start("MainMenu"); //Restart Game
+                }
+            }, this);
+        }
         //END TOUCH CONTROLS
         //END CONTROL METHODS
 
@@ -848,7 +873,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         this.time.addEvent({ //add time event
             delay: 60, //set delay to 60
             callback: function() { //create call back function for time event
-                if (touch) { //if touch is true
+                if (touch && this.player.active) { //if touch is true
                     var shape = new Phaser.Geom.Circle(40, 40, 75); //create a circle for interactivity
                     this.player.setInteractive(shape, Phaser.Geom.Circle.Contains); //set player interactive with the shape created
 
@@ -878,6 +903,9 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                             this.player.y += this.game.config.height * 0.007; //move player down
                         }
                     }
+                }
+                else {
+                    this.player.disableInteractive();
                 }
             },
             callbackScope: this, //set call back scope to this function
@@ -1075,7 +1103,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         }
     }
     //END nuke explosion function
-
+  
     //create win function
     win() {
         this.player.destroy(); //destroy player if victory to stop losing any lives 
@@ -1192,31 +1220,6 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                         score = 0; //set the score back to 0
                         this.scene.start("MainMenu"); //Restart Game
                     }
-                }
-                if (RIP && touch) { // if touch is true and RIP
-                    this.input.on('pointerdown', function() { //pointerdown acts as R
-                        if (LevelRestart > 0) { //if levelRestart = 1 
-                            enemyShips = 0; //set enemyShips to 0
-                            enemyDeaths = 0; //set enemyDeaths to 0
-                            currentLives = LevelRestartLives; //reset lives to LevelRestartLives
-                            RIP = false; //set RIP to false so restart cant happen in game
-                            motherShipAlive = true; //reset mothership value
-                            motherShipLives = 15; //reset mothership lives
-                            LevelRestart--; //set level restart 
-                            this.scene.start("BossLevel"); //Restart Game
-                        }
-                        else {
-                            enemyShips = 0; //set enemyShips to 0
-                            enemyDeaths = 0; //set enemyDeaths to 0
-                            currentLives = maxLives; //reset lives to normal
-                            currentNukes = maxNukes; //reset nukes to normal
-                            motherShipAlive = true; //set mothership alive
-                            motherShipLives = maxMotherShipLives; //set mothership lives back to normal
-                            RIP = false; //set RIP to false so restart cant happen in game
-                            score = 0; //set the score back to 0
-                            this.scene.start("MainMenu"); //Restart Game
-                        }
-                    }, this);
                 }
             },
             callbackScope: this, //set call back scope to this
