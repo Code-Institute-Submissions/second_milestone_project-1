@@ -186,7 +186,6 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             this.input.on('pointerout', function(pointer) { //when pointerout of circle 
                 playerMoveX = "GO"; //set to GO
                 playerMoveY = "GO"; //set to GO
-                this.player.clearTint(); //remove tint on player (for testing)
             }, this);
             this.input.on('pointermove', function(pointer) { //if pointer moves
                 if (pointer.x < this.player.x) { //if pointer left
@@ -613,13 +612,12 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             delay: 60, //set delay to 60
             callback: function() { //create call back function for time event
                 if (touch) { //if touch is true
-                    var shape = new Phaser.Geom.Circle(50, 50, 100); //create a circle for interactivity
+                    var shape = new Phaser.Geom.Circle(40, 40, 75); //create a circle for interactivity
                     this.player.setInteractive(shape, Phaser.Geom.Circle.Contains); //set player interactive with the shape created
 
                     this.player.on('pointerover', function(pointer) { //if pointerover circle
                         playerMoveX = "STOP"; //set var to stop
                         playerMoveY = "STOP"; //set var to stop
-                        this.player.setTint(0x00ff00); //set player tint to green (for testing)
                     }, this);
                     if (playerMoveX == "STOP") { //if stop 
                         this.player.x += 0; //dont move
