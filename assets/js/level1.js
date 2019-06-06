@@ -890,7 +890,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                 }
                 if (levelWon && touch) { // if touch is true and levelWon
                     this.input.on('pointerdown', function() { //pointerdown acts as enter
-                        levelWon = false;//set variable
+                        levelWon = false; //set variable
                         this.scene.start("Level2"); //set scene start for level 2
                     }, this);
                 }
@@ -968,6 +968,16 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                     RIP = false; //set RIP to false so restart cant happen in game
                     score = 0; //set the score back to 0
                     this.scene.start("MainMenu"); //Restart Game
+                }
+                if (RIP && touch) { // if touch is true and RIP
+                    this.input.on('pointerdown', function() { //pointerdown acts as R
+                        enemyShips = 0; //set enemyShips to 0
+                        enemyDeaths = 0; //set enemyDeaths to 0
+                        currentLives = LevelRestartLives; //reset lives to LevelRestartLives
+                        RIP = false; //set RIP to false so restart cant happen in game
+                        score = 0; //set the score back to 0
+                        this.scene.start("MainMenu"); //Restart Game
+                    }, this);
                 }
             },
             callbackScope: this, //set call back scope to this

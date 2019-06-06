@@ -983,6 +983,26 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                         this.scene.start("MainMenu"); //Restart Game
                     }
                 }
+                if (RIP && touch) { // if touch is true and levelWon
+                    this.input.on('pointerdown', function() { //pointerdown acts as enter
+                        if (LevelRestart > 0) { //if levelRestart = 1 
+                        enemyShips = 0; //set enemyShips to 0
+                        enemyDeaths = 0; //set enemyDeaths to 0
+                        currentLives = LevelRestartLives; //reset lives to LevelRestartLives
+                        RIP = false; //set RIP to false so restart cant happen in game
+                        LevelRestart--; //set level restart to 0
+                        this.scene.start("Level2"); //Restart Game
+                    }
+                    else {
+                        enemyShips = 0; //set enemyShips to 0
+                        enemyDeaths = 0; //set enemyDeaths to 0
+                        currentLives = maxLives; //reset lives to maxLives
+                        RIP = false; //set RIP to false so restart cant happen in game
+                        score = 0; //set the score back to 0
+                        this.scene.start("MainMenu"); //Restart Game
+                    }
+                    }, this);
+                }
             },
             callbackScope: this, //set call back scope to this
             loop: true //set loop to true checking parameters
