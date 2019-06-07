@@ -18,6 +18,7 @@ var config = { //game configuration parameters
         }
     },
     scene: [ //load scene properties and their keys
+        Preloader,
         MainMenu,
         Info,
         Level1,
