@@ -868,6 +868,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         Align.scaleToGameW(this.heroWin, 0.25); //set scale
         enemyShips = 0; //set enemyShips to 0
         enemyDeaths = 0; //set enemyDeaths to 0
+        totalEnemyShips = 0; //reset total enemyships
         currentNukes++; //Add a nuke 
         LevelRestart++; //Add a level restart ability as reward for completing level
     }
@@ -948,6 +949,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                     if (LevelRestart > 0) { //if levelRestart = 1 
                         enemyShips = 0; //set enemyShips to 0
                         enemyDeaths = 0; //set enemyDeaths to 0
+                        totalEnemyShips = 0; //reset total enemyships
                         currentLives = LevelRestartLives; //reset lives to LevelRestartLives
                         RIP = false; //set RIP to false so restart cant happen in game
                         LevelRestart--; //set level restart to 0
@@ -956,6 +958,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                     else {
                         enemyShips = 0; //set enemyShips to 0
                         enemyDeaths = 0; //set enemyDeaths to 0
+                        totalEnemyShips = 0; //reset total enemyships
                         currentLives = maxLives; //reset lives to maxLives
                         RIP = false; //set RIP to false so restart cant happen in game
                         score = 0; //set the score back to 0
@@ -967,6 +970,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                         if (LevelRestart > 0) { //if levelRestart = 1 
                             enemyShips = 0; //set enemyShips to 0
                             enemyDeaths = 0; //set enemyDeaths to 0
+                            totalEnemyShips = 0; //reset total enemyships
                             currentLives = LevelRestartLives; //reset lives to LevelRestartLives
                             RIP = false; //set RIP to false so restart cant happen in game
                             LevelRestart--; //set level restart to 0
@@ -975,6 +979,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                         else {
                             enemyShips = 0; //set enemyShips to 0
                             enemyDeaths = 0; //set enemyDeaths to 0
+                            totalEnemyShips = 0; //reset total enemyships
                             currentLives = maxLives; //reset lives to maxLives
                             RIP = false; //set RIP to false so restart cant happen in game
                             score = 0; //set the score back to 0

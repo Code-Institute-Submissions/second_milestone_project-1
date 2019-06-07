@@ -1069,6 +1069,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                 this.scene.start("Victory"); //set scene start for Boss Level
                 enemyShips = 0; //set enemyShips to 0
                 enemyDeaths = 0; //set enemyDeaths to 0
+                totalEnemyShips = 0; //reset total enemyships
                 currentLives = maxLives; //set values to game start
                 currentNukes = maxNukes; //set values to game start
                 motherShipAlive = true; //set values to game start
@@ -1133,6 +1134,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                     if (LevelRestart > 0) { //if levelRestart = 1 
                         enemyShips = 0; //set enemyShips to 0
                         enemyDeaths = 0; //set enemyDeaths to 0
+                        totalEnemyShips = 0; //reset total enemyships
                         currentLives = LevelRestartLives; //reset lives to LevelRestartLives
                         RIP = false; //set RIP to false so restart cant happen in game
                         motherShipAlive = true; //reset mothership value
@@ -1143,6 +1145,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                     else {
                         enemyShips = 0; //set enemyShips to 0
                         enemyDeaths = 0; //set enemyDeaths to 0
+                        totalEnemyShips = 0; //reset total enemyships
                         currentLives = maxLives; //reset lives to normal
                         currentNukes = maxNukes; //reset nukes to normal
                         motherShipAlive = true; //set mothership alive
@@ -1157,6 +1160,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                         if (LevelRestart > 0) { //if levelRestart = 1 
                             enemyShips = 0; //set enemyShips to 0
                             enemyDeaths = 0; //set enemyDeaths to 0
+                            totalEnemyShips = 0; //reset total enemyships
                             currentLives = LevelRestartLives; //reset lives to LevelRestartLives
                             RIP = false; //set RIP to false so restart cant happen in game
                             motherShipAlive = true; //reset mothership value
@@ -1167,6 +1171,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                         else {
                             enemyShips = 0; //set enemyShips to 0
                             enemyDeaths = 0; //set enemyDeaths to 0
+                            totalEnemyShips = 0; //reset total enemyships
                             currentLives = maxLives; //reset lives to normal
                             currentNukes = maxNukes; //reset nukes to normal
                             motherShipAlive = true; //set mothership alive
