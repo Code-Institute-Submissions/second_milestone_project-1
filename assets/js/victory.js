@@ -21,6 +21,13 @@ class Victory extends Phaser.Scene {
     this.aGrid = new AlignGrid({ scene: this, rows: 11, cols: 11 }); //create grid for positioning
     //END GRID
 
+    //create final score announcement
+    textScore = this.add.text(0, 0, 'Final Score: ' + score, { font: '42px Arcade', fill: '#00ff00' }); //create score text, position x and y, set text with score variable and add font styling
+    textScore.setOrigin(0.5, 0.7); //set origin
+    this.aGrid.placeAtIndex(27, textScore); //set position on the grid
+    Align.scaleToGameW(textScore, 0.18); //set scale
+    //END create final score announcement
+
     this.victoryFunction(); //create victory method
   }
   //END create function

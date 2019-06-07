@@ -62,6 +62,8 @@ class Titles extends Phaser.Scene { //creates a scene in the Phaser Object calle
     this.textTitles.setTint(0x00ff00); //set colour of text to green
     this.aGrid.placeAtIndex(71, this.textTitles); //set position on the grid
     Align.scaleToGameW(this.textTitles, 0.6); //scale image
+    
+    score = 0; //set score to zero
 
     this.time.addEvent({ //add timed event
       delay: 15000, //set delay to 15000
