@@ -249,8 +249,8 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         //set scene variables for shooting delays
         this.playerShootDelay = 20; //sets the Delay value for the player laser, lower the value the faster it shoots
         this.playerShootTick = 0; //sets the playerShootTick to 0, for using in the updatePlayerShooting function
-        this.playerNukeDelay = 40; //sets the Delay value for the player Nuke, lower the value the faster it shoots
-        this.playerNukeTick = 0; //sets the playerNukeTick to 0, for using in the updatePlayerShooting function
+        this.playerNukeDelay = 150; //sets the Delay value for the player Nuke, lower the value the faster it shoots
+        this.playerNukeTick = 150; //sets the playerNukeTick to 0, for using in the updatePlayerShooting function
         //END set scene variables for shooting delays
 
         //create classes on the this.Object to assign the grouping method to  
@@ -288,16 +288,6 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             yoyo: true,
             repeat: -1
         });
-
-
-        this.lastEnemyMoveDir = "RIGHT"; //create a variable to hold last enemy movement
-        this.enemyMoveDir = "LEFT"; //create a variable to hold this enemy movement
-        this.enemyRect = new Phaser.Geom.Rectangle( //for moving the enemy rectangle around
-            Math.round((this.game.config.width / 24) * 0.2) * 10, //set the x position of rectangle
-            Math.round((this.game.config.height / 40) * 0.25), //set the y position of rectangle
-            Math.round(this.game.config.width / 24) * 20.1, //sets the width of rectangle
-            Math.round((this.game.config.height / 40) * 0.25) * 20 //sets the height of rectangle
-        );
 
         this.enemyRect = new Phaser.Geom.Rectangle( //for moving the enemy rectangle around
             0, //set the x position of rectangle
