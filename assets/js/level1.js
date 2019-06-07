@@ -53,7 +53,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         textScore.setOrigin(0.2, 0.5); //set origin
         this.aGrid.placeAtIndex(0, textScore); //set position on the grid
         Align.scaleToGameW(textScore, 0.12); //set scale
-        textLives = this.add.text(0, 0, 'Lives: 3', { font: '42px Arcade', fill: '#ffffff' }); //create lives text, position x and y, set text with currentLives variable and add font styling
+        textLives = this.add.text(0, 0, 'Lives: ' + maxLives, { font: '42px Arcade', fill: '#ffffff' }); //create lives text, position x and y, set text with currentLives variable and add font styling
         textLives.setOrigin(0.2, 0.5); //set origin
         this.aGrid.placeAtIndex(110, textLives); //set position on the grid
         Align.scaleToGameW(textLives, 0.12); //set scale
@@ -61,7 +61,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         textNukesLoad.setOrigin(0.85, 1); //set origin
         this.aGrid.placeAtIndex(120, textNukesLoad); //set position on the grid
         Align.scaleToGameW(textNukesLoad, 0.17); //set scale
-        textNukes = this.add.text(0, 0, 'Nukes: ' + currentNukes, { font: '42px Arcade', fill: '#ffffff' }); //create Nukes Left text, position x and y, set text with currentNukes variable and add font styling
+        textNukes = this.add.text(0, 0, 'Nukes: ' + maxNukes, { font: '42px Arcade', fill: '#ffffff' }); //create Nukes Left text, position x and y, set text with currentNukes variable and add font styling
         textNukes.setOrigin(0.8, 0.4); //set origin
         this.aGrid.placeAtIndex(120, textNukes); //set position on the grid
         Align.scaleToGameW(textNukes, 0.12); //set scale
@@ -862,19 +862,17 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     //continue function
     updateContinue() { //update method to restart game in event of GAME OVER
         this.time.addEvent({ //add timed event
-            delay: 10, //set delay to 10
+            delay: 100, //set delay to 100
             callback: function() { //create a callback function
-                if (this.keyEnter.isDown && levelWon) { //if the Space key is pressed and levelWon is true
+                if (this.keyEnter.isDown && levelWon && !touch) { //if the Space key is pressed and levelWon is true
                     levelWon = false; //set variable
-                    currentNukes++; //Add a nuke 
-                    LevelRestart++; //Add a level restart ability as reward for completing level
+                    this.addWinPrize();
                     this.scene.start("Level2"); //set scene start for level 2
                 }
                 if (levelWon && touch) { // if touch is true and levelWon
                     this.input.on('pointerdown', function() { //pointerdown acts as enter
                         levelWon = false; //set variable
-                        currentNukes++; //Add a nuke 
-                        LevelRestart++; //Add a level restart ability as reward for completing level
+                        this.addWinPrize();
                         this.scene.start("Level2"); //set scene start for level 2
                     }, this);
                 }
@@ -884,6 +882,11 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         });
     }
     // end continue function
+
+    addWinPrize() {
+        currentNukes++; //Add a nuke 
+        LevelRestart++; //Add a level restart ability as reward for completing level
+    }
 
     //create life down function
     onLifeDown() {
@@ -943,9 +946,9 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     //restart function
     updateRestart() { //update method to restart game in event of GAME OVER
         this.time.addEvent({ //add timed event
-            delay: 10, //set delay to 10
+            delay: 100, //set delay to 100
             callback: function() { //create a callback function
-                if (this.keyR.isDown && RIP) { //if the R key is pressed and RIP is true
+                if (this.keyR.isDown && RIP && !touch) { //if the R key is pressed and RIP is true
                     enemyShips = 0; //set enemyShips to 0
                     enemyDeaths = 0; //set enemyDeaths to 0
                     totalEnemyShips = 0; //reset total enemyships

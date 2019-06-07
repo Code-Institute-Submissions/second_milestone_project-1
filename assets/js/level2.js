@@ -875,19 +875,17 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     //continue function
     updateContinue() { //update method to restart game in event of GAME OVER
         this.time.addEvent({ //add timed event
-            delay: 10, //set delay to 10
+            delay: 60, //set delay to 60
             callback: function() { //create a callback function
-                if (this.keyEnter.isDown && levelWon) { //if the Space key is pressed and levelWon is true
+                if (this.keyEnter.isDown && levelWon && !touch) { //if the Space key is pressed and levelWon is true
                     levelWon = false; //set variable
-                    currentNukes++; //Add a nuke 
-                    LevelRestart++; //Add a level restart ability as reward for completing level
+                    this.addWinPrize();
                     this.scene.start("BossLevel"); //set scene start for BossLevel
                 }
                 if (levelWon && touch) { // if touch is true and levelWon
                     this.input.on('pointerdown', function() { //pointerdown acts as enter
                         levelWon = false; //set variable
-                        currentNukes++; //Add a nuke 
-                        LevelRestart++; //Add a level restart ability as reward for completing level
+                        this.addWinPrize();
                         this.scene.start("BossLevel"); //set scene start for BossLevel
                     }, this);
                 }
@@ -897,6 +895,11 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         });
     }
     // end continue function
+
+    addWinPrize() {
+        currentNukes++; //Add a nuke 
+        LevelRestart++; //Add a level restart ability as reward for completing level
+    }
 
     //create gameover function
     gameOver() {
@@ -945,16 +948,16 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     //restart function
     updateRestart() { //update method to restart game in event of GAME OVER
         this.time.addEvent({ //add timed event
-            delay: 10, //set delay to 10
+            delay: 100, //set delay to 100
             callback: function() { //create a callback function
-                if (this.keyR.isDown && RIP) { //if the R key is pressed and RIP is true
+                if (this.keyR.isDown && RIP && !touch) { //if the R key is pressed and RIP is true
                     if (LevelRestart > 0) { //if levelRestart = 1 
                         enemyShips = 0; //set enemyShips to 0
                         enemyDeaths = 0; //set enemyDeaths to 0
                         totalEnemyShips = 0; //reset total enemyships
                         currentLives = LevelRestartLives; //reset lives to LevelRestartLives
+                        this.loseRestartLife(); //lose level restart
                         RIP = false; //set RIP to false so restart cant happen in game
-                        LevelRestart--; //set level restart to 0
                         this.scene.start("Level2"); //Restart Game
                     }
                     else {
@@ -975,15 +978,14 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                             enemyDeaths = 0; //set enemyDeaths to 0
                             totalEnemyShips = 0; //reset total enemyships
                             currentLives = LevelRestartLives; //reset lives to LevelRestartLives
+                            this.loseRestartLife(); //lose level restart
                             RIP = false; //set RIP to false so restart cant happen in game
-                            LevelRestart--; //set level restart to 0
                             this.scene.start("Level2"); //Restart Game
                         }
                         else {
                             enemyShips = 0; //set enemyShips to 0
                             enemyDeaths = 0; //set enemyDeaths to 0
                             totalEnemyShips = 0; //reset total enemyships
-                            LevelRestart--; //set level restart to 0
                             currentLives = 0; //reset lives
                             currentNukes = 0; //reset nukes
                             RIP = false; //set RIP to false so restart cant happen in game
@@ -998,5 +1000,9 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         });
     }
     // end restart function
+
+    loseRestartLife() {
+        LevelRestart--;
+    }
 }
 //END scene

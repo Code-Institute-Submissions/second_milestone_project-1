@@ -1130,18 +1130,18 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
     //restart function
     updateRestart() { //update method to restart game in event of GAME OVER
         this.time.addEvent({ //add timed event
-            delay: 10, //set delay to 10
+            delay: 100, //set delay to 100
             callback: function() { //create a callback function
-                if (this.keyR.isDown && RIP) { //if the R key is pressed and RIP is true
+                if (this.keyR.isDown && RIP && !touch) { //if the R key is pressed and RIP is true
                     if (LevelRestart > 0) { //if levelRestart = 1 
                         enemyShips = 0; //set enemyShips to 0
                         enemyDeaths = 0; //set enemyDeaths to 0
                         totalEnemyShips = 0; //reset total enemyships
                         currentLives = LevelRestartLives; //reset lives to LevelRestartLives
+                        this.loseRestartLife(); //lose level restart
                         RIP = false; //set RIP to false so restart cant happen in game
                         motherShipAlive = true; //reset mothership value
-                        motherShipLives = 15; //reset mothership lives
-                        LevelRestart--; //set level restart 
+                        motherShipLives = maxMotherShipLives; //reset mothership lives
                         this.scene.start("BossLevel"); //Restart Game
                     }
                     else {
@@ -1164,10 +1164,10 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                             enemyDeaths = 0; //set enemyDeaths to 0
                             totalEnemyShips = 0; //reset total enemyships
                             currentLives = LevelRestartLives; //reset lives to LevelRestartLives
+                            this.loseRestartLife(); //lose level restart
                             RIP = false; //set RIP to false so restart cant happen in game
                             motherShipAlive = true; //reset mothership value
-                            motherShipLives = 15; //reset mothership lives
-                            LevelRestart--; //set level restart 
+                            motherShipLives = maxMotherShipLives;; //reset mothership lives
                             this.scene.start("BossLevel"); //Restart Game
                         }
                         else {
@@ -1190,5 +1190,9 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         });
     }
     // end restart function
+
+    loseRestartLife() {
+        LevelRestart--;
+    }
 }
 //END scene
