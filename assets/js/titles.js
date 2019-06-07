@@ -66,7 +66,7 @@ class Titles extends Phaser.Scene { //creates a scene in the Phaser Object calle
     this.time.addEvent({ //add timed event
       delay: 15000, //set delay to 15000
       callback: function() { //create callback function
-        this.scene.start("SceneMainMenu"); //set scene start for main game if lives is greater than 0
+        this.scene.start("MainMenu"); //set scene start for main game if lives is greater than 0
       },
       callbackScope: this, //set call back scope to this
       loop: false //set loop to false only play once

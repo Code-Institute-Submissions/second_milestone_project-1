@@ -473,18 +473,19 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.time.addEvent({ //add time event
             delay: 60, //set delay to 60
             callback: function() { //create call back function for time event
-
-                if (cursors.left.isDown) { //if key A pressed down
-                    this.player.x -= this.game.config.height * 0.007; //Move left
-                }
-                if (cursors.right.isDown) { //if key D pressed down
-                    this.player.x += this.game.config.height * 0.007; //Move right
-                }
-                if (cursors.up.isDown) { //if key W pressed down
-                    this.player.y -= this.game.config.height * 0.007; //Move up   
-                }
-                if (cursors.down.isDown) { //if key S pressed down
-                    this.player.y += this.game.config.height * 0.007; //Move down
+                if (!touch) {
+                    if (cursors.left.isDown) { //if key A pressed down
+                        this.player.x -= this.game.config.height * 0.007; //Move left
+                    }
+                    if (cursors.right.isDown) { //if key D pressed down
+                        this.player.x += this.game.config.height * 0.007; //Move right
+                    }
+                    if (cursors.up.isDown) { //if key W pressed down
+                        this.player.y -= this.game.config.height * 0.007; //Move up   
+                    }
+                    if (cursors.down.isDown) { //if key S pressed down
+                        this.player.y += this.game.config.height * 0.007; //Move down
+                    }
                 }
             },
             callbackScope: this, //set call back scope to this function
@@ -866,12 +867,14 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             callback: function() { //create a callback function
                 if (this.keyEnter.isDown && levelWon && !touch) { //if the Space key is pressed and levelWon is true
                     levelWon = false; //set variable
+                    gameWinPrize = true;
                     this.addWinPrize();
                     this.scene.start("Level2"); //set scene start for level 2
                 }
                 if (levelWon && touch) { // if touch is true and levelWon
                     this.input.on('pointerdown', function() { //pointerdown acts as enter
                         levelWon = false; //set variable
+                        gameWinPrize = true;
                         this.addWinPrize();
                         this.scene.start("Level2"); //set scene start for level 2
                     }, this);
@@ -884,8 +887,11 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     // end continue function
 
     addWinPrize() {
-        currentNukes++; //Add a nuke 
-        LevelRestart++; //Add a level restart ability as reward for completing level
+        if (gameWinPrize) {
+            currentNukes++; //Add a nuke 
+            LevelRestart++; //Add a level restart ability as reward for completing level
+            gameWinPrize = false;
+        }
     }
 
     //create life down function

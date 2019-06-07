@@ -127,7 +127,7 @@ class Asteroid extends Phaser.Physics.Arcade.Sprite { //Inherit Asteroid class t
         scene.physics.add.existing(this); //add existing game objects to the physics world
         Align.scaleToGameW(this, Phaser.Math.FloatBetween(0.01, 0.03)); //create a random scale for each object created
         this.setDepth(Phaser.Math.RND.integerInRange(-1, 1)); //create a random depth for each object created
-        this.setVelocity(Phaser.Math.RND.integerInRange(300, -300), Phaser.Math.RND.integerInRange(300, -300)); //create random x (left or right)value and fire up at -200
+        this.setVelocity(Phaser.Math.RND.integerInRange(250, -250), Phaser.Math.RND.integerInRange(250, -250)); //create random velocity
         this.setAngle(0); //set angle to 0
         this.body.angularVelocity = 150; //set rotation speed to 150
     }
