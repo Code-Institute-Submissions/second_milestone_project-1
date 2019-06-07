@@ -857,6 +857,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         enemyShips = 0; //set enemyShips to 0
         enemyDeaths = 0; //set enemyDeaths to 0
         totalEnemyShips = 0; //reset total enemyships
+        winTick = true;
     }
     //END win function
 
@@ -887,10 +888,11 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     // end continue function
 
     addWinPrize() {
-        if (gameWinPrize) {
+        if (gameWinPrize && winTick) {
             currentNukes++; //Add a nuke 
             LevelRestart++; //Add a level restart ability as reward for completing level
             gameWinPrize = false;
+            winTick = false;
         }
     }
 

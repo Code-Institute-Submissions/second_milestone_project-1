@@ -63,6 +63,7 @@ var textLives; //declares lives left text Global Variable
 var textNukes; //declares Nuke text Global Variable
 var textNukesLoad; //declare Nuke ReArming 
 var restartlevel; //declares level restart text Global Variable
+var winTick = false;
 var gameWinPrize = false;
 var leftAsteroid = true; //set leftAsteroid variable so as to switch sides asteroids fly from
 
