@@ -857,7 +857,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         enemyShips = 0; //set enemyShips to 0
         enemyDeaths = 0; //set enemyDeaths to 0
         totalEnemyShips = 0; //reset total enemyships
-        winTick = true;
+        winTick = true; //set winTick true
     }
     //END win function
 
@@ -868,15 +868,15 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             callback: function() { //create a callback function
                 if (this.keyEnter.isDown && levelWon && !touch) { //if the Space key is pressed and levelWon is true
                     levelWon = false; //set variable
-                    gameWinPrize = true;
-                    this.addWinPrize();
+                    gameWinPrize = true; //set gameWinPrize true
+                    this.addWinPrize(); //goto function
                     this.scene.start("Level2"); //set scene start for level 2
                 }
                 if (levelWon && touch) { // if touch is true and levelWon
                     this.input.on('pointerdown', function() { //pointerdown acts as enter
                         levelWon = false; //set variable
-                        gameWinPrize = true;
-                        this.addWinPrize();
+                        gameWinPrize = true; //set gameWinPrize true
+                        this.addWinPrize(); //goto function
                         this.scene.start("Level2"); //set scene start for level 2
                     }, this);
                 }
@@ -887,14 +887,16 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
     }
     // end continue function
 
+    //create addWinPrize function
     addWinPrize() {
-        if (gameWinPrize && winTick) {
+        if (gameWinPrize && winTick) { //if gameWinPrize and winTick are true
             currentNukes++; //Add a nuke 
             LevelRestart++; //Add a level restart ability as reward for completing level
-            gameWinPrize = false;
-            winTick = false;
+            gameWinPrize = false; //set gameWinPrize false
+            winTick = false; //set winTick false
         }
     }
+    //END create addWinPrize function
 
     //create life down function
     onLifeDown() {
