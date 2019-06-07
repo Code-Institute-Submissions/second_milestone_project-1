@@ -384,7 +384,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         for (var i = 0; i < level2Shields; i++) { //for loop to create an inset row of sheilds based on this levels sheild count 
             this.addShield( //add shield on each iteration
                 (Math.round((this.game.config.width / 2) - ((level2Shields / 2) * sheildWidth))) + (i * sheildWidth), //set the x coordinates by dividing game width by 2 minus level sheilds divided by 2 and multiplying i by sheildWidth, we can center the sheilds by offsetting from the edge then add offset to each sheild
-                this.game.config.height * 0.8 //set the y position of the sheilds
+                this.game.config.height * 0.81 //set the y position of the sheilds
             );
         }
         //END create sheilds

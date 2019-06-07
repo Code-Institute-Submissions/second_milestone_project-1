@@ -493,7 +493,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         for (var i = 0; i < levelBShields; i++) { //for loop to create an inset row of sheilds based on this levels sheild count 
             this.addShield( //add shield on each iteration
                 (Math.round((this.game.config.width / 2) - ((levelBShields / 2) * sheildWidth))) + (i * sheildWidth), //set the x coordinates by dividing game width by 2 minus level sheilds divided by 2 and multiplying i by sheildWidth, we can center the sheilds by offsetting from the edge then add offset to each sheild
-                this.game.config.height * 0.8 //set the y position of the sheilds
+                this.game.config.height * 0.81 //set the y position of the sheilds
             );
         }
         //END create sheilds
@@ -613,7 +613,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                         targets: alienscout, //target the alienscout
                         props: { //set its movement positions between its starting point and 
                             x: { value: this.player.x }, //this is the end point on x
-                            y: { value: this.game.config.height * 0.8 }, //this is the end point on y
+                            y: { value: this.game.config.height * 0.75 }, //this is the end point on y
                         },
                         duration: 4000,
                         ease: 'easeInOut',
