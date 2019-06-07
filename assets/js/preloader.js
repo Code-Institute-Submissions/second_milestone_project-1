@@ -48,6 +48,7 @@ class Preloader extends Phaser.Scene {
         this.load.audio("sndExplode", "assets/audio/sndExplode.wav"); //preload audio files, assign key name and src
         this.load.audio("sndLaserPlayer", "assets/audio/sndLaserPlayer.wav"); //preload audio files, assign key name and src
         this.load.audio("sndLaserEnemy", "assets/audio/sndLaserEnemy.wav"); //preload audio files, assign key name and src
+        this.load.audio("nukefiring", "assets/audio/nukefiring.wav"); //preload audio files, assign key name and src
 
     }
     create() {

@@ -28,21 +28,21 @@ The game should be responsive, although for best user experience Desktop/Laptop 
 
 ## Technologies ##
 
-*	HTML5
-*	CSS3
-*	Javascript ES6
-*	used GIMP 2.10.10
-*	VS Code
-*	web-server-for-chrome
-*	Chrome
-*	Firefox
-*	Microsoft edge
-*	Phaser 3 API
-*	https://phasergames.com/ (utils API)
-*	https://mybrowseraddon.com/useragent-switcher.html 
-*	https://developer.android.com/studio/debug/dev-options.html
-*	https://compresspng.com/ and https://tinypng.com
-
+Used | <span style="color:white">Leave Blank</span>       
+       ---------- | ----------
+HTML5 | CSS3
+Javascript ES6 | MarkDown
+Bash | Ubuntu
+GIT | GitHub
+Cloud9 | VS Code
+GIMP 2.10.10 | 
+[Phaser3](https://phaser.io) API | [phasergames.com](https://phasergames.com) (Utils API)
+Chrome | web-server-for-chrome
+FireFox | Microsoft Edge
+Safari | Android Device
+IoS Device | Windows LapTop
+Chrome devTools inc Remote Device Debug | mybrowseraddon.com useragent-switcher
+https://compresspng.com | https://tinypng.com
 
 
 

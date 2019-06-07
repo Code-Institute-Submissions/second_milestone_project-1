@@ -21,7 +21,8 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         this.sfx = { //add properties to call back sfx
             explode: this.sound.add("sndExplode"), //create the soudn fx properties
             laserPlayer: this.sound.add("sndLaserPlayer"), //create the soudn fx properties
-            laserEnemy: this.sound.add("sndLaserEnemy") //create the soudn fx properties
+            laserEnemy: this.sound.add("sndLaserEnemy"), //create the soudn fx properties
+            nukeFiring: this.sound.add("nukefiring") //create the soudn fx properties
         };
         //END sfx
 
@@ -167,7 +168,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             textNukes.on("pointerdown", function() { //this nukes label when on method, when mouse clicks
                 var nuke = new Nuke(this, this.player.x, this.player.y); //create new nuke object and start this object at player.x and player.y
                 this.starNukes.add(nuke); //add this nuke to starNuke group
-                this.sfx.laserPlayer.play(); //add laserPlayer sound
+                this.sfx.nukeFiring.play(); //add nukeFiring sound
                 currentNukes--; //decrement current nukes by 1
                 textNukes.setText('Nukes: ' + currentNukes); //set nuke left text to current value
             }, this); //this state only
@@ -653,7 +654,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                     else {
                         var nuke = new Nuke(this, this.player.x, this.player.y); //create new laser object and start this object at player.x and player.y
                         this.starNukes.add(nuke); //add this nuke to starNukes group
-                        this.sfx.laserPlayer.play(); //add laserPlayer sound
+                        this.sfx.nukeFiring.play(); //add nukeFiring sound
                         this.playerNukeTick = 0; //set nukeTick back to 0
                         currentNukes--; //decrement current nukes by 1
                         textNukes.setText('Nukes: ' + currentNukes); //set nuke left text to current value
@@ -870,7 +871,7 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         enemyShips = 0; //set enemyShips to 0
         enemyDeaths = 0; //set enemyDeaths to 0
         totalEnemyShips = 0; //reset total enemyships
-        winTick = true;  //set winTick true
+        winTick = true; //set winTick true
     }
     //END win function
 
