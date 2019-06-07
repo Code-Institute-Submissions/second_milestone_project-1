@@ -232,15 +232,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         );
         this.aGrid.placeAtIndex(11, this.enemyRect); //set rect at grid position
 
-        for (var x = 3; x < 27; x++) { //create an inset row of enemy ships by setting to 35, skipping the first 6 iterations of the loop by setting x, we can center the enemyShips by offsetting from the edge
-            for (var y = 0; y < 3; y++) { //create 3 additional rows by iterating through x
-                var enemy = new EnemyCruiser(this, x * (this.game.config.width * 0.035), (this.game.config.height * 0.25) + (y * (this.game.config.height * 0.11)), "enemyCruiser"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyship image sprite
-                enemy.play("enemyCruiser"); //start animation of the enemyShip
-                enemyShips++; //add a ship to total enemy ships created
-                this.enemies.add(enemy); //draw an enemy ship on the screen at x and y
-            }
-            totalEnemyShips = enemyShips; //set totalEnemy ships to equal enemyShips created for use in Victory function
-        }
+        this.createEnemies(); //create enemies function
         //END Create enemies
 
         // Create callback methods
@@ -537,6 +529,27 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
         });
     }
     //END create asteroids function
+
+    //create enemies function
+    createEnemies() {
+        this.time.addEvent({
+            delay: 10,
+            callback: function() {
+                for (var x = 3; x < 27; x++) { //create an inset row of enemy ships by setting to 35, skipping the first 6 iterations of the loop by setting x, we can center the enemyShips by offsetting from the edge
+                    for (var y = 0; y < 3; y++) { //create 3 additional rows by iterating through x
+                        var enemy = new EnemyCruiser(this, x * (this.game.config.width * 0.035), (this.game.config.height * 0.25) + (y * (this.game.config.height * 0.11)), "enemyCruiser"); //set coordinates for image with spacing on x and y and assign a key from preloaded images to add the enemyship image sprite
+                        enemy.play("enemyCruiser"); //start animation of the enemyShip
+                        enemyShips++; //add a ship to total enemy ships created
+                        this.enemies.add(enemy); //draw an enemy ship on the screen at x and y
+                    }
+                    totalEnemyShips = enemyShips; //set totalEnemy ships to equal enemyShips created for use in Victory function
+                }
+            },
+            callbackScope: this,
+            loop: false
+        });
+    }
+    //END create enemies function
 
     //create loseLives function
     loseLives(amount) { //loseLives method passed with parameter amount
