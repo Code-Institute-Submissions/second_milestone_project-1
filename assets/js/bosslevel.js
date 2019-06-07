@@ -224,6 +224,8 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             repeat: -1
         });
 
+        this.lastEnemyMoveDir = "RIGHT"; //create a variable to hold last enemy movement
+        this.enemyMoveDir = "LEFT"; //create a variable to hold this enemy movement
         this.enemyRect = new Phaser.Geom.Rectangle( //for moving the enemy rectangle around
             0, //set the x position of rectangle
             0, //set the y position of rectangle
