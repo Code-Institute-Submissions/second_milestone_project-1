@@ -1070,7 +1070,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                 enemyShips = 0; //set enemyShips to 0
                 enemyDeaths = 0; //set enemyDeaths to 0
                 totalEnemyShips = 0; //reset total enemyships
-                currentLives = maxLives; //set values to game start
+                currentLives = 0; //set values to game start
                 currentNukes = maxNukes; //set values to game start
                 motherShipAlive = true; //set values to game start
                 motherShipLives = maxMotherShipLives; //set values to game start
@@ -1146,8 +1146,8 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                         enemyShips = 0; //set enemyShips to 0
                         enemyDeaths = 0; //set enemyDeaths to 0
                         totalEnemyShips = 0; //reset total enemyships
-                        currentLives = maxLives; //reset lives to normal
-                        currentNukes = maxNukes; //reset nukes to normal
+                        currentLives = 0; //reset lives
+                        currentNukes = 0; //reset nukes
                         motherShipAlive = true; //set mothership alive
                         motherShipLives = maxMotherShipLives; //set mothership lives back to normal
                         RIP = false; //set RIP to false so restart cant happen in game
@@ -1172,8 +1172,8 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
                             enemyShips = 0; //set enemyShips to 0
                             enemyDeaths = 0; //set enemyDeaths to 0
                             totalEnemyShips = 0; //reset total enemyships
-                            currentLives = maxLives; //reset lives to normal
-                            currentNukes = maxNukes; //reset nukes to normal
+                            currentLives = 0; //reset lives
+                            currentNukes = 0; //reset nukes 
                             motherShipAlive = true; //set mothership alive
                             motherShipLives = maxMotherShipLives; //set mothership lives back to normal
                             RIP = false; //set RIP to false so restart cant happen in game

@@ -31,7 +31,7 @@ var config = { //game configuration parameters
 };
 
 var maxLives = 3; //declares maxLives Global Variable
-var currentLives = maxLives; //declares current lives Global Variable
+var currentLives = 0; //declares current lives Global Variable
 var RIP = false; //declares RIP switch Global Variable
 var LevelRestartLives = 1; //set restart lives to 1
 var LevelRestart = 0; //declare level restart available as 0
@@ -44,7 +44,7 @@ var particles; //declares particles Global Variable
 var emitter; //declares emitter Global Variable
 
 var enemyShips = 0; //declares number of enemyShips Global Variable
-var totalEnemyShips; //declares totalEnemyShips Global Variable
+var totalEnemyShips = 0; //declares totalEnemyShips Global Variable
 var enemyDeaths = 0; //declares enemyDeaths Global Variable
 var enemyHitStrength = 1; //declares enemyHitStrength Global Variable
 var enemyValue = 10; //declares enemyValue as 10 Global Variable

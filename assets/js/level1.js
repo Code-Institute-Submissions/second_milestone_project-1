@@ -53,7 +53,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         textScore.setOrigin(0.2, 0.5); //set origin
         this.aGrid.placeAtIndex(0, textScore); //set position on the grid
         Align.scaleToGameW(textScore, 0.12); //set scale
-        textLives = this.add.text(0, 0, 'Lives: ' + currentLives, { font: '42px Arcade', fill: '#ffffff' }); //create lives text, position x and y, set text with currentLives variable and add font styling
+        textLives = this.add.text(0, 0, 'Lives: 3', { font: '42px Arcade', fill: '#ffffff' }); //create lives text, position x and y, set text with currentLives variable and add font styling
         textLives.setOrigin(0.2, 0.5); //set origin
         this.aGrid.placeAtIndex(110, textLives); //set position on the grid
         Align.scaleToGameW(textLives, 0.12); //set scale
@@ -423,7 +423,7 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         });
     }
     //END create enemies function
-    
+
     //create asteroids function
     createAsteroids() {
         this.time.addEvent({ //add a time event on asteroid
@@ -463,6 +463,8 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             this.game.config.height - 50, //set playerShip to position 50 pixels up from bottom on y axis
             "playerShip"
         );
+        currentLives = maxLives; //set Lives to max lives
+        currentNukes = maxNukes; //set nukes to max nukes
     }
     //END createPlayer function
 
@@ -854,8 +856,6 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         enemyShips = 0; //set enemyShips to 0
         enemyDeaths = 0; //set enemyDeaths to 0
         totalEnemyShips = 0; //reset total enemyships
-        currentNukes++; //Add a nuke 
-        LevelRestart++; //Add a level restart ability as reward for completing level
     }
     //END win function
 
@@ -866,11 +866,15 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             callback: function() { //create a callback function
                 if (this.keyEnter.isDown && levelWon) { //if the Space key is pressed and levelWon is true
                     levelWon = false; //set variable
+                    currentNukes++; //Add a nuke 
+                    LevelRestart++; //Add a level restart ability as reward for completing level
                     this.scene.start("Level2"); //set scene start for level 2
                 }
                 if (levelWon && touch) { // if touch is true and levelWon
                     this.input.on('pointerdown', function() { //pointerdown acts as enter
                         levelWon = false; //set variable
+                        currentNukes++; //Add a nuke 
+                        LevelRestart++; //Add a level restart ability as reward for completing level
                         this.scene.start("Level2"); //set scene start for level 2
                     }, this);
                 }
@@ -945,7 +949,8 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                     enemyShips = 0; //set enemyShips to 0
                     enemyDeaths = 0; //set enemyDeaths to 0
                     totalEnemyShips = 0; //reset total enemyships
-                    currentLives = LevelRestartLives; //reset lives to LevelRestartLives
+                    currentLives = 0; //reset lives
+                    currentNukes = 0; //reset nukes
                     RIP = false; //set RIP to false so restart cant happen in game
                     score = 0; //set the score back to 0
                     this.scene.start("MainMenu"); //Restart Game
@@ -955,7 +960,8 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                         enemyShips = 0; //set enemyShips to 0
                         enemyDeaths = 0; //set enemyDeaths to 0
                         totalEnemyShips = 0; //reset total enemyships
-                        currentLives = LevelRestartLives; //reset lives to LevelRestartLives
+                        currentLives = 0; //reset lives
+                        currentNukes = 0; //reset nukes
                         RIP = false; //set RIP to false so restart cant happen in game
                         score = 0; //set the score back to 0
                         this.scene.start("MainMenu"); //Restart Game

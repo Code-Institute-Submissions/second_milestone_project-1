@@ -869,8 +869,6 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
         enemyShips = 0; //set enemyShips to 0
         enemyDeaths = 0; //set enemyDeaths to 0
         totalEnemyShips = 0; //reset total enemyships
-        currentNukes++; //Add a nuke 
-        LevelRestart++; //Add a level restart ability as reward for completing level
     }
     //END win function
 
@@ -881,11 +879,15 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
             callback: function() { //create a callback function
                 if (this.keyEnter.isDown && levelWon) { //if the Space key is pressed and levelWon is true
                     levelWon = false; //set variable
+                    currentNukes++; //Add a nuke 
+                    LevelRestart++; //Add a level restart ability as reward for completing level
                     this.scene.start("BossLevel"); //set scene start for BossLevel
                 }
                 if (levelWon && touch) { // if touch is true and levelWon
                     this.input.on('pointerdown', function() { //pointerdown acts as enter
                         levelWon = false; //set variable
+                        currentNukes++; //Add a nuke 
+                        LevelRestart++; //Add a level restart ability as reward for completing level
                         this.scene.start("BossLevel"); //set scene start for BossLevel
                     }, this);
                 }
@@ -959,7 +961,8 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                         enemyShips = 0; //set enemyShips to 0
                         enemyDeaths = 0; //set enemyDeaths to 0
                         totalEnemyShips = 0; //reset total enemyships
-                        currentLives = maxLives; //reset lives to maxLives
+                        currentLives = 0; //reset lives
+                        currentNukes = 0; //reset nukes
                         RIP = false; //set RIP to false so restart cant happen in game
                         score = 0; //set the score back to 0
                         this.scene.start("MainMenu"); //Restart Game
@@ -980,7 +983,9 @@ class Level2 extends Phaser.Scene { //creates a scene in the Phaser Object calle
                             enemyShips = 0; //set enemyShips to 0
                             enemyDeaths = 0; //set enemyDeaths to 0
                             totalEnemyShips = 0; //reset total enemyships
-                            currentLives = maxLives; //reset lives to maxLives
+                            LevelRestart--; //set level restart to 0
+                            currentLives = 0; //reset lives
+                            currentNukes = 0; //reset nukes
                             RIP = false; //set RIP to false so restart cant happen in game
                             score = 0; //set the score back to 0
                             this.scene.start("MainMenu"); //Restart Game
