@@ -53,7 +53,10 @@ I have used the technologies above to build the game, create animations, view/pl
 
 ## Features ##
 
-The site is written in Javscript and is playable on all devices sizes, although, as mentioned on the Main Menu Screen it is best played on the Laptop/Desktop. The game is fully responsive to the viewport. 
+The site has a loose basis to the game [Saucer Invaders](/assets/images/ReadMeImages/Build-Arcade-Games-with-Phaser-3_-Saucer-Invaders-1.pdf) which was created by Jared York, however it has been entirely worked through, 
+extended, scaled and re-positioned, with the addition of a lot of extra variables and functions in order to make the game logic my own and work for the result I have finished with.
+
+The site is written in Javscript ES6 and is playable on all devices sizes, although, as mentioned on the Main Menu Screen it is best played on the Laptop or Desktop. The game is fully responsive to the viewport. 
 
 The game has provision for turning on or off the touch control ability, this in turn changes the Game Controls Text automatically and disables the cursor keys from use.
 
@@ -89,10 +92,10 @@ The API is from www.phaser.io and has an additional API from https://phasergames
 *	Phaser 3 code examples
        *	https://github.com/jaredyork/CourseSaucerInvaders used as a basis for my game
        *	https://yorkcs.com/product/build-arcade-games-with-phaser-3-saucer-invaders/ 
+       *	[Saucer Invaders Documentation](/assets/images/ReadMeImages/Build-Arcade-Games-with-Phaser-3_-Saucer-Invaders-1.pdf)
        *	https://github.com/yandeu/phaser-project-template-es6/blob/master/src/scripts/objects/phaserLogo.js
        *	http://labs.phaser.io/edit.html?src=src\physics\arcade\sprite%20overlap%20group.js 
        *	https://yorkcs.com/2019/02/06/build-a-space-shooter-with-phaser-3/
-       *	file:///C:/Users/Michael%20Leese/Downloads/Build-Arcade-Games-with-Phaser-3_-Saucer-Invaders-1%20(1).pdf
        *	https://phaser.discourse.group/c/phaser3 
        *	http://www.html5gamedevs.com/topic/1380-how-to-scale-entire-game-up/
        *	https://www.youtube.com/watch?v=ZWIZeGAXuSA
@@ -104,15 +107,18 @@ The API is from www.phaser.io and has an additional API from https://phasergames
 
 #### Media ####
 
-Some images and sounds were taken from the supplied assets folder, however to make the game more Graphically appealing, further images were sort and I used GIMP Image Manipulation to create my own sprite objects that could be animated.
+All media that has been used is free to use and has no licensing restrictions upon them, searched using the google images advanced search method with usage rights filter.
+Some images and sounds were taken from the supplied assets folder from the saucer invaders game, which in turn have been taken from the open source [Phaser Examples](https://examples.phaser.io/assets/), 
+however to make the game more Graphically appealing, further images were sort and I used [GIMP](https://www.gimp.org/) Image Manipulation Program to create my own sprite objects that could be animated.
 Further images were incorporated to create part of the story that was created by myself and add to the general nature of it being a living story.
+
 *	Images
-       *	https://yorkcs.com/product/build-arcade-games-with-phaser-3-saucer-invaders/ stock images
+       *	https://yorkcs.com/product/build-arcade-games-with-phaser-3-saucer-invaders/
        *	http://www.pngall.com/ 
        *	https://pixabay.com 
        *	https://www.publicdomainpictures.net 
-       *	https://opengameart.org/content/space-ship-construction-kit for space ships
-       *	https://all-free-download.com/font/ fonts
+       *	https://opengameart.org/content/space-ship-construction-kit
+       *	https://all-free-download.com/font/ 
        *	http://www.pngall.com/evil-png/download/11139  
        *	https://www.deviantart.com
 
@@ -126,6 +132,13 @@ Sound were primarily taken from the supplied assets folder, however I added a so
 #### Acknowledgements ####
 
 
+I would like to thank [Jared York](https://yorkcs.com/) for the inspiration behind my game and some of the logic within my game, 
+however a bigger thank you to Phaser and Phaser Games for the API's that I have used.
+
+The Phaser community for the documentation and assistance through threads found on StackOverflow and the Phaser forum.
+
+
+###### This project has been created for educational use ######
 
 
 
