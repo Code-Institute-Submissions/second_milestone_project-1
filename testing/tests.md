@@ -59,4 +59,22 @@ The feedback given can be seen [here](testingfeedback/usertestfeedback.md).
 
 ### Manual Testing ###
 
+*	Carry out staggered tests for shooting,
+*	Crash into all objects as player
+*	Allow enemy to run to bottom to check they destroy shields
+*	Shoot at everything
+*	Check scores go up as they should
+*	Check the lives lost are as should be
+*	Check restartlevel is as should be
+*	Check nukes fired is correct
+*	Watch enemy movement so as to configure proper distances from game edge
+*	Press buttons P for pause, R for restart and Enter for continue
+*	Go through each page and check functioning as should be
+*	Carryout console.logs for checking enemyships created, totalenemyships and enemydeaths
+*	Fire at mothership so as to check lives lost on console
+*	Test all buttons
+*	Check game on Chrome/Microsoft Edge/Firefox
+*	User-Agent Switcher addon for chrome to test with other browsers ie Safari
+*	Use remote debugging for android on chrome
+*	Request third party individuals play and provide feedback
 

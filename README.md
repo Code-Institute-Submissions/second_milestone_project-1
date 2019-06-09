@@ -35,7 +35,7 @@ Javascript ES6 | MarkDown
 Bash | Ubuntu
 GIT | GitHub
 Cloud9 | VS Code
-GIMP 2.10.10 | 
+GIMP 2.10.10 | Jasmine Framework
 [Phaser3](https://phaser.io) API | [phasergames.com](https://phasergames.com) (Utils API)
 Chrome | web-server-for-chrome
 FireFox | Microsoft Edge
@@ -44,6 +44,32 @@ IoS Device | Windows LapTop
 Chrome devTools inc Remote Device Debug | mybrowseraddon.com useragent-switcher
 https://compresspng.com | https://tinypng.com
 
+I have used the technologies above to build the game, create animations, view/play the game and test the game and code, as well as commit it to GitHub for deployment.
+
+## Features ##
+
+The site is written in Javscript and is playable on all devices sizes, although, as mentioned on the Main Menu Screen it is best played on the Laptop/Desktop. The game is fully responsive to the viewport. 
+
+The game has provision for turning on or off the touch control ability.
+
+#### Features left to implement ####
+
+In the future, I would like to add the ability of storing and displaying the highscore, no matter who plays it and from any device.
+
+## Testing ##
+
+[Testing Documentation](testing/tests.md)
+
+## Deployment ##
+
+
+## Credits ##
+
+#### Content ####
+
+#### Media ####
+
+#### Acknowledgements ####
 
 
 
