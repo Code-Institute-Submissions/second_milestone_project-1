@@ -17,7 +17,7 @@ You didn't share your repo but I found it on github:
 @Michael Leese I had a quick look. I'm only on my first milestone, so these comments reflect zero understanding of the hard work you must have put in to the coding of the java. 1) I immediately clicked play and reached for the space bar and arrows - the conventional button for games like this, and they worked! Fab. I wonder if the other instructions could be summarised on a really simple screen just before you play so idiots like me who just click play and don't want to read the instructions are forced to - otherwise we won't enjoy the game as much? 2)
 - I pressed space rapidly but bullets didn't fire that fast. Maybe my laptop? This was a little frustrating.
 - The instructions were hard to read and the screen didn't seem to scroll left, right up or down. Maybe just me? I was in Safari. See Below.
-[Safari Screen Shot](../assets/images/screenShots/userfeedbackscreenshot.png)
+[Safari Screen Shot](../../assets/images/screenShots/userfeedbackscreenshot.png)
 
 3.	Edel O'Sullivan [9:15 AM]
 Hi @Michael Leese I have never played a computer game (why am I doing this course) but hubbie was passing so I asked him. I got the dishwasher unloaded and a wash on before he gave me back the laptop :grin: So his comments.... when u go to help not obvious how to exit it (alien head)... restarting on level 2 is a nice feature... alien ships speed up too quick - more paced... he wanted some gaps between the buildings at the start so he needn't destroy to kill the aliens. That's his wish list - hope it helps :four_leaf_clover: 
