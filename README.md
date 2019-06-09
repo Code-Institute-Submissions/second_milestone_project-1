@@ -1,4 +1,5 @@
-# GALACTIC GUNNERS #
+<link rel="stylesheet" href="assets/css/style.css">
+<h1 class = "ReadMeHead" >GALACTIC GUNNERS</h1>
 
 ###### Second Milestone Project - Interactive Frontend Development ######
 
