@@ -14,4 +14,4 @@ Tests were performedboth using the keyboard whilst touch not selected and with t
 ### User Tests ###
 
 Users were invited to play the game and give feedback on the game and carry out some testing so that game functionality and user experience was thought about.
-The feedback given can be seen [here](testingfeedback/userTestingFeedback.xml).
+The feedback given can be seen [here](testingfeedback/usertestfeedback.pdf).
