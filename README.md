@@ -29,7 +29,7 @@ The game should be responsive, although for best user experience Desktop/Laptop 
 ## Technologies ##
 
 Used | <span style="color:white">Leave Blank</span>       
-       ---------- | ----------
+---------- | ----------
 HTML5 | CSS3
 Javascript ES6 | MarkDown
 Bash | Ubuntu
