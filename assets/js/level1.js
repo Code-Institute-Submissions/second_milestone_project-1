@@ -392,15 +392,15 @@ class Level1 extends Phaser.Scene { //creates a scene in the Phaser Object calle
 
     //create addScore function
     addScore(amount) { //addScore method passed with parameter amount
-        score += amount; //raise score by amount                     
-        textScore.setText('Score: ' + score); //sets score 
+       return score += amount; //raise score by amount                     
+        // textScore.setText('Score: ' + score); //sets score 
     }
     //END addScore function
 
     //create loseLives function
     loseLives(amount) { //loseLives method passed with parameter amount
-        currentLives -= amount; // currentLives drop by amount
-        textLives.setText('Lives: ' + currentLives); //sets lives remaining
+       return currentLives -= amount; // currentLives drop by amount
+        // textLives.setText('Lives: ' + currentLives); //sets lives remaining
     }
     //END loseLives function
 
