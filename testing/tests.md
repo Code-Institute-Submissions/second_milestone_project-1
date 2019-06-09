@@ -59,23 +59,27 @@ The feedback given can be seen [here](testingfeedback/usertestfeedback.md).
 
 ### Manual Testing ###
 
-*	Carry out staggered tests for shooting,
-*	Crash into all objects as player
-*	Allow enemy to run to bottom to check they destroy shields
-*	Shoot at everything
-*	Check scores go up as they should
-*	Check the lives lost are as should be
-*	Check restartlevel is as should be
-*	Check nukes fired is correct
-*	Watch enemy movement so as to configure proper distances from game edge
-*	Press buttons P for pause, R for restart and Enter for continue
-*	Go through each page and check functioning as should be
-*	Carryout console.logs for checking enemyships created, totalenemyships and enemydeaths
-*	Fire at mothership so as to check lives lost on console
-*	Test all buttons
-*	Check game on Chrome/Microsoft Edge/Firefox
-*	User-Agent Switcher addon for chrome to test with other browsers ie Safari
-*	Use remote debugging for android on chrome
-*	Request third party individuals play and provide feedback
+*	Individually test pages by setting startscene to scene name on main menu.
+*	Test game entirely through on both touch and non touch settings to ensure operation.
+*	Carry out staggered tests for shooting and ensuring all opbjects are destroyed and scores added if relevant.
+*	Crash into all objects as player, Asteroids, Lasers, Enemy Ships on all levels.
+*	Allow enemy to run to bottom to check they destroy shields and kill player.
+*	Shoot at everything.
+*	Check scores go up as they should. 10 points per enemy ship hit by laser, 20 points per mothership hit by laser and 100 points for nuke hit on object plus the value of the enemyHitValue/mothershipHitValue.
+*	Check the lives lost are as should be, lose 1 life per death.
+*	Check restartlevel is as should be, reset lives to 1.
+*	Check nukes fired is correct and updated.
+*	Check rearm text is updated and works correctly on non touch game.
+*	Watch enemy movement so as to configure proper distances from game edge.
+*	Press buttons P for pause, R for restart Q for mute/unmute and Enter for continue.
+*	Ensure all touch controls work as they hsould for movement and continuation of game.
+*	Go through each page and check functioning as should be for all objects.
+*	Carryout console.logs for checking enemyships created, totalenemyships and enemydeaths.
+*	Fire at mothership so as to check mothership lives lost on console, 1 for laser and 5 for nuke.
+*	Test all buttons.
+*	Check game on Chrome/Microsoft Edge/Firefox.
+*	User-Agent Switcher addon for chrome to test with other browsers ie Safari.
+*	Use remote debugging for android on chrome.
+*	Request third party individuals play and provide feedback.
 
 Back to [README](../README.md)

@@ -287,7 +287,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             if (Mothership) { //if mothership   
                 this.createExplosion(Mothership.x, Mothership.y); //call createExplosion method
                 this.addScore(mothershipHitValue); //call add score function with mothership value variable                                                                                   
-                this.motherShipHit(1); //mothership hit function with 1 as value
+                this.motherShipHit(1); //mothership hit function with 1 as parameter
             }
         }, null, this);
 
@@ -301,7 +301,7 @@ class BossLevel extends Phaser.Scene { //creates a scene in the Phaser Object ca
             if (Mothership) { //if mothership 
                 this.createNukeExplosion(Mothership.x, Mothership.y); //call createNukeExplosion method
                 this.addScore(nukeScore + mothershipHitValue); //call add score function with nukeScore + mothership value variable                 
-                this.motherShipHit(2); //mothership hit function with 3 as value
+                this.motherShipHit(2); //mothership hit function with 2 as parameter
             }
         }, null, this);
 
