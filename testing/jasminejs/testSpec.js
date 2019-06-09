@@ -17,7 +17,7 @@ describe("Global Variables", function () {
     });
 
     it("should return lives 3", function () {
-        expect(currentLives).toBe(3);
+        expect(currentLives).toBe(0);
     });
 
     it("should return nukes 2", function () {
@@ -99,11 +99,15 @@ describe("Config", function () {
 
 describe("basic functions", function () {
 
+ beforeEach(() => {
+        currentLives = maxLives;
+    });
+
     it("should return 10", function () {
         expect(config.scene[3].prototype.addScore(enemyValue)).toBe(score = 10);
     });
 
-    it("should return 10", function () {
+    it("should return 2", function () {
         expect(config.scene[3].prototype.loseLives(enemyHitStrength)).toBe(currentLives = 2);
     });
 
