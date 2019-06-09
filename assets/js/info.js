@@ -152,7 +152,7 @@ class Info extends Phaser.Scene { //creates a scene in the Phaser Object called 
 
     this.btnBack.on("pointerdown", function() { //this Back Button when on method, when mouse clicks
       this.sfx.btn.play(); // set the sound to play             
-      this.scene.start("SceneMainMenu"); // back to Main Menu
+      this.scene.start("MainMenu"); // back to Main Menu
     }, this); //this state only
     //END return to main screen button
   }
