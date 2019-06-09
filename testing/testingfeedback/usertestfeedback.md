@@ -21,3 +21,5 @@ You didn't share your repo but I found it on github:
 
 3.	Edel O'Sullivan [9:15 AM]
 Hi @Michael Leese I have never played a computer game (why am I doing this course) but hubbie was passing so I asked him. I got the dishwasher unloaded and a wash on before he gave me back the laptop :grin: So his comments.... when u go to help not obvious how to exit it (alien head)... restarting on level 2 is a nice feature... alien ships speed up too quick - more paced... he wanted some gaps between the buildings at the start so he needn't destroy to kill the aliens. That's his wish list - hope it helps :four_leaf_clover: 
+
+Back to [Testing Documentation](../tests.md)
