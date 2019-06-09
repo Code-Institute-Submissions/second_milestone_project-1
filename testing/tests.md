@@ -14,42 +14,42 @@ Example of function alteration:
   
   From:  
 ```
-      //create addScore function
+//create addScore function
   addScore(amount) { //addScore method passed with parameter amount
      score += amount; //raise score by amount                     
      textScore.setText('Score: ' + score); //sets score 
   }
-  //END addScore function
+//END addScore function
 
-  //create loseLives function
+//create loseLives function
   loseLives(amount) { //loseLives method passed with parameter amount
      currentLives -= amount; // currentLives drop by amount
      textLives.setText('Lives: ' + currentLives); //sets lives remaining
   }
-  //END loseLives function
+//END loseLives function
 ``` 
   To:  
 ```   
-      //create addScore function
+//create addScore function
   addScore(amount) { //addScore method passed with parameter amount
    return score += amount; //raise score by amount                     
     // textScore.setText('Score: ' + score); //sets score 
   }
-  //END addScore function
+//END addScore function
 
-  //create loseLives function
+//create loseLives function
   loseLives(amount) { //loseLives method passed with parameter amount
     return currentLives -= amount; // currentLives drop by amount
     // textLives.setText('Lives: ' + currentLives); //sets lives remaining
   }
-  //END loseLives function
+//END loseLives function
 ```
 This enabled the testing to be performed without errors due to the nature of Phaser and the internal functions within the API.
 Below is a screenshot of the Jasmine Testing screen that passes all the variables and functions I included in the test.
 
 ### Jasmine Test ScreenShot ###
 
-![Jasmines Screen Shot](../assets/images/screenShots/JasmineTestImage.png)
+![Jasmine Test Screen Shot](../assets/images/screenShots/JasmineTestImage.png)
 
 
 ### User Tests ###
