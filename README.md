@@ -8,7 +8,7 @@ The game is responsive and incorporates a selector for those that are playing on
 
 ## Demo ##
 
-A deployed version of the game can be played <a href="https://michael-leese.github.io/second_milestone_project/" rel="follow" target="_blank">HERE</a>.
+A deployed version of the game can be played <a href="https://bit.ly/2Myimtn" target="_blank">HERE</a>.
 
 ![Gallactic Gunners Main Menu](assets/images/screenShots/galacticgunnersmenu.png)
 
@@ -43,6 +43,7 @@ Safari | Android Device
 IoS Device | Windows LapTop
 Chrome devTools inc Remote Device Debug | mybrowseraddon.com useragent-switcher
 https://compresspng.com | https://tinypng.com
+https://bitly.com/ | <span style="color:white">Leave Blank</span> 
 
 I have used the technologies above to build the game, create animations, view/play the game and test the game and code, as well as commit it to GitHub for deployment.
 
