@@ -100,7 +100,7 @@ class Info extends Phaser.Scene { //creates a scene in the Phaser Object called 
       this.textTouchControls = this.add.text( //Add Question text
         0, //set x axis position
         0, //set y axis position
-        touchControls, //set the text to variable Controls
+        TouchControls, //set the text to variable Controls
         {
           fontFamily: "Arcadepix", //set font style
           fontSize: 50, //set font size

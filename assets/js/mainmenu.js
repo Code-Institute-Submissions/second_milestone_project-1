@@ -147,7 +147,7 @@ class MainMenu extends Phaser.Scene { //creates a scene in the Phaser Object cal
     this.textPoint = this.add.text( //create point select text
       0, //set position on the x axis
       0, //set position on the y axis
-      touchSelector, //set text to variable
+      TouchSelector, //set text to variable
       {
         fontFamily: "Arcadepix", //set font style
         fontSize: 80, //set font size

@@ -94,7 +94,7 @@ const StoryContent = [ //set story text variable
     "WATCH OUT FOR THE ASTEROIDS!"
 ];
 
-const touchSelector = [ //set touch selector text
+const TouchSelector = [ //set touch selector text
     "  SELECT  ",
     "FOR  TOUCH"
 ];
@@ -103,7 +103,7 @@ const Controls = [ //set controls text variable
     "GAME CONTROLS - Press Q to Mute Sound",
     "Use Cursors to FLY      Hold Space for LASERS      Press N for NUKES"
 ];
-const touchControls = [ //set touch controls text variable
+const TouchControls = [ //set touch controls text variable
     "GAME CONTROLS - Tap Speaker Icon to Mute",
     "Use Finger to FLY       Tap Screen for LASERS      Press Label for NUKES"
 ];
